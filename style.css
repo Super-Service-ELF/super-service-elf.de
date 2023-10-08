@@ -1,0 +1,178 @@
+@font-face {
+	font-family: "GothamRounded-Bold";
+	src: url("/fonts/GothamRounded-Bold.woff2");
+}
+@font-face {
+	font-family: "GothamRounded";
+	src: url("/fonts/GothamRounded.woff2");
+}
+@keyframes rotate90 {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(90deg);}
+}
+@keyframes rotate0 {
+	from {transform: rotate(90deg);}
+	to {transform: rotate(180deg);}
+}
+* {
+	font-family: "GothamRounded" !important;
+	margin: 0px;
+	word-wrap: break-word;
+}
+h1, h2, h3 {
+	font-family: "GothamRounded-Bold" !important;
+	line-height: 100% !important;
+}
+h1 {
+	font-size: 48px;
+	padding: 12px;
+}
+h2 {
+	font-size: 32px;
+	padding: 8px;
+}
+h3 {
+	font-size: 24px;
+	padding: 8px;
+}
+#navigationBar {
+	font-size: 24px;
+	padding-left: 32px;
+}
+#navigationBar a {
+	padding-right: 16px;
+}
+p {
+	font-size: 16px;
+	padding: 8px;
+}
+h1, h2, h3, p, a {
+	text-align: center;
+}
+*:not(main p a) {
+	text-decoration: none;
+}
+a:not(#button):hover {
+	color: #004F80;
+}
+body {
+	background-color: #009DFF;
+	min-width: 320px;
+}
+::-webkit-scrollbar {
+	background: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background: #004F80;
+	border-radius: 8px;
+}
+main *:not(#sslcontactholder *) {
+	line-height: 200%;
+}
+header *, footer *, main p a {
+	color: #FFFFFF;
+}
+main, main a {
+	background-color: #80CEFF;
+	color: #000000;
+}
+header {
+	height: 180px;
+	padding-top: 16px;
+	padding-bottom: 32px;
+}
+div:not(#sslcontactholder, #sslcontactholder *), footer {
+	padding-top: 32px;
+	padding-bottom: 32px;
+}
+nav ul {
+	list-style: none;
+	padding: 0;
+	display: inline;
+	height: 0;
+}
+#name {
+	position: absolute;
+	top: 79px;
+	padding-left: 24px;
+}
+#logo {
+	position: absolute;
+	left: 385px;
+	width: 128px;
+	height: 128px;
+}
+#button {
+	background-color: #004F80;
+	border-radius: 35px;
+	position: absolute;
+	float: right;
+	right: 10px;
+	top: 85px;
+	padding: 16px;
+}
+nav li {
+	display: inline;
+}
+nav a {
+	display: inline;
+	position: relative;
+	top: 150px;
+}
+#mobileMenuButton {
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	top: 32px;
+	right: 32px;
+}
+@media screen and (max-width: 834px) {
+	nav ul {
+		width: 100%;
+		position: absolute;
+		top: 345px;
+		overflow: hidden;
+		transition: 0.75s;
+		background-color: #009DFF;
+	}
+	#navigationBar {
+		padding: 0;
+	}
+	nav li {
+		display: block;
+		margin-top: 10px;
+		padding-left: 32px;
+	}
+	#name {
+		position: absolute;
+		right: 50%;
+		transform: translateX(50%);
+		top: 0px;
+		padding-left: 0px;
+	}
+	#logo {
+		position: absolute;
+		left: unset;
+		right: 50%;
+		transform: translateX(50%);
+		width: 128px;
+		height: 128px;
+		top: 128px;
+	}
+	header {
+		height: 300px;
+		width: 100%;
+	}
+	#button {
+		position: absolute;
+		right: 50%;
+		transform: translateX(50%);
+		top: 270px;
+	}
+	#mobileMenuButton {
+		display: block;
+	}
+	nav a {
+		top: 0;
+	}
+}
