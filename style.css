@@ -53,7 +53,7 @@ h1, h2, h3, p, a {
 	text-decoration: none;
 }
 a:not(#button):hover {
-	color: #004F80;
+	color: #80CEFF /*004F80*/;
 }
 body {
 	background-color: #009DFF;
@@ -63,18 +63,18 @@ body {
 	background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-	background: #004F80;
+	background: #80CEFF /*004F80*/;
 	border-radius: 8px;
 }
 main *:not(#sslcontactholder *) {
 	line-height: 200%;
 }
 header *, footer *, main p a {
-	color: #FFFFFF;
+	color: #000000 /*#FFFFFF*/;
 }
 main, main a {
-	background-color: #80CEFF;
-	color: #000000;
+	background-color: #004F80 /*#80CEFF*/;
+	color: #FFFFFF /*#000000*/;
 }
 header {
 	height: 180px;
@@ -103,7 +103,7 @@ nav ul {
 	height: 128px;
 }
 #button {
-	background-color: #004F80;
+	background-color: #80CEFF /*004F80*/;
 	border-radius: 35px;
 	position: absolute;
 	float: right;
