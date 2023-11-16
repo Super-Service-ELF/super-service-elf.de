@@ -1,9 +1,11 @@
 function loadWindow(targetIDs) {
+	/*ChangeColorScheme()*/
 	for (let targetID of targetIDs) {
 		loadContent(targetID);
 	}
 	tryUpdateWindow();
 }
+
 function loadContent(targetID) {
 	var target = document.getElementById(targetID);
 	var url = "/content/" + targetID + ".html";
@@ -16,6 +18,8 @@ function loadContent(targetID) {
 	xhr.open("GET", url, true);
 	xhr.send();
 }
+
+
 window.onresize = tryUpdateWindow;
 function tryUpdateWindow() {
 	try {
@@ -25,6 +29,7 @@ function tryUpdateWindow() {
 		setTimeout(tryUpdateWindow, 1);
 	}
 }
+
 function updateWindow() {
 	if (window.innerWidth > 834) {
 		document.getElementById("button").innerHTML = "Auftrag aufgeben";
@@ -34,6 +39,31 @@ function updateWindow() {
 		document.getElementById("button").innerHTML = "Auftrag";
 	}
 }
+
+
+var ColorScheme = "Light";
+function ChangeColorScheme() {
+	switch (ColorScheme) {
+		case "Dark":
+			ColorScheme = "Light";
+			document.querySelector(":root").style.setProperty("--PrimaryColor", "#80CEFF");
+			document.querySelector(":root").style.setProperty("--SecondaryColor", "#004F80");
+			document.querySelector(":root").style.setProperty("--PrimaryText", "#000000");
+			document.querySelector(":root").style.setProperty("--SecondaryText", "#FFFFFF");
+			//document.getElementById("ChangeColorSchemeButton").innerHTML = "Dark";
+			break;
+		case "Light":
+			ColorScheme = "Dark";
+			document.querySelector(":root").style.setProperty("--PrimaryColor", "#004F80");
+			document.querySelector(":root").style.setProperty("--SecondaryColor", "#80CEFF");
+			document.querySelector(":root").style.setProperty("--PrimaryText", "#FFFFFF");
+			document.querySelector(":root").style.setProperty("--SecondaryText", "#000000");
+			//document.getElementById("ChangeColorSchemeButton").innerHTML = "Light";
+			break;
+	}
+}
+
+
 function tryAddURLToLink() {
 	try {
 		addURLToLink();
@@ -42,6 +72,7 @@ function tryAddURLToLink() {
 		setTimeout(tryAddURLToLink, 1);
 	}
 }
+
 function addURLToLink() {
 	var targetID = "404Link";
 	var target = document.getElementById(targetID);
@@ -50,6 +81,8 @@ function addURLToLink() {
 	var newLink = oldLink.replace("URL", site);
 	target.href = newLink;
 }
+
+
 function redirectFrom404() {
 	const redirectPages = [{right: "über", aliases: ["ueber", "uber", "about"]}, {right: "", aliases: ["start", "home", "super"]}, {right: "newsletter-archiv", aliases: ["archiv", "newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv"]}, {right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]}, {right: "feedback", aliases: ["bewerten", "bewertung"]}];
 	for (let page in redirectPages) {
@@ -60,6 +93,8 @@ function redirectFrom404() {
 		}
 	}
 }
+
+
 function toggleMenu() {
 	if (navigationBar.style.height == "") {
 		document.getElementById("navigationBar").style.height="225px";
