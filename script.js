@@ -4,6 +4,7 @@ function loadWindow(targetIDs) {
 		loadContent(targetID);
 	}
 	updateWindow();
+	updateLogo();
 }
 
 function loadContent(targetID) {
@@ -32,6 +33,28 @@ function updateWindow() {
 	}
 	catch {
 		setTimeout(updateWindow, 1);
+	}
+}
+
+function updateLogo() {
+	try {
+		var logo = document.getElementById("logo").contentDocument;
+		var SecondaryTexts = logo.getElementsByClassName("SecondaryText");
+		var SecondaryColors = logo.getElementsByClassName("SecondaryColor");
+		if (SecondaryTexts.length == 0 || SecondaryColors.length == 0) {
+			throw "";
+		}
+		for (let SecondaryText of SecondaryTexts) {
+			SecondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--SecondaryText");
+			
+		}
+		for (let SecondaryColor of SecondaryColors) {
+			SecondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--SecondaryColor");
+		}
+	}
+	catch {
+		console.log("Loop")
+		setTimeout(updateLogo, 1);
 	}
 }
 
