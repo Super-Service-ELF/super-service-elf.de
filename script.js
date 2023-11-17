@@ -1,5 +1,4 @@
 function loadWindow(targetIDs) {
-	/*ChangeColorScheme()*/
 	for (let targetID of targetIDs) {
 		loadContent(targetID);
 	}
@@ -53,7 +52,6 @@ function updateLogo() {
 		}
 	}
 	catch {
-		console.log("Loop")
 		setTimeout(updateLogo, 1);
 	}
 }
@@ -67,7 +65,6 @@ function ChangeColorScheme() {
 			document.querySelector(":root").style.setProperty("--SecondaryColor", "#004F80");
 			document.querySelector(":root").style.setProperty("--PrimaryText", "#000000");
 			document.querySelector(":root").style.setProperty("--SecondaryText", "#FFFFFF");
-			//document.getElementById("ChangeColorSchemeButton").innerHTML = "Dark";
 			break;
 		case "Light":
 			ColorScheme = "Dark";
@@ -75,7 +72,6 @@ function ChangeColorScheme() {
 			document.querySelector(":root").style.setProperty("--SecondaryColor", "#80CEFF");
 			document.querySelector(":root").style.setProperty("--PrimaryText", "#FFFFFF");
 			document.querySelector(":root").style.setProperty("--SecondaryText", "#000000");
-			//document.getElementById("ChangeColorSchemeButton").innerHTML = "Light";
 			break;
 	}
 }
