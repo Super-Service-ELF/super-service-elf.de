@@ -19,7 +19,6 @@ function loadContent(targetID) {
 	xhr.send();
 }
 
-
 window.onresize = updateWindow;
 function updateWindow() {
 	try {
@@ -35,7 +34,6 @@ function updateWindow() {
 		setTimeout(updateWindow, 1);
 	}
 }
-
 
 var ColorScheme = "Light";
 function ChangeColorScheme() {
@@ -59,7 +57,6 @@ function ChangeColorScheme() {
 	}
 }
 
-
 function addURLToLink() {
 	var targetID = "404Link";
 	try {
@@ -75,7 +72,6 @@ function addURLToLink() {
 
 }
 
-
 function redirectFrom404() {
 	const redirectPages = [{right: "über", aliases: ["ueber", "uber", "about"]}, {right: "", aliases: ["start", "home", "super"]}, {right: "newsletter-archiv", aliases: ["archiv", "newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv"]}, {right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]}, {right: "feedback", aliases: ["bewerten", "bewertung"]}];
 	for (let page in redirectPages) {
@@ -86,7 +82,6 @@ function redirectFrom404() {
 		}
 	}
 }
-
 
 function toggleMenu() {
 	if (navigationBar.style.height == "") {
