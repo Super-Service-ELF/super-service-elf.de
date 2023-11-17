@@ -3,7 +3,7 @@ function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) {
 		loadContent(targetID);
 	}
-	tryUpdateWindow();
+	updateWindow();
 }
 
 function loadContent(targetID) {
@@ -20,23 +20,19 @@ function loadContent(targetID) {
 }
 
 
-window.onresize = tryUpdateWindow;
-function tryUpdateWindow() {
+window.onresize = updateWindow;
+function updateWindow() {
 	try {
-		updateWindow();
+		if (window.innerWidth > 834) {
+			document.getElementById("button").innerHTML = "Auftrag aufgeben";
+			document.getElementById("mobileMenuButton").style.animation="rotate0 0s ease-out";
+		}
+		else {
+			document.getElementById("button").innerHTML = "Auftrag";
+		}
 	}
 	catch {
-		setTimeout(tryUpdateWindow, 1);
-	}
-}
-
-function updateWindow() {
-	if (window.innerWidth > 834) {
-		document.getElementById("button").innerHTML = "Auftrag aufgeben";
-		document.getElementById("mobileMenuButton").style.animation="rotate0 0s ease-out";
-	}
-	else {
-		document.getElementById("button").innerHTML = "Auftrag";
+		setTimeout(updateWindow, 1);
 	}
 }
 
@@ -64,22 +60,19 @@ function ChangeColorScheme() {
 }
 
 
-function tryAddURLToLink() {
+function addURLToLink() {
 	try {
-		addURLToLink();
+		var targetID = "404Link";
+		var target = document.getElementById(targetID);
+		var site = window.location.href;
+		var oldLink = target.href;
+		var newLink = oldLink.replace("URL", site);
+		target.href = newLink;
 	}
 	catch {
-		setTimeout(tryAddURLToLink, 1);
+		addURLToLink();
 	}
-}
 
-function addURLToLink() {
-	var targetID = "404Link";
-	var target = document.getElementById(targetID);
-	var site = window.location.href;
-	var oldLink = target.href;
-	var newLink = oldLink.replace("URL", site);
-	target.href = newLink;
 }
 
 
