@@ -81,9 +81,9 @@ main *:not(#sslcontactholder *) {
 header *, footer *, main p a {
 	color: var(--SecondaryText);
 }
-main, main a {
-	background-color: var(--PrimaryColor);
-	color: var(--PrimaryText);
+main, main a, div, label {
+	background-color: var(--PrimaryColor) !important;
+	color: var(--PrimaryText) !important;
 }
 header {
 	height: 180px;
@@ -110,6 +110,18 @@ nav ul {
 	left: 385px;
 	width: 128px;
 	height: 128px;
+}
+input, textarea {
+	background-color: var(--SecondaryColor)  !important;
+	border-radius: 35px !important;
+	color: var(--SecondaryText) !important;
+	border: None !important;
+}
+textarea {
+	border-radius: 8px !important;
+}
+::placeholder {
+	color: var(--PrimaryText)
 }
 #button {
 	background-color: var(--SecondaryColor);
