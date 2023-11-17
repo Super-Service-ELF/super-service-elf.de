@@ -74,6 +74,7 @@ function ToggleColorScheme() {
 			document.querySelector(":root").style.setProperty("--SecondaryText", "#000000");
 			break;
 	}
+	updateLogo();
 }
 
 function addURLToLink() {
