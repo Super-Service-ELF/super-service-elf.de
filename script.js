@@ -61,8 +61,8 @@ function ChangeColorScheme() {
 
 
 function addURLToLink() {
+	var targetID = "404Link";
 	try {
-		var targetID = "404Link";
 		var target = document.getElementById(targetID);
 		var site = window.location.href;
 		var oldLink = target.href;
