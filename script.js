@@ -38,17 +38,17 @@ function updateWindow() {
 function updateLogo() {
 	try {
 		var logo = document.getElementById("logo").contentDocument;
-		var SecondaryTexts = logo.getElementsByClassName("SecondaryText");
-		var SecondaryColors = logo.getElementsByClassName("SecondaryColor");
-		if (SecondaryTexts.length == 0 || SecondaryColors.length == 0) {
+		var secondaryTexts = logo.getElementsByClassName("secondaryText");
+		var secondaryColors = logo.getElementsByClassName("secondaryColor");
+		if (secondaryTexts.length == 0 || secondaryColors.length == 0) {
 			throw "";
 		}
-		for (let SecondaryText of SecondaryTexts) {
-			SecondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--SecondaryText");
+		for (let secondaryText of secondaryTexts) {
+			secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
 			
 		}
-		for (let SecondaryColor of SecondaryColors) {
-			SecondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--SecondaryColor");
+		for (let secondaryColor of secondaryColors) {
+			secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
 		}
 	}
 	catch {
@@ -61,17 +61,17 @@ function toggleColorScheme() {
 	switch (colorScheme) {
 		case "Dark":
 			colorScheme = "Light";
-			document.querySelector(":root").style.setProperty("--PrimaryColor", "#80CEFF");
-			document.querySelector(":root").style.setProperty("--SecondaryColor", "#004F80");
-			document.querySelector(":root").style.setProperty("--PrimaryText", "#000000");
-			document.querySelector(":root").style.setProperty("--SecondaryText", "#FFFFFF");
+			document.querySelector(":root").style.setProperty("--primaryColor", "#80CEFF");
+			document.querySelector(":root").style.setProperty("--secondaryColor", "#004F80");
+			document.querySelector(":root").style.setProperty("--primaryText", "#000000");
+			document.querySelector(":root").style.setProperty("--secondaryText", "#FFFFFF");
 			break;
 		case "Light":
 			colorScheme = "Dark";
-			document.querySelector(":root").style.setProperty("--PrimaryColor", "#004F80");
-			document.querySelector(":root").style.setProperty("--SecondaryColor", "#80CEFF");
-			document.querySelector(":root").style.setProperty("--PrimaryText", "#FFFFFF");
-			document.querySelector(":root").style.setProperty("--SecondaryText", "#000000");
+			document.querySelector(":root").style.setProperty("--primaryColor", "#004F80");
+			document.querySelector(":root").style.setProperty("--secondaryColor", "#80CEFF");
+			document.querySelector(":root").style.setProperty("--primaryText", "#FFFFFF");
+			document.querySelector(":root").style.setProperty("--secondaryText", "#000000");
 			break;
 	}
 	updateLogo();

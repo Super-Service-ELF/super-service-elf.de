@@ -1,9 +1,9 @@
 :root {
-	--Blue: #009DFF;
-    --PrimaryColor: #80CEFF;
-    --SecondaryColor: #004F80;
-    --PrimaryText: #000000;
-    --SecondaryText: #FFFFFF;
+	--blue: #009DFF;
+	--primaryColor: #80CEFF;
+	--secondaryColor: #004F80;
+	--primaryText: #000000;
+	--secondaryText: #FFFFFF;
 }
 
 @font-face {
@@ -62,28 +62,28 @@ h1, h2, h3, p, a {
 	text-decoration: none;
 }
 a:not(#button):hover {
-	color: var(--SecondaryColor);
+	color: var(--secondaryColor);
 }
 body {
-	background-color: var(--Blue);
+	background-color: var(--blue);
 	min-width: 320px;
 }
 ::-webkit-scrollbar {
 	background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-	background: var(--SecondaryColor);
+	background: var(--secondaryColor);
 	border-radius: 8px;
 }
 main *:not(#sslcontactholder *) {
 	line-height: 200%;
 }
 header *, footer *, main p a {
-	color: var(--SecondaryText);
+	color: var(--secondaryText);
 }
 main, main a, div, label {
-	background-color: var(--PrimaryColor) !important;
-	color: var(--PrimaryText) !important;
+	background-color: var(--primaryColor) !important;
+	color: var(--primaryText) !important;
 }
 header {
 	height: 180px;
@@ -112,19 +112,19 @@ nav ul {
 	height: 128px;
 }
 input, textarea {
-	background-color: var(--SecondaryColor)  !important;
+	background-color: var(--secondaryColor) !important;
 	border-radius: 35px !important;
-	color: var(--SecondaryText) !important;
+	color: var(--secondaryText) !important;
 	border: None !important;
 }
 textarea {
 	border-radius: 8px !important;
 }
 ::placeholder {
-	color: var(--PrimaryText)
+	color: var(--primaryText)
 }
 #button {
-	background-color: var(--SecondaryColor);
+	background-color: var(--secondaryColor);
 	border-radius: 35px;
 	position: absolute;
 	float: right;
@@ -154,7 +154,7 @@ nav a {
 		top: 345px;
 		overflow: hidden;
 		transition: 0.75s;
-		background-color: var(--Blue);
+		background-color: var(--blue);
 	}
 	#navigationBar {
 		padding: 0;
