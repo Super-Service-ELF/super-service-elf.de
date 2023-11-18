@@ -95,7 +95,6 @@ div:not(#sslcontactholder, #sslcontactholder *), footer {
 }
 nav ul {
 	list-style: none;
-	padding: 0;
 	display: inline;
 	height: 0;
 }
@@ -155,44 +154,35 @@ nav a {
 		transition: 0.75s;
 		background-color: var(--blue);
 	}
-	#navigationBar {
-		padding: 0;
-	}
 	nav li {
 		display: block;
 		padding-top: 10px;
 		padding-left: 32px;
 	}
 	#name {
-		position: absolute;
 		right: 50%;
 		transform: translateX(50%);
 		top: 0px;
 		padding-left: 0px;
 	}
 	#logo {
-		position: absolute;
 		left: unset;
 		right: 50%;
 		transform: translateX(50%);
-		width: 128px;
-		height: 128px;
 		top: 128px;
 	}
 	header {
 		height: 300px;
-		width: 100%;
 	}
 	#button {
-		position: absolute;
 		right: 50%;
 		transform: translateX(50%);
 		top: 270px;
 	}
 	#mobileMenuButton {
-		display: block;
+		display: unset;
 	}
 	nav a {
-		top: 0;
+		top: unset;
 	}
 }
