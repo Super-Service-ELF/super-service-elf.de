@@ -57,7 +57,7 @@ function updateLogo() {
 }
 
 var ColorScheme = "Light";
-function ToggleColorScheme() {
+function toggleColorScheme() {
 	switch (ColorScheme) {
 		case "Dark":
 			ColorScheme = "Light";
