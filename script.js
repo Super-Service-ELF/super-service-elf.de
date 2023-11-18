@@ -81,11 +81,11 @@ function updateLogo() {
 
 function toggleColorScheme() {
 	switch (colorScheme) {
-		case "Dark":
-			colorScheme = "Light";
-			break;
 		case "Light":
 			colorScheme = "Dark";
+			break;
+		case "Dark":
+			colorScheme = "Light";
 			break;
 	}
 	updateColorScheme();
