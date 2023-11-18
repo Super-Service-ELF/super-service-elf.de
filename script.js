@@ -3,7 +3,7 @@ function loadWindow(targetIDs) {
 		loadContent(targetID);
 	}
 	updateWindow();
-	updateLogo();
+	updateColorScheme();
 }
 
 function loadContent(targetID) {
@@ -35,6 +35,32 @@ function updateWindow() {
 	}
 }
 
+function updateColorScheme() {
+	if (typeof colorScheme == 'undefined') {
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			colorScheme = "Dark";
+		}
+		else {
+			colorScheme = "Light";
+		}
+	}
+	switch (colorScheme) {
+		case "Light":
+			document.querySelector(":root").style.setProperty("--primaryColor", "#80CEFF");
+			document.querySelector(":root").style.setProperty("--secondaryColor", "#004F80");
+			document.querySelector(":root").style.setProperty("--primaryText", "#000000");
+			document.querySelector(":root").style.setProperty("--secondaryText", "#FFFFFF");
+			break;
+		case "Dark":
+			document.querySelector(":root").style.setProperty("--primaryColor", "#004F80");
+			document.querySelector(":root").style.setProperty("--secondaryColor", "#80CEFF");
+			document.querySelector(":root").style.setProperty("--primaryText", "#FFFFFF");
+			document.querySelector(":root").style.setProperty("--secondaryText", "#000000");
+			break;
+	}
+	updateLogo();
+}
+
 function updateLogo() {
 	try {
 		var logo = document.getElementById("logo").contentDocument;
@@ -55,25 +81,16 @@ function updateLogo() {
 	}
 }
 
-var colorScheme = "Light";
 function toggleColorScheme() {
 	switch (colorScheme) {
 		case "Dark":
 			colorScheme = "Light";
-			document.querySelector(":root").style.setProperty("--primaryColor", "#80CEFF");
-			document.querySelector(":root").style.setProperty("--secondaryColor", "#004F80");
-			document.querySelector(":root").style.setProperty("--primaryText", "#000000");
-			document.querySelector(":root").style.setProperty("--secondaryText", "#FFFFFF");
 			break;
 		case "Light":
 			colorScheme = "Dark";
-			document.querySelector(":root").style.setProperty("--primaryColor", "#004F80");
-			document.querySelector(":root").style.setProperty("--secondaryColor", "#80CEFF");
-			document.querySelector(":root").style.setProperty("--primaryText", "#FFFFFF");
-			document.querySelector(":root").style.setProperty("--secondaryText", "#000000");
 			break;
 	}
-	updateLogo();
+	updateColorScheme();
 }
 
 function addURLToLink() {
