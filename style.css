@@ -161,7 +161,7 @@ nav a {
 	}
 	nav li {
 		display: block;
-		margin-top: 10px;
+		padding-top: 10px;
 		padding-left: 32px;
 	}
 	#name {
