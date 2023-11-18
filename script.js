@@ -45,7 +45,6 @@ function updateLogo() {
 		}
 		for (let secondaryText of secondaryTexts) {
 			secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
-			
 		}
 		for (let secondaryColor of secondaryColors) {
 			secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
@@ -89,7 +88,6 @@ function addURLToLink() {
 	catch {
 		addURLToLink();
 	}
-
 }
 
 function redirectFrom404() {
