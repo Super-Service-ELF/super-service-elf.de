@@ -56,18 +56,18 @@ function updateLogo() {
 	}
 }
 
-var ColorScheme = "Light";
+var colorScheme = "Light";
 function toggleColorScheme() {
-	switch (ColorScheme) {
+	switch (colorScheme) {
 		case "Dark":
-			ColorScheme = "Light";
+			colorScheme = "Light";
 			document.querySelector(":root").style.setProperty("--PrimaryColor", "#80CEFF");
 			document.querySelector(":root").style.setProperty("--SecondaryColor", "#004F80");
 			document.querySelector(":root").style.setProperty("--PrimaryText", "#000000");
 			document.querySelector(":root").style.setProperty("--SecondaryText", "#FFFFFF");
 			break;
 		case "Light":
-			ColorScheme = "Dark";
+			colorScheme = "Dark";
 			document.querySelector(":root").style.setProperty("--PrimaryColor", "#004F80");
 			document.querySelector(":root").style.setProperty("--SecondaryColor", "#80CEFF");
 			document.querySelector(":root").style.setProperty("--PrimaryText", "#FFFFFF");
