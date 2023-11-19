@@ -10,9 +10,7 @@ function loadContent(targetID) {
 	var url = "/content/" + targetID + ".html";
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			target.innerHTML = xhr.responseText;
-		}
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) target.innerHTML = xhr.responseText;
 	}
 	xhr.open("GET", url, true);
 	xhr.send();
