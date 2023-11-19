@@ -1,7 +1,5 @@
 function loadWindow(targetIDs) {
-	for (let targetID of targetIDs) {
-		loadContent(targetID);
-	}
+	for (let targetID of targetIDs) loadContent(targetID);
 	updateWindow();
 	updateColorScheme();
 }
@@ -24,14 +22,12 @@ function updateWindow() {
 	try {
 		if (window.innerWidth > 834) {
 			document.getElementById("button").innerHTML = "Auftrag aufgeben";
-			document.getElementById("mobileMenuButton").style.animation="rotate0 0s ease-out";
+			document.getElementById("mobileMenuButton").style.animation = "rotate0 0s ease-out";
 		} else {
 			document.getElementById("button").innerHTML = "Auftrag";
 		}
 	}
-	catch {
-		setTimeout(updateWindow, 1);
-	}
+	catch { setTimeout(updateWindow, 1) }
 }
 
 function updateColorScheme() {
@@ -64,19 +60,11 @@ function updateLogo() {
 		var logo = document.getElementById("logo").contentDocument;
 		var secondaryTexts = logo.getElementsByClassName("secondaryText");
 		var secondaryColors = logo.getElementsByClassName("secondaryColor");
-		if (secondaryTexts.length == 0 || secondaryColors.length == 0) {
-			throw "";
-		}
-		for (let secondaryText of secondaryTexts) {
-			secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
-		}
-		for (let secondaryColor of secondaryColors) {
-			secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
-		}
+		if (secondaryTexts.length == 0 || secondaryColors.length == 0) throw "";
+		for (let secondaryText of secondaryTexts) secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
+		for (let secondaryColor of secondaryColors) secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
 	}
-	catch {
-		setTimeout(updateLogo, 1);
-	}
+	catch { setTimeout(updateLogo, 1) }
 }
 
 function toggleColorScheme() {
@@ -100,9 +88,7 @@ function addURLToLink() {
 		var newLink = oldLink.replace("URL", site);
 		target.href = newLink;
 	}
-	catch {
-		addURLToLink();
-	}
+	catch { setTimeout(addURLToLink, 1) }
 }
 
 function redirectFrom404() {
@@ -118,10 +104,10 @@ function redirectFrom404() {
 
 function toggleMenu() {
 	if (navigationBar.style.height == "") {
-		document.getElementById("navigationBar").style.height="225px";
-		document.getElementById("mobileMenuButton").style.animation="rotate90 0.3s ease-out forwards";
+		document.getElementById("navigationBar").style.height = "225px";
+		document.getElementById("mobileMenuButton").style.animation = "rotate90 0.3s ease-out forwards";
 	} else {
-		document.getElementById("navigationBar").style.height="";
-		document.getElementById("mobileMenuButton").style.animation="rotate0 0.3s ease-out";
+		document.getElementById("navigationBar").style.height = "";
+		document.getElementById("mobileMenuButton").style.animation = "rotate0 0.3s ease-out";
 	}
 }
