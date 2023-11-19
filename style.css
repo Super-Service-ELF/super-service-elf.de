@@ -85,6 +85,12 @@ main, main a, div, label {
 	background-color: var(--primaryColor) !important;
 	color: var(--primaryText) !important;
 }
+label {
+	font-size: 24px !important;
+}
+input {
+	font-size: 16px !important;
+}
 header {
 	height: 180px;
 	padding-top: 16px;
