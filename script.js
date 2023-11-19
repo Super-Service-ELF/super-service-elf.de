@@ -1,6 +1,10 @@
+var colorScheme;
+var deviceColorScheme;
+
 function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateWindow();
+	detectDeviceColorScheme();
 	updateColorScheme();
 	if (document.getElementById("sslcontactholder") != null) replaceFormLabels();
 }
@@ -29,14 +33,15 @@ function updateWindow() {
 	catch { setTimeout(updateWindow, 1) }
 }
 
+function detectDeviceColorScheme() {
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) deviceColorScheme = "Dark";
+	else deviceColorScheme = "Light";
+	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme")
+}
+
 function updateColorScheme() {
-	if (typeof colorScheme == 'undefined') {
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			colorScheme = "Dark";
-		} else {
-			colorScheme = "Light";
-		}
-	}
+	if (localStorage.getItem("colorScheme") == null) colorScheme = deviceColorScheme;
+	else colorScheme = localStorage.getItem("colorScheme");
 	switch (colorScheme) {
 		case "Light":
 			document.querySelector(":root").style.setProperty("--primaryColor", "#80CEFF");
@@ -97,6 +102,8 @@ function toggleColorScheme() {
 			colorScheme = "Light";
 			break;
 	}
+	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme")
+	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
 }
 
