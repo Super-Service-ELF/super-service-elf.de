@@ -2,6 +2,7 @@ function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateWindow();
 	updateColorScheme();
+	if (document.getElementById("sslcontactholder") != null) replaceFormLabels();
 }
 
 function loadContent(targetID) {
@@ -65,6 +66,28 @@ function updateLogo() {
 		for (let secondaryColor of secondaryColors) secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
 	}
 	catch { setTimeout(updateLogo, 1) }
+}
+
+function replaceFormLabels() {
+	try {
+		var name = document.querySelector('label[for="firstname"]');
+		var email = document.querySelector('label[for="email"]');
+		var subject = document.querySelector('label[for="subject"]');
+		var message = document.querySelector('label[for="message"]');
+		if (message == null) throw "";
+		if (name != null) name.innerHTML = "Name";
+		if (email != null) email.innerHTML = "E-Mail-Adresse";
+		if (subject != null) {
+			if (subject.closest('.auftrag')) subject.innerHTML = "Auftragsbetreff";
+			if (subject.closest('.feedback')) subject.innerHTML = "Feedbacksbetreff";
+		}
+		if (message != null) {
+			if (message.closest('.auftrag')) message.innerHTML = "Auftrag";
+			if (message.closest('.feedback')) message.innerHTML = "Feedback";
+			if (message.closest('.newsletter')) message.innerHTML = "E-Mail-Adresse";
+		}
+	}
+	catch { setTimeout(replaceFormLabels, 1) }
 }
 
 function toggleColorScheme() {
