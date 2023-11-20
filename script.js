@@ -56,19 +56,18 @@ function updateColorScheme() {
 			document.querySelector(":root").style.setProperty("--secondaryText", "#000000");
 			break;
 	}
-	updateLogo();
-}
-
-function updateLogo() {
-	try {
-		var logo = document.getElementById("logo").contentDocument;
-		var secondaryTexts = logo.getElementsByClassName("secondaryText");
-		var secondaryColors = logo.getElementsByClassName("secondaryColor");
-		if (secondaryTexts.length == 0 || secondaryColors.length == 0) throw "";
-		for (let secondaryText of secondaryTexts) secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
-		for (let secondaryColor of secondaryColors) secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
+	function updateLogo() {
+		try {
+			var logo = document.getElementById("logo").contentDocument;
+			var secondaryTexts = logo.getElementsByClassName("secondaryText");
+			var secondaryColors = logo.getElementsByClassName("secondaryColor");
+			if (secondaryTexts.length == 0 || secondaryColors.length == 0) throw "";
+			for (let secondaryText of secondaryTexts) secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
+			for (let secondaryColor of secondaryColors) secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
+		}
+		catch { setTimeout(updateLogo, 1) }
 	}
-	catch { setTimeout(updateLogo, 1) }
+	updateLogo();
 }
 
 function replaceFormLabels() {
