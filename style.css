@@ -125,7 +125,7 @@ textarea {
 	border-radius: 8px !important;
 }
 ::placeholder {
-	color: var(--primaryText)
+	color: var(--primaryText);
 }
 #button {
 	background-color: var(--secondaryColor);
