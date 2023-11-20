@@ -36,7 +36,7 @@ function updateWindow() {
 function detectDeviceColorScheme() {
 	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "Dark";
 	else deviceColorScheme = "Light";
-	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme")
+	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme");
 }
 
 function updateColorScheme() {
@@ -101,7 +101,7 @@ function toggleColorScheme() {
 			colorScheme = "Light";
 			break;
 	}
-	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme")
+	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme");
 	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
 }
