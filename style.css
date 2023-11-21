@@ -32,43 +32,6 @@
 	margin: 0px;
 	color: var(--primaryText);
 }
-nav {
-	text-align: left;
-}
-h1, h2, h3 {
-	font-family: "GothamRounded-Bold";
-	line-height: 100%;
-}
-h1 {
-	font-size: 48px;
-	padding: 12px;
-}
-h2 {
-	font-size: 32px;
-}
-h3, label, input {
-	font-size: 24px;
-}
-p, textarea, ::placeholder {
-	font-size: 16px;
-}
-h2, h3, p {
-	padding: 8px;
-}
-main p a {
-	color: var(--secondaryColor);
-	text-decoration: underline;
-}
-a:not(header *):hover, a *:not(header *):hover {
-	color: var(--blue);
-}
-#navigationBar {
-	font-size: 24px;
-	padding-left: 32px;
-}
-#navigationBar a {
-	padding-right: 16px;
-}
 
 body {
 	background-color: var(--blue);
@@ -81,17 +44,42 @@ body {
 	background: var(--secondaryColor);
 	border-radius: 8px;
 }
-main *:not(#sslcontactholder *) {
-	line-height: 200%;
-}
+
 main, main a, div, label {
 	background-color: var(--primaryColor);
 }
-
-
-label {
-	padding-top: 16px;
+main *:not(#sslcontactholder *) {
+	line-height: 200%;
 }
+
+h1, h2, h3 {
+	font-family: "GothamRounded-Bold";
+	line-height: 100%;
+}
+h1 {
+	font-size: 48px;
+}
+h2 {
+	font-size: 32px;
+}
+h3, label, input {
+	font-size: 24px;
+}
+p, textarea, ::placeholder {
+	font-size: 16px;
+}
+h1, h2, h3, p {
+	padding: 8px;
+}
+
+main p a {
+	color: var(--secondaryColor);
+	text-decoration: underline;
+}
+a:not(header *):hover, a *:not(header *):hover {
+	color: var(--blue);
+}
+
 header {
 	height: 180px;
 	padding-top: 16px;
@@ -100,9 +88,15 @@ header {
 div:not(#sslcontactholder *), footer {
 	padding-block: 32px;
 }
+
+
+
 .sslcontact * {
 	display: block;
 	margin: auto;
+}
+label {
+	padding-top: 16px;
 }
 input, textarea {
 	height: 32px;
@@ -156,6 +150,14 @@ input, textarea {
 	padding: 16px;
 	color: var(--secondaryText)
 }
+
+#navigationBar {
+	font-size: 24px;
+	padding-left: 32px;
+}
+#navigationBar a {
+	padding-right: 16px;
+}
 nav li {
 	display: inline;
 }
@@ -171,6 +173,8 @@ nav a {
 	top: 32px;
 	right: 32px;
 }
+
+
 @media screen and (max-width: 834px) {
 	nav ul {
 		width: 100%;
