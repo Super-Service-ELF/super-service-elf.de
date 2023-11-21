@@ -82,7 +82,6 @@ header *, footer *, main p a {
 	color: var(--secondaryText);
 }
 main, main a, div, label {
-	background-color: var(--primaryColor) !important;
 	color: var(--primaryText) !important;
 }
 label {
