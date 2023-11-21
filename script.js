@@ -1,12 +1,13 @@
 var colorScheme;
 var deviceColorScheme;
+var observer;
 
 function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateWindow();
 	detectDeviceColorScheme();
 	updateColorScheme();
-	if (document.getElementById("sslcontactholder") != null) replaceFormLabels();
+	if (document.getElementById("sslcontactholder") != null) updateForm();
 }
 
 function loadContent(targetID) {
@@ -70,6 +71,22 @@ function updateColorScheme() {
 	updateLogo();
 }
 
+function updateForm() {
+	if (observer != undefined) observer.disconnect();
+	cleanFormStyles();
+	replaceFormLabels();
+	observeForm();
+}
+
+function cleanFormStyles() {
+	try {
+		var elements = document.querySelectorAll(".sslcontact *");
+		if (elements.length == 0) throw "";
+		for (let element of elements) element.removeAttribute("style");
+	}
+	catch { setTimeout(cleanFormStyles, 1) }
+}
+
 function replaceFormLabels() {
 	try {
 		var name = document.querySelector("label[for='firstname']");
@@ -90,6 +107,16 @@ function replaceFormLabels() {
 		}
 	}
 	catch { setTimeout(replaceFormLabels, 1) }
+}
+
+function observeForm() {
+	try {
+		var form = document.getElementById("sslcontactholder");
+		if (form == null) throw "";
+		observer = new MutationObserver(updateForm);
+		observer.observe(form, {childList: true});
+	}
+	catch { setTimeout(observeForm, 1) }
 }
 
 function toggleColorScheme() {
