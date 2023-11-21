@@ -59,11 +59,11 @@ function updateColorScheme() {
 	function updateLogo() {
 		try {
 			var logo = document.getElementById("logo").contentDocument;
-			var secondaryTexts = logo.getElementsByClassName("secondaryText");
-			var secondaryColors = logo.getElementsByClassName("secondaryColor");
-			if (secondaryTexts.length == 0 || secondaryColors.length == 0) throw "";
-			for (let secondaryText of secondaryTexts) secondaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryText");
-			for (let secondaryColor of secondaryColors) secondaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--secondaryColor");
+			var primaryTexts = logo.getElementsByClassName("primaryText");
+			var primaryColor = logo.getElementById("primaryColor");
+			if (primaryTexts.length == 0 || primaryColor == null) throw "";
+			for (let primaryText of primaryTexts) primaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryText");
+			primaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryColor");
 		}
 		catch { setTimeout(updateLogo, 1) }
 	}
