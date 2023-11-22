@@ -76,9 +76,6 @@ main p a {
 	color: var(--secondaryColor);
 	text-decoration: underline;
 }
-a:not(header *):hover, a *:not(header *):hover {
-	color: var(--blue);
-}
 
 header {
 	height: 180px;
