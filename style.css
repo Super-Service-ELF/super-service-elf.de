@@ -115,7 +115,7 @@ textarea {
 #sslcontact_form div:nth-last-child(2) {
 	padding-bottom: 32px;
 }
-nav {
+nav, #name {
 	text-align: left;
 }
 nav ul {
@@ -124,13 +124,12 @@ nav ul {
 	height: 0;
 }
 #name {
-	position: absolute;
-	top: 79px;
-	padding-left: 24px;
+	padding-top: 79px;
+	padding-left: 16px;
 }
 #logo {
 	position: absolute;
-	left: 385px;
+	left: 376px;
 	width: 128px;
 	height: 128px;
 }
@@ -151,9 +150,11 @@ input, textarea {
 	color: var(--secondaryText)
 }
 
+nav {
+	padding-left: 16px;
+}
 #navigationBar {
 	font-size: 24px;
-	padding-left: 32px;
 }
 #navigationBar a {
 	padding-right: 16px;
@@ -164,18 +165,20 @@ nav li {
 nav a {
 	display: inline;
 	position: relative;
-	top: 150px;
 }
 #mobileMenuButton {
 	display: none;
 	cursor: pointer;
 	position: absolute;
-	top: 32px;
-	right: 32px;
+	top: 16px;
+	right: 16px;
 }
 
 
 @media screen and (max-width: 834px) {
+	nav {
+		padding: 0px;
+	}
 	nav ul {
 		width: 100%;
 		position: absolute;
@@ -190,16 +193,16 @@ nav a {
 		padding-left: 0px;
 	}
 	#name {
-		right: 50%;
-		transform: translateX(50%);
-		top: 0px;
-		padding-left: 0px;
+		text-align: center;
+		padding-top: 0px;
+		padding-inline: 64px;
 	}
 	#logo {
 		left: unset;
 		right: 50%;
 		transform: translateX(50%);
-		top: 128px;
+		top: 112px;
+		padding: 4px;
 	}
 	header {
 		height: 300px;
@@ -207,7 +210,7 @@ nav a {
 	#button {
 		right: 50%;
 		transform: translateX(50%);
-		top: 270px;
+		top: 256px;
 	}
 	#mobileMenuButton {
 		display: unset;
