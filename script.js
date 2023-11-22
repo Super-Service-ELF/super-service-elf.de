@@ -8,6 +8,7 @@ function loadWindow(targetIDs) {
 	detectDeviceColorScheme();
 	updateColorScheme();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
+	setTimeout(scrollToAnchor, 15)
 }
 
 function loadContent(targetID) {
@@ -117,6 +118,16 @@ function observeForm() {
 		observer.observe(form, {childList: true});
 	}
 	catch { setTimeout(observeForm, 1) }
+}
+
+function scrollToAnchor() {
+    var anchor = window.location.hash;
+    if (anchor) {
+        var element = document.querySelector(anchor);
+        if (element) {
+            element.scrollIntoView();
+        }
+    }
 }
 
 function toggleColorScheme() {
