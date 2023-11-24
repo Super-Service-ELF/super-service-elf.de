@@ -8,7 +8,9 @@ function loadWindow(targetIDs) {
 	detectDeviceColorScheme();
 	updateColorScheme();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
-	setTimeout(scrollToAnchor, 15)
+	for (let i = 0; i < 10; i++) {
+		setTimeout(scrollToAnchor, 10)
+	}
 }
 
 function loadContent(targetID) {
