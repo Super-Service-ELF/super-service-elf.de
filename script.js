@@ -5,8 +5,7 @@ var observer;
 function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateWindow();
-	detectDeviceColorScheme();
-	updateColorScheme();
+	detectAndUpdateDeviceColorScheme();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
@@ -37,10 +36,12 @@ function updateWindow() {
 	catch { setTimeout(updateWindow, 1) }
 }
 
-function detectDeviceColorScheme() {
+if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectAndUpdateDeviceColorScheme);
+function detectAndUpdateDeviceColorScheme() {
 	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "Dark";
 	else deviceColorScheme = "Light";
 	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme");
+	updateColorScheme();
 }
 
 function updateColorScheme() {
