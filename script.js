@@ -147,7 +147,7 @@ function toggleColorScheme() {
 	updateColorScheme();
 }
 
-function addURLToLink() {
+function addURLTo404Link() {
 	try {
 		var target = document.getElementById("404Link");
 		var oldLink = target.href;
@@ -155,7 +155,7 @@ function addURLToLink() {
 		var newLink = oldLink.replace("URL", site);
 		target.href = newLink;
 	}
-	catch { setTimeout(addURLToLink, 1) }
+	catch { setTimeout(addURLTo404Link, 1) }
 }
 
 function redirectFrom404() {
