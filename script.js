@@ -1,6 +1,7 @@
 var colorScheme;
 var deviceColorScheme;
 var observer;
+var eventListenerAdded = false;
 
 function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) loadContent(targetID);
@@ -36,12 +37,15 @@ function updateWindow() {
 	window.onresize = updateWindow;
 }
 
-if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectAndUpdateDeviceColorScheme);
 function detectAndUpdateDeviceColorScheme() {
 	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "Dark";
 	else deviceColorScheme = "Light";
 	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme");
 	updateColorScheme();
+	if (window.matchMedia && !eventListenerAdded) {
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectAndUpdateDeviceColorScheme);
+		eventListenerAdded = true;
+	}
 }
 
 function updateColorScheme() {
