@@ -128,13 +128,13 @@ function observeForm() {
 }
 
 function scrollToAnchor() {
-    var anchor = window.location.hash;
-    if (anchor) {
-        var element = document.querySelector(anchor);
-        if (element) {
-            element.scrollIntoView();
-        }
-    }
+	var anchor = window.location.hash;
+	if (anchor) {
+		var element = document.querySelector(anchor);
+		if (element) {
+			element.scrollIntoView();
+		}
+	}
 }
 
 function toggleColorScheme() {
