@@ -23,7 +23,6 @@ function loadContent(targetID) {
 	xhr.send();
 }
 
-window.onresize = updateWindow;
 function updateWindow() {
 	try {
 		if (window.innerWidth > 834) {
@@ -34,6 +33,7 @@ function updateWindow() {
 		}
 	}
 	catch { setTimeout(updateWindow, 1) }
+	window.onresize = updateWindow;
 }
 
 if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectAndUpdateDeviceColorScheme);
