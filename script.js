@@ -19,7 +19,7 @@ function loadContent(targetID) {
 	var target = document.getElementById(targetID);
 	var url = "/content/" + targetID + ".html";
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function () {
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) target.innerHTML = xhr.responseText;
 	}
 	xhr.open("GET", url, true);
