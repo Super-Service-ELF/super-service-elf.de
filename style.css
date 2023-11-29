@@ -14,6 +14,7 @@
 	font-family: "GothamRounded";
 	src: url("/fonts/GothamRounded.woff2");
 }
+
 @keyframes rotate90 {
 	from {transform: rotate(0deg);}
 	to {transform: rotate(90deg);}
@@ -22,6 +23,7 @@
 	from {transform: rotate(90deg);}
 	to {transform: rotate(180deg);}
 }
+
 
 *, ::placeholder {
 	font-family: "GothamRounded";
@@ -86,8 +88,6 @@ div:not(#sslcontactholder *), footer {
 	padding-block: 32px;
 }
 
-
-
 .sslcontact * {
 	display: block;
 	margin: auto;
@@ -99,15 +99,23 @@ input, textarea {
 	height: 32px;
 	width: 75%;
 	max-width: 512px;
+	background-color: var(--secondaryColor);
+	border-radius: 16px;
+	color: var(--secondaryText);
+	border: None;
 }
 textarea {
-	height: 64px;
-	min-height: 64px;
+	height: 128px;
+	min-height: 128px;
 	resize: vertical;
 }
 #captcha {
-	width: 64px;
+	width: 48px;
 }
+input[type="submit"] {
+	width: 144px;
+}
+
 #sslcontact_form div:nth-last-child(2) * {
 	display: inline-block;
 	margin-inline: 8px;
@@ -115,6 +123,10 @@ textarea {
 #sslcontact_form div:nth-last-child(2) {
 	padding-bottom: 32px;
 }
+.formular > div:first-child, .formular > div:last-child {
+	display: none;
+}
+
 nav, #name {
 	text-align: left;
 }
@@ -132,12 +144,6 @@ nav ul {
 	left: 376px;
 	width: 128px;
 	height: 128px;
-}
-input, textarea {
-	background-color: var(--secondaryColor);
-	border-radius: 16px;
-	color: var(--secondaryText);
-	border: None;
 }
 #button {
 	background-color: var(--secondaryColor);
