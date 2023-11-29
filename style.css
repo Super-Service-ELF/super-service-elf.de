@@ -71,7 +71,7 @@ p, textarea, ::placeholder {
 	font-size: 16px;
 }
 h1, h2, h3, p {
-	padding: 8px;
+	padding-inline: 8px;
 }
 
 main p a {
@@ -136,6 +136,7 @@ nav ul {
 	height: 0;
 }
 #name {
+	padding: 8px;
 	padding-top: 79px;
 	padding-left: 16px;
 }
