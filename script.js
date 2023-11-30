@@ -13,7 +13,7 @@ function loadWindow(targetIDs) {
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
 	}
-	markAsLoaded();
+	setTimeout(markAsLoaded, 100)
 }
 
 function loadContent(targetID) {
