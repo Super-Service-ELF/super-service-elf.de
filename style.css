@@ -54,6 +54,9 @@ main *:not(#sslcontactholder *) {
 	line-height: 200%;
 }
 
+h1, h2, h3, p {
+	padding-inline: 8px;
+}
 footer *:not(a) {
 	padding: 8px;
 }
@@ -73,10 +76,6 @@ h3, label, input {
 p, textarea, ::placeholder {
 	font-size: 16px;
 }
-h1, h2, h3, p {
-	padding-inline: 8px;
-}
-
 p a, a p {
 	color: var(--secondaryColor);
 	text-decoration: underline;
