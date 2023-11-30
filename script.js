@@ -6,38 +6,15 @@ var observer;
 var eventListenerAdded = false;
 
 function loadWindow(targetIDs) {
-	for (let targetID of targetIDs) loadContent(targetID);
-	updateWindow();
 	detectAndUpdateDeviceColorScheme();
+	for (let targetID of targetIDs) loadContent(targetID);
+	updateLogo();
+	updateWindow();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
 	}
 	setTimeout(markAsLoaded, 100)
-}
-
-function loadContent(targetID) {
-	var target = document.getElementById(targetID);
-	var url = "/content/" + targetID + ".html";
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) target.innerHTML = xhr.responseText;
-	}
-	xhr.open("GET", url, true);
-	xhr.send();
-}
-
-function updateWindow() {
-	try {
-		if (window.innerWidth > 834) {
-			document.getElementById("button").innerHTML = "Auftrag aufgeben";
-			document.getElementById("mobileMenuButton").style.animation = "rotate0 0s ease-out";
-		} else {
-			document.getElementById("button").innerHTML = "Auftrag";
-		}
-	}
-	catch { setTimeout(updateWindow, 1) }
-	window.onresize = updateWindow;
 }
 
 function detectAndUpdateDeviceColorScheme() {
@@ -68,18 +45,42 @@ function updateColorScheme() {
 			document.querySelector(":root").style.setProperty("--secondaryText", "#000000");
 			break;
 	}
-	function updateLogo() {
-		try {
-			var logo = document.getElementById("logo").contentDocument;
-			var primaryTexts = logo.getElementsByClassName("primaryText");
-			var primaryColor = logo.getElementById("primaryColor");
-			if (primaryTexts.length == 0 || primaryColor == null) throw "";
-			for (let primaryText of primaryTexts) primaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryText");
-			primaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryColor");
-		}
-		catch { setTimeout(updateLogo, 1) }
+}
+
+function loadContent(targetID) {
+	var target = document.getElementById(targetID);
+	var url = "/content/" + targetID + ".html";
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) target.innerHTML = xhr.responseText;
 	}
-	updateLogo();
+	xhr.open("GET", url, true);
+	xhr.send();
+}
+
+function updateLogo() {
+	try {
+		var logo = document.getElementById("logo").contentDocument;
+		var primaryTexts = logo.getElementsByClassName("primaryText");
+		var primaryColor = logo.getElementById("primaryColor");
+		if (primaryTexts.length == 0 || primaryColor == null) throw "";
+		for (let primaryText of primaryTexts) primaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryText");
+		primaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryColor");
+	}
+	catch { setTimeout(updateLogo, 1) }
+}
+
+function updateWindow() {
+	try {
+		if (window.innerWidth > 834) {
+			document.getElementById("button").innerHTML = "Auftrag aufgeben";
+			document.getElementById("mobileMenuButton").style.animation = "rotate0 0s ease-out";
+		} else {
+			document.getElementById("button").innerHTML = "Auftrag";
+		}
+	}
+	catch { setTimeout(updateWindow, 1) }
+	window.onresize = updateWindow;
 }
 
 function updateForm() {
@@ -156,6 +157,7 @@ function toggleColorScheme() {
 	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme");
 	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
+	updateLogo();
 }
 
 function addURLTo404Link() {
