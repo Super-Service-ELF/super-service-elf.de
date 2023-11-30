@@ -13,6 +13,7 @@ function loadWindow(targetIDs) {
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
 	}
+	markAsLoaded();
 }
 
 function loadContent(targetID) {
@@ -137,6 +138,10 @@ function scrollToAnchor() {
 			element.scrollIntoView();
 		}
 	}
+}
+
+function markAsLoaded() {
+	document.body.classList.add("loaded");
 }
 
 function toggleColorScheme() {

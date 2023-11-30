@@ -39,6 +39,9 @@ body {
 	background-color: var(--blue);
 	min-width: 320px;
 }
+body.loaded * {
+	transition: color 0.5s ease, background-color 0.5s ease;
+}	
 ::-webkit-scrollbar {
 	background: transparent;
 }
