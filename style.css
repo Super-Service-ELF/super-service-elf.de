@@ -54,6 +54,9 @@ main *:not(#sslcontactholder *) {
 	line-height: 200%;
 }
 
+footer *:not(a) {
+	padding: 8px;
+}
 h1, h2, h3 {
 	font-family: "GothamRounded-Bold";
 	line-height: 100%;
