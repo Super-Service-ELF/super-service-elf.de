@@ -58,6 +58,7 @@ h1, h2, h3, p {
 }
 footer *:not(a) {
 	padding: 8px;
+	color: var(--primaryText) !important;
 }
 h1, h2, h3 {
 	font-family: "GothamRounded-Bold";
