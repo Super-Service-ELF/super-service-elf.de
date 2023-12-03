@@ -85,8 +85,12 @@ header {
 	padding-top: 16px;
 	padding-bottom: 32px;
 }
-div:not(#sslcontactholder *), footer {
+div:not(#sslcontactholder *) {
 	padding-block: 32px;
+}
+footer {
+	padding-top: 32px;
+	padding-bottom: 16px;
 }
 
 .sslcontact * {
