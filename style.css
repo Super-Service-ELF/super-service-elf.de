@@ -62,7 +62,6 @@ footer *:not(a) {
 }
 h1, h2, h3 {
 	font-family: "GothamRounded-Bold";
-	line-height: 100%;
 }
 h1 {
 	font-size: 48px;
@@ -85,6 +84,9 @@ header {
 	height: 180px;
 	padding-top: 16px;
 	padding-bottom: 32px;
+}
+#neuer-newsletter * {
+	line-height: 100% !important;
 }
 div:not(#sslcontactholder *) {
 	padding-block: 32px;
