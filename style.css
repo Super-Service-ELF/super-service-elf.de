@@ -185,8 +185,8 @@ nav a {
 	display: none;
 	cursor: pointer;
 	position: absolute;
-	top: 16px;
-	right: 16px;
+	top: 12px;
+	right: 12px;
 	fill: var(--primaryText);
 }
 
@@ -211,7 +211,7 @@ nav a {
 	#name {
 		text-align: center;
 		padding-top: 0px;
-		padding-inline: 56px;
+		padding-inline: 52px;
 	}
 	#logo {
 		left: unset;
