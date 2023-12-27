@@ -56,11 +56,14 @@ main *:not(#sslcontactholder *) {
 h1, h2, h3, p {
 	padding-inline: 8px;
 }
+span {
+	white-space: nowrap;
+}
 footer *:not(a) {
 	padding: 8px;
 	color: var(--primaryText) !important;
 }
-h1, h2, h3 {
+h1, h2, h2 *, h3 {
 	font-family: "GothamRounded-Bold";
 }
 h1 {
