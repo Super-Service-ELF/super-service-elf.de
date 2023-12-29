@@ -124,7 +124,7 @@ textarea {
 	width: 48px;
 }
 input[type="submit"] {
-	width: 144px;
+	width: auto;
 }
 
 #sslcontact_form div:nth-last-child(2) * {
