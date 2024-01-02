@@ -8,6 +8,7 @@ var eventListenerAdded = false;
 function loadWindow(targetIDs) {
 	detectAndUpdateDeviceColorScheme();
 	for (let targetID of targetIDs) loadContent(targetID);
+	addCurrentYear();
 	updateLogo();
 	updateWindow();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
@@ -56,6 +57,13 @@ function loadContent(targetID) {
 	}
 	xhr.open("GET", url, true);
 	xhr.send();
+}
+
+function addCurrentYear() {
+	try {
+		document.getElementById("year").innerHTML = new Date().getFullYear();
+	}
+	catch { setTimeout(addCurrentYear, 1) }
 }
 
 function updateLogo() {
