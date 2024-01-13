@@ -8,10 +8,10 @@ var eventListenerAdded = false;
 function loadWindow(targetIDs) {
 	detectAndUpdateDeviceColorScheme();
 	for (let targetID of targetIDs) loadContent(targetID);
-	addCurrentYear();
 	updateLogo();
 	updateWindow();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
+	addCurrentYear();
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
 	}
