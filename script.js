@@ -180,10 +180,16 @@ function addURLTo404Link() {
 }
 
 function redirectFrom404() {
-	const redirectPages = [{right: "über", aliases: ["ueber", "uber", "about"]}, {right: "", aliases: ["start", "home", "super"]}, {right: "newsletter-archiv", aliases: ["archiv", "newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv"]}, {right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]}, {right: "feedback", aliases: ["bewerten", "bewertung"]}];
+	const redirectPages = [
+		{right: "", aliases: ["start", "super", "home"]},
+		{right: "über", aliases: ["ueber", "uber", "about"]},
+		{right: "feedback", aliases: ["bewerten", "bewertung"]},
+		{right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]},
+		{right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"]},
+	];
 	for (let page in redirectPages) {
 		for (let alias in redirectPages[page]["aliases"]) {
-			if ("/"+redirectPages[page]["aliases"][alias]+"/" == window.location.pathname || "/"+redirectPages[page]["aliases"][alias] == window.location.pathname) {
+			if ("/" + redirectPages[page]["aliases"][alias] + "/" == window.location.pathname || "/" + redirectPages[page]["aliases"][alias] == window.location.pathname) {
 				window.location.pathname = redirectPages[page]["right"];
 			}
 		}
