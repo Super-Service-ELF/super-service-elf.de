@@ -63,7 +63,7 @@ function addCurrentYear() {
 	try {
 		document.getElementById("year").innerHTML = new Date().getFullYear();
 	}
-	catch { setTimeout(addCurrentYear, 1) }
+	catch { setTimeout(addCurrentYear, 0) }
 }
 
 function updateLogo() {
@@ -75,7 +75,7 @@ function updateLogo() {
 		for (let primaryText of primaryTexts) primaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryText");
 		primaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryColor");
 	}
-	catch { setTimeout(updateLogo, 1) }
+	catch { setTimeout(updateLogo, 0) }
 }
 
 function updateWindow() {
@@ -87,7 +87,7 @@ function updateWindow() {
 			document.getElementById("button").innerHTML = "Auftrag";
 		}
 	}
-	catch { setTimeout(updateWindow, 1) }
+	catch { setTimeout(updateWindow, 0) }
 	window.onresize = updateWindow;
 }
 
@@ -104,7 +104,7 @@ function cleanFormStyles() {
 		if (elements.length == 0) throw "";
 		for (let element of elements) element.removeAttribute("style");
 	}
-	catch { setTimeout(cleanFormStyles, 1) }
+	catch { setTimeout(cleanFormStyles, 0) }
 }
 
 function replaceFormLabels() {
@@ -126,7 +126,7 @@ function replaceFormLabels() {
 			if (message.closest(".newsletter")) message.innerHTML = "E-Mail-Adresse";
 		}
 	}
-	catch { setTimeout(replaceFormLabels, 1) }
+	catch { setTimeout(replaceFormLabels, 0) }
 }
 
 function observeForm() {
@@ -136,7 +136,7 @@ function observeForm() {
 		observer = new MutationObserver(updateForm);
 		observer.observe(form, {childList: true});
 	}
-	catch { setTimeout(observeForm, 1) }
+	catch { setTimeout(observeForm, 0) }
 }
 
 function scrollToAnchor() {
@@ -176,7 +176,7 @@ function addURLTo404Link() {
 		var newLink = oldLink.replace("URL", site);
 		target.href = newLink;
 	}
-	catch { setTimeout(addURLTo404Link, 1) }
+	catch { setTimeout(addURLTo404Link, 0) }
 }
 
 function redirectFrom404() {
