@@ -55,6 +55,7 @@ main *:not(#sslcontactholder *) {
 
 h1, h2, h3, p {
 	padding-inline: 8px;
+	padding-top: 16px;
 }
 span {
 	white-space: nowrap;
