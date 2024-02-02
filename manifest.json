@@ -1,6 +1,7 @@
 {
 	"name": "Super-Service-ELF",
 	"display": "standalone",
+	"description": "Unsere Super-Service-ELF-App bietet Ihnen alle bewährten Vorteile unserer Webseite jetzt noch schneller erreichbar in einer App!",
 	"start_url": "/",
 	"scope": "/",
 	"background_color": "#009DFF",
