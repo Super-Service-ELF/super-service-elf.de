@@ -125,7 +125,7 @@ textarea {
 	width: 48px;
 }
 input[type="submit"] {
-	padding-inline: 4px;
+	padding-inline: 8px;
 	width: auto;
 }
 
