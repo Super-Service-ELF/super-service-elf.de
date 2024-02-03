@@ -3,12 +3,12 @@
 }
 
 @font-face {
-	font-family: "GothamRounded-Bold";
-	src: url("/fonts/GothamRounded-Bold.woff2");
-}
-@font-face {
 	font-family: "GothamRounded";
 	src: url("/fonts/GothamRounded.woff2");
+}
+@font-face {
+	font-family: "GothamRounded-Bold";
+	src: url("/fonts/GothamRounded-Bold.woff2");
 }
 
 @keyframes rotate90 {
