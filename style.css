@@ -60,10 +60,6 @@ h1, h2, h3, p {
 span {
 	white-space: nowrap;
 }
-footer *:not(a) {
-	padding: 8px;
-	color: var(--primaryText) !important;
-}
 h1, h2, h2 *, h3 {
 	font-family: "GothamRounded-Bold";
 }
@@ -98,6 +94,10 @@ div:not(#sslcontactholder *) {
 footer {
 	padding-top: 32px;
 	padding-bottom: 16px;
+}
+footer *:not(a) {
+	padding: 8px;
+	color: var(--primaryText) !important;
 }
 
 .sslcontact * {
