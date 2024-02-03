@@ -126,7 +126,7 @@ textarea {
 }
 input[type="submit"] {
 	padding-inline: 8px;
-	width: auto;
+	width: unset;
 }
 
 #sslcontact_form div:nth-last-child(2) * {
