@@ -19,8 +19,8 @@ function loadWindow(targetIDs) {
 }
 
 function detectAndUpdateDeviceColorScheme() {
-	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "Dark";
-	else deviceColorScheme = "Light";
+	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
+	else deviceColorScheme = "light";
 	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme");
 	updateColorScheme();
 	if (window.matchMedia && !eventListenerAdded) {
@@ -33,13 +33,13 @@ function updateColorScheme() {
 	if (localStorage.getItem("colorScheme") == null) colorScheme = deviceColorScheme;
 	else colorScheme = localStorage.getItem("colorScheme");
 	switch (colorScheme) {
-		case "Light":
+		case "light":
 			document.querySelector(":root").style.setProperty("--primaryColor", "#80CEFF");
 			document.querySelector(":root").style.setProperty("--secondaryColor", "#004F80");
 			document.querySelector(":root").style.setProperty("--primaryText", "#000000");
 			document.querySelector(":root").style.setProperty("--secondaryText", "#FFFFFF");
 			break;
-		case "Dark":
+		case "dark":
 			document.querySelector(":root").style.setProperty("--primaryColor", "#004F80");
 			document.querySelector(":root").style.setProperty("--secondaryColor", "#80CEFF");
 			document.querySelector(":root").style.setProperty("--primaryText", "#FFFFFF");
@@ -152,11 +152,11 @@ function markAsLoaded() {
 
 function toggleColorScheme() {
 	switch (colorScheme) {
-		case "Light":
-			colorScheme = "Dark";
+		case "light":
+			colorScheme = "dark";
 			break;
-		case "Dark":
-			colorScheme = "Light";
+		case "dark":
+			colorScheme = "light";
 			break;
 	}
 	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme");
