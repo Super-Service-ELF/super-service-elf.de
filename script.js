@@ -68,12 +68,7 @@ function addCurrentYear() {
 
 function updateLogo() {
 	try {
-		var logo = document.getElementById("logo").contentDocument;
-		var primaryTexts = logo.getElementsByClassName("primaryText");
-		var primaryColor = logo.getElementById("primaryColor");
-		if (primaryTexts.length == 0 || primaryColor == null) throw "";
-		for (let primaryText of primaryTexts) primaryText.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryText");
-		primaryColor.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--primaryColor");
+		document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
 	}
 	catch { setTimeout(updateLogo, 0) }
 }
