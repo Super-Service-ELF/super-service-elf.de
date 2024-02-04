@@ -35,6 +35,9 @@ body {
 	background-color: var(--blue);
 	min-width: 320px;
 }
+main, main a, div, label {
+	background-color: var(--primaryColor);
+}
 body.loaded * {
 	transition: color 0.5s ease, background-color 0.5s ease;
 }
@@ -46,9 +49,6 @@ body.loaded * {
 	border-radius: 8px;
 }
 
-main, main a, div, label {
-	background-color: var(--primaryColor);
-}
 main *:not(#sslcontactholder *) {
 	line-height: 200%;
 }
@@ -56,9 +56,6 @@ main *:not(#sslcontactholder *) {
 h1, h2, h3, p {
 	padding-inline: 8px;
 	padding-top: 16px;
-}
-span {
-	white-space: nowrap;
 }
 h1, h2, h2 *, h3 {
 	font-family: "GothamRounded-Bold";
@@ -78,6 +75,9 @@ p, textarea, ::placeholder {
 p a, a p {
 	color: var(--secondaryColor);
 	text-decoration: underline;
+}
+span {
+	white-space: nowrap;
 }
 
 header {
