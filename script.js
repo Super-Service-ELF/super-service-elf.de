@@ -30,7 +30,7 @@ function detectAndUpdateDeviceColorScheme() {
 }
 
 function updateColorScheme() {
-	if (localStorage.getItem("colorScheme") == null) colorScheme = deviceColorScheme;
+	if (!["light", "dark"].includes(localStorage.getItem("colorScheme"))) colorScheme = deviceColorScheme;
 	else colorScheme = localStorage.getItem("colorScheme");
 	switch (colorScheme) {
 		case "light":
