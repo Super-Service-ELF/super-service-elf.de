@@ -80,11 +80,8 @@ function updateLogo() {
 
 function updateWindow() {
 	try {
-		if (window.innerWidth > 834) {
-			document.getElementById("button").innerHTML = "Auftrag aufgeben";
+		if (window.innerWidth > 704) {
 			document.getElementById("mobileMenuButton").style.animation = "rotate0 0s ease-out";
-		} else {
-			document.getElementById("button").innerHTML = "Auftrag";
 		}
 	}
 	catch { setTimeout(updateWindow, 0) }
