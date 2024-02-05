@@ -11,7 +11,7 @@ function loadWindow(targetIDs) {
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateLogo();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
-	addCurrentYear();
+	addYear();
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
 	}
@@ -132,11 +132,11 @@ function observeForm() {
 	catch { setTimeout(observeForm, 0) }
 }
 
-function addCurrentYear() {
+function addYear() {
 	try {
 		document.getElementById("year").innerHTML = new Date().getFullYear();
 	}
-	catch { setTimeout(addCurrentYear, 0) }
+	catch { setTimeout(addYear, 0) }
 }
 
 function scrollToAnchor() {
