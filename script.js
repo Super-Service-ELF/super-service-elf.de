@@ -19,6 +19,23 @@ function loadWindow(targetIDs) {
 	setTimeout(markAsLoaded, 100)
 }
 
+function redirectFrom404() {
+	const redirectPages = [
+		{right: "", aliases: ["start", "super", "home"]},
+		{right: "über", aliases: ["ueber", "uber", "about"]},
+		{right: "feedback", aliases: ["bewerten", "bewertung"]},
+		{right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]},
+		{right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"]},
+	];
+	for (let page in redirectPages) {
+		for (let alias in redirectPages[page]["aliases"]) {
+			if ("/" + redirectPages[page]["aliases"][alias] + "/" == window.location.pathname || "/" + redirectPages[page]["aliases"][alias] == window.location.pathname) {
+				window.location.pathname = redirectPages[page]["right"];
+			}
+		}
+	}
+}
+
 function detectAndUpdateDeviceColorScheme() {
 	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
 	else deviceColorScheme = "light";
@@ -58,13 +75,6 @@ function loadContent(targetID) {
 	}
 	xhr.open("GET", url, true);
 	xhr.send();
-}
-
-function addCurrentYear() {
-	try {
-		document.getElementById("year").innerHTML = new Date().getFullYear();
-	}
-	catch { setTimeout(addCurrentYear, 0) }
 }
 
 function updateLogo() {
@@ -122,6 +132,13 @@ function observeForm() {
 	catch { setTimeout(observeForm, 0) }
 }
 
+function addCurrentYear() {
+	try {
+		document.getElementById("year").innerHTML = new Date().getFullYear();
+	}
+	catch { setTimeout(addCurrentYear, 0) }
+}
+
 function scrollToAnchor() {
 	var anchor = window.location.hash;
 	if (anchor) {
@@ -130,6 +147,17 @@ function scrollToAnchor() {
 			element.scrollIntoView();
 		}
 	}
+}
+
+function addURLTo404Link() {
+	try {
+		var target = document.getElementById("404Link");
+		var oldLink = target.href;
+		var site = window.location.href;
+		var newLink = oldLink.replace("URL", site);
+		target.href = newLink;
+	}
+	catch { setTimeout(addURLTo404Link, 0) }
 }
 
 function markAsLoaded() {
@@ -149,32 +177,4 @@ function toggleColorScheme() {
 	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
 	updateLogo();
-}
-
-function addURLTo404Link() {
-	try {
-		var target = document.getElementById("404Link");
-		var oldLink = target.href;
-		var site = window.location.href;
-		var newLink = oldLink.replace("URL", site);
-		target.href = newLink;
-	}
-	catch { setTimeout(addURLTo404Link, 0) }
-}
-
-function redirectFrom404() {
-	const redirectPages = [
-		{right: "", aliases: ["start", "super", "home"]},
-		{right: "über", aliases: ["ueber", "uber", "about"]},
-		{right: "feedback", aliases: ["bewerten", "bewertung"]},
-		{right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]},
-		{right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"]},
-	];
-	for (let page in redirectPages) {
-		for (let alias in redirectPages[page]["aliases"]) {
-			if ("/" + redirectPages[page]["aliases"][alias] + "/" == window.location.pathname || "/" + redirectPages[page]["aliases"][alias] == window.location.pathname) {
-				window.location.pathname = redirectPages[page]["right"];
-			}
-		}
-	}
 }
