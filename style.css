@@ -95,7 +95,7 @@ header {
 	width: 128px;
 	height: 128px;
 }
-#button {
+#auftragButton {
 	float: right;
 	margin-top: 64px;
 	padding-inline: 16px;
@@ -163,14 +163,14 @@ footer *:not(a) {
 
 @media screen and (max-width: 960px) {
 
-	#name, #logo, #button {
+	#name, #logo, #auftragButton {
 		text-align: center;
 		float: unset;
 	}
 	#name {
 		display: none;
 	}
-	#button {
+	#auftragButton {
 		font-size: 32px;
 		position: fixed;
 		bottom: 8px;
