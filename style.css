@@ -73,6 +73,11 @@ p a, a p {
 span {
 	white-space: nowrap;
 }
+.button {
+	background-color: var(--secondaryColor);
+	color: var(--secondaryText);
+	border-radius: 64px;
+}
 
 
 header {
@@ -99,9 +104,6 @@ header {
 	float: right;
 	margin-top: 64px;
 	padding-inline: 16px;
-	border-radius: 64px;
-	background-color: var(--secondaryColor);
-	color: var(--secondaryText);
 }
 ul {
 	text-align: left;
