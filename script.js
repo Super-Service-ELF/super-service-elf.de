@@ -9,7 +9,6 @@ function loadWindow(targetIDs) {
 	detectAndUpdateDeviceColorScheme();
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateLogo();
-	updateWindow();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addCurrentYear();
 	for (let i = 0; i < 10; i++) {
@@ -71,16 +70,6 @@ function updateLogo() {
 		document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
 	}
 	catch { setTimeout(updateLogo, 0) }
-}
-
-function updateWindow() {
-	try {
-		if (window.innerWidth > 704) {
-			document.getElementById("mobileMenuButton").style.animation = "rotate0 0s ease-out";
-		}
-	}
-	catch { setTimeout(updateWindow, 0) }
-	window.onresize = updateWindow;
 }
 
 function updateForm() {
@@ -185,15 +174,5 @@ function redirectFrom404() {
 				window.location.pathname = redirectPages[page]["right"];
 			}
 		}
-	}
-}
-
-function toggleMenu() {
-	if (navigationBar.style.height == "") {
-		document.getElementById("navigationBar").style.height = "225px";
-		document.getElementById("mobileMenuButton").style.animation = "rotate90 0.3s ease-out forwards";
-	} else {
-		document.getElementById("navigationBar").style.height = "";
-		document.getElementById("mobileMenuButton").style.animation = "rotate0 0.3s ease-out";
 	}
 }

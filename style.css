@@ -11,25 +11,19 @@
 	src: url("/fonts/GothamRounded-Bold.woff2");
 }
 
-@keyframes rotate90 {
-	from {transform: rotate(0deg);}
-	to {transform: rotate(90deg);}
-}
-@keyframes rotate0 {
-	from {transform: rotate(90deg);}
-	to {transform: rotate(180deg);}
-}
 
 
 *, ::placeholder {
 	font-family: "GothamRounded";
 	text-align: center;
+	align-items: center;
 	word-wrap: break-word;
 	text-decoration: none;
 	padding: 0px;
 	margin: 0px;
 	color: var(--primaryText);
 }
+
 
 body {
 	background-color: var(--blue);
@@ -49,11 +43,8 @@ body.loaded * {
 	border-radius: 8px;
 }
 
-main *:not(#sslcontactholder *) {
-	line-height: 200%;
-}
 
-h1, h2, h3, p {
+h2, h3, p {
 	padding-inline: 8px;
 	padding-top: 16px;
 }
@@ -61,16 +52,19 @@ h1, h2, h2 *, h3 {
 	font-family: "GothamRounded-Bold";
 }
 h1 {
-	font-size: 48px;
+	font-size: 64px;
 }
 h2 {
 	font-size: 32px;
 }
-h3, label, input {
+h3, label, input, li {
 	font-size: 24px;
 }
 p, textarea, ::placeholder {
 	font-size: 16px;
+}
+p {
+	line-height: 200%;
 }
 p a, a p {
 	color: var(--secondaryColor);
@@ -80,24 +74,46 @@ span {
 	white-space: nowrap;
 }
 
+
 header {
-	height: 180px;
-	padding-top: 16px;
-	padding-bottom: 32px;
+	background-color: var(--blue);
+	padding: 16px;
+	position: sticky;
+	top: 0px;
 }
-#neuer-newsletter * {
-	line-height: 100% !important;
+@media screen and (max-height: 512px) {
+	header {
+		position: unset;
+	}
 }
+#name {
+	float: left;
+	margin-top: 64px;
+}
+#logo {
+	float: left;
+	width: 128px;
+	height: 128px;
+}
+#button {
+	float: right;
+	margin-top: 64px;
+	padding-inline: 16px;
+	border-radius: 64px;
+	background-color: var(--secondaryColor);
+	color: var(--secondaryText);
+}
+ul {
+	text-align: left;
+	clear: both;
+}
+li {
+	display: inline;
+	margin-right: 16px;
+}
+
 div:not(#sslcontactholder *) {
 	padding-block: 32px;
-}
-footer {
-	padding-top: 32px;
-	padding-bottom: 16px;
-}
-footer *:not(a) {
-	padding: 8px;
-	color: var(--primaryText) !important;
 }
 
 .sslcontact * {
@@ -128,7 +144,6 @@ input[type="submit"] {
 	padding-inline: 8px;
 	width: unset;
 }
-
 #sslcontact_form div:nth-last-child(2) * {
 	display: inline-block;
 	margin-inline: 8px;
@@ -140,106 +155,35 @@ input[type="submit"] {
 	display: none;
 }
 
-nav, #name {
-	text-align: left;
-}
-nav ul {
-	list-style: none;
-	display: inline;
-	height: 0;
-}
-#name {
-	padding: 8px;
-	padding-top: 79px;
-	padding-left: 16px;
-}
-#logo {
-	position: absolute;
-	left: 376px;
-	width: 128px;
-	height: 128px;
-}
-#button {
-	background-color: var(--secondaryColor);
-	border-radius: 35px;
-	position: absolute;
-	float: right;
-	right: 10px;
-	top: 85px;
-	padding: 16px;
-	color: var(--secondaryText)
-}
-
-nav {
-	padding-left: 16px;
-}
-#navigationBar {
-	font-size: 24px;
-}
-#navigationBar a {
-	padding-right: 16px;
-}
-nav li {
-	display: inline;
-}
-nav a {
-	display: inline;
-	position: relative;
-}
-#mobileMenuButton {
-	display: none;
-	cursor: pointer;
-	position: absolute;
-	top: 12px;
-	right: 12px;
-	fill: var(--primaryText);
+footer *:not(a) {
+	padding: 4px;
 }
 
 
-@media screen and (max-width: 704px) {
-	nav {
-		padding: 0px;
-	}
-	nav ul {
-		width: 100%;
-		position: absolute;
-		top: 345px;
-		overflow: hidden;
-		transition: 0.75s !important;
-		background-color: var(--blue);
-	}
-	nav li {
-		display: block;
-		padding-top: 10px;
-		padding-left: 0px;
+
+@media screen and (max-width: 960px) {
+
+	#name, #logo, #button {
+		text-align: center;
+		float: unset;
 	}
 	#name {
-		text-align: center;
-		padding-top: 0px;
-		padding-inline: 44px;
-	}
-	#logo {
-		left: unset;
-		right: 50%;
-		transform: translateX(50%);
-		top: 112px;
-		padding: 4px;
-	}
-	header {
-		height: 300px;
+		display: none;
 	}
 	#button {
+		font-size: 32px;
+		position: fixed;
+		bottom: 8px;
 		right: 50%;
 		transform: translateX(50%);
-		top: 256px;
 	}
-	#mobileMenuButton {
-		display: unset;
+	li {
+		display: block;
+		margin: 0px;
+		margin-top: 8px;
 	}
-	nav a {
-		top: unset;
-	}
-	#navigationBar, #navigationBar a {
-		padding: 0px;
+
+	footer {
+		margin-bottom: 64px;
 	}
 }
