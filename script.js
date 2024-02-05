@@ -6,6 +6,7 @@ var observer;
 var eventListenerAdded = false;
 
 function loadWindow(targetIDs) {
+	if (document.getElementById("404") != null) redirectFrom404();
 	detectAndUpdateDeviceColorScheme();
 	for (let targetID of targetIDs) loadContent(targetID);
 	updateLogo();
@@ -14,6 +15,7 @@ function loadWindow(targetIDs) {
 	for (let i = 0; i < 10; i++) {
 		setTimeout(scrollToAnchor, 10)
 	}
+	if (document.getElementById("404") != null) addURLTo404Link();
 	setTimeout(markAsLoaded, 100)
 }
 
