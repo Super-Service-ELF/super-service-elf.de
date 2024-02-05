@@ -81,7 +81,7 @@ header {
 	position: sticky;
 	top: 0px;
 }
-@media screen and (max-height: 512px) {
+@media screen and (max-height: 768px) {
 	header {
 		position: unset;
 	}
