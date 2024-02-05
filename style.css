@@ -168,7 +168,7 @@ footer *:not(a) {
 		float: unset;
 	}
 	#name {
-		display: none;
+		margin-top: 0px;
 	}
 	#auftragButton {
 		font-size: 32px;
