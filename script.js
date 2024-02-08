@@ -5,10 +5,10 @@ var deviceColorScheme;
 var observer;
 var eventListenerAdded = false;
 
-function loadWindow(targetIDs) {
+function loadWindow() {
 	if (document.getElementById("404") != null) redirectFrom404();
 	detectAndUpdateDeviceColorScheme();
-	for (let targetID of targetIDs) loadContent(targetID);
+	loadContents();
 	updateLogo();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
@@ -66,15 +66,20 @@ function updateColorScheme() {
 	}
 }
 
-function loadContent(targetID) {
-	var target = document.getElementById(targetID);
-	var url = "/content/" + targetID + ".html";
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) target.innerHTML = xhr.responseText;
+function loadContents() {
+	var elements = document.body.querySelectorAll("header, div, footer");
+	for (let element of elements) {
+		var elementID = element.id;
+		if (elementID != "sslcontactholder") {
+			var url = "/content/" + elementID + ".html";
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
+			}
+			xhr.open("GET", url, false);
+			xhr.send();
+		}
 	}
-	xhr.open("GET", url, true);
-	xhr.send();
 }
 
 function updateLogo() {
