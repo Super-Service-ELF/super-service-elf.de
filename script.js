@@ -68,15 +68,13 @@ function loadContents() {
 	var elements = document.body.querySelectorAll("header, div, footer");
 	for (let element of elements) {
 		var elementID = element.id;
-		if (elementID != "sslcontactholder") {
-			var url = "/content/" + elementID + ".html";
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
-			}
-			xhr.open("GET", url, false);
-			xhr.send();
+		var url = "/content/" + elementID + ".html";
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
 		}
+		xhr.open("GET", url, false);
+		xhr.send();
 	}
 }
 
