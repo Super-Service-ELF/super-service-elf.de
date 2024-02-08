@@ -12,11 +12,9 @@ function loadWindow() {
 	updateLogo();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
-	for (let i = 0; i < 10; i++) {
-		setTimeout(scrollToAnchor, 10);
-	}
+	scrollToAnchor();
 	if (document.getElementById("404") != null) addURLTo404Link();
-	setTimeout(markAsLoaded, 100);
+	markAsLoaded();
 }
 
 function redirectFrom404() {
@@ -83,10 +81,7 @@ function loadContents() {
 }
 
 function updateLogo() {
-	try {
-		document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
-	}
-	catch { setTimeout(updateLogo, 0) }
+	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
 }
 
 function updateForm() {
@@ -128,20 +123,13 @@ function replaceFormLabels() {
 }
 
 function observeForm() {
-	try {
-		var form = document.getElementById("sslcontactholder");
-		if (form == null) throw "";
-		observer = new MutationObserver(updateForm);
-		observer.observe(form, {childList: true});
-	}
-	catch { setTimeout(observeForm, 0) }
+	var form = document.getElementById("sslcontactholder");
+	observer = new MutationObserver(updateForm);
+	observer.observe(form, {childList: true});
 }
 
 function addYear() {
-	try {
-		document.getElementById("year").innerHTML = new Date().getFullYear();
-	}
-	catch { setTimeout(addYear, 0) }
+	document.getElementById("year").innerHTML = new Date().getFullYear();
 }
 
 function scrollToAnchor() {
@@ -155,14 +143,11 @@ function scrollToAnchor() {
 }
 
 function addURLTo404Link() {
-	try {
-		var target = document.getElementById("404Link");
-		var oldLink = target.href;
-		var site = window.location.href;
-		var newLink = oldLink.replace("URL", site);
-		target.href = newLink;
-	}
-	catch { setTimeout(addURLTo404Link, 0) }
+	var element = document.getElementById("404Link");
+	var oldLink = element.href;
+	var site = window.location.href;
+	var newLink = oldLink.replace("URL", site);
+	element.href = newLink;
 }
 
 function markAsLoaded() {
