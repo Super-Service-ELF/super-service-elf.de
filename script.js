@@ -13,10 +13,10 @@ function loadWindow() {
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
 	for (let i = 0; i < 10; i++) {
-		setTimeout(scrollToAnchor, 10)
+		setTimeout(scrollToAnchor, 10);
 	}
 	if (document.getElementById("404") != null) addURLTo404Link();
-	setTimeout(markAsLoaded, 100)
+	setTimeout(markAsLoaded, 100);
 }
 
 function redirectFrom404() {
