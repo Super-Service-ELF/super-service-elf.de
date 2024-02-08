@@ -10,6 +10,9 @@ function loadWindow() {
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateLogo();
+	if (document.getElementById("app") != null) {
+		updateAppButton();
+	}
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
 	scrollToAnchor();
@@ -80,6 +83,19 @@ function loadContents() {
 
 function updateLogo() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
+}
+
+function updateAppButton() {
+	var installButton = document.getElementById("installButton");
+	window.addEventListener("beforeinstallprompt", (event) => {
+		event.preventDefault();
+		installButton.hidden = false;
+		installPrompt = event;
+	});
+	installButton.addEventListener("click", async () => {
+		await installPrompt.prompt();
+		installButton.hidden = true;
+	});
 }
 
 function updateForm() {
