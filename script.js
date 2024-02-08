@@ -149,7 +149,7 @@ function scrollToAnchor() {
 	if (anchor) {
 		var element = document.querySelector(anchor);
 		if (element) {
-			element.scrollIntoView();
+			element.scrollIntoView({ block: "center" });
 		}
 	}
 }
