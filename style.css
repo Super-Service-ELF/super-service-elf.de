@@ -146,6 +146,9 @@ input[type="submit"] {
 	padding-inline: 8px;
 	width: unset;
 }
+.statustext {
+	padding: 8px;
+}
 #sslcontact_form div:nth-last-child(2) * {
 	display: inline-block;
 	margin-inline: 8px;
