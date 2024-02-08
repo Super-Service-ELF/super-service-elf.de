@@ -71,7 +71,7 @@ function loadContents() {
 	var elements = document.body.querySelectorAll("header, div, footer");
 	for (let element of elements) {
 		var elementID = element.id;
-		var url = "/content/" + elementID + ".html";
+		var url = "/contents/" + elementID + ".html";
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
