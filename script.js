@@ -173,7 +173,7 @@ function updateAppInstructions() {
 	if (typeof exactOS == "undefined") {
 		exactOS = " einem unbekannten Betriebssystem";
 	}
-	document.getElementById("instructions").innerHTML = "Installation der Super‑Service‑ELF‑App" + browserText + " unter " + exactOS + ":";
+	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + exactOS + ":";
 }
 
 function updateForm() {
