@@ -75,6 +75,7 @@ p a, a p {
 }
 span {
 	white-space: nowrap;
+	display: inline-block;
 }
 .button {
 	background-color: var(--secondaryColor);
