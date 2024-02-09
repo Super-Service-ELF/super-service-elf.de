@@ -10,9 +10,7 @@ function loadWindow() {
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateLogo();
-	if (document.getElementById("app") != null) {
-		updateAppButton();
-	}
+	if (document.getElementById("app-button") != null) updateAppButton();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
 	scrollToAnchor();
@@ -86,15 +84,13 @@ function updateLogo() {
 }
 
 function updateAppButton() {
-	var installButton = document.getElementById("installButton");
 	window.addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
-		installButton.hidden = false;
+		document.getElementById("app-button").hidden = false;
 		installPrompt = event;
 	});
-	installButton.addEventListener("click", async () => {
+	document.getElementById("installButton").addEventListener("click", async () => {
 		await installPrompt.prompt();
-		installButton.hidden = true;
 	});
 }
 
