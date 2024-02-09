@@ -11,6 +11,7 @@ function loadWindow() {
 	loadContents();
 	updateImages();
 	if (document.getElementById("app-button") != null) updateAppButton();
+	if (document.getElementById("app-instructions") != null) updateAppInstructions();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
 	scrollToAnchor();
@@ -84,17 +85,95 @@ function loadContents() {
 
 function updateImages() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
+	if (document.getElementById("app-instructions") != null) {
+		for (let className of ["add", "chrome", "dock", "edge", "share"]) {
+			for (let icon of document.getElementsByClassName(className)) {
+				icon.src = "/images/app-instructions/" + className + "-" + colorScheme + ".png";
+			}
+		}
+	}
+
 }
 
 function updateAppButton() {
 	window.addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
 		document.getElementById("app-button").hidden = false;
+		document.getElementById("app-instructions").hidden = true;
 		installPrompt = event;
 	});
 	document.getElementById("installButton").addEventListener("click", async () => {
 		await installPrompt.prompt();
 	});
+}
+
+function updateAppInstructions() {
+	const OSs = {
+		"Android": "Android",
+		"CrOS": "ChromeOS",
+		"iPad": "iPadOS",
+		"iPhone": "iOS",
+		"iPod": "iOS",
+		"Linux": "Linux",
+		"Mac OS X": "macOS",
+		"Windows": "Windows",
+	};
+	var userAgent = navigator.userAgent;
+	var OS = "Unknown";
+	for (let testOS in OSs) {
+		if (userAgent.includes(testOS)) {
+			OS = OSs[testOS];
+			break;
+		}
+	}
+	if (OS == "Unknown") ID = "Unknown";
+	else {
+		if (OS == "macOS" && navigator.maxTouchPoints && navigator.maxTouchPoints > 1) OS = "iPadOS";
+		exactOS = OS
+		OS = OS.replace(/ChromeOS|Linux|Windows/, "Computer");
+		OS = OS.replace("iPadOS", "iOS");
+		const browsers = {
+			"Edg": "Edge",
+			"EdgiOS": "Edge",
+			"CriOS": "Chrome",
+			"Chrome": "Chrome",
+			"Firefox": "Firefox",
+			"FxiOS": "Firefox",
+			"Safari": "Safari",
+		};
+		var browser = "Unknown";
+		for (let testBrowser in browsers) {
+			if (userAgent.includes(testBrowser)) {
+				browser = browsers[testBrowser];
+				break;
+			}
+		}
+		exactBrowser = browser
+		if (["Android", "Computer"].includes(OS)) browser = browser.replace("Safari", "Unknown");
+		if (["Chrome", "Edge"].includes(browser)) OS = OS.replace("macOS", "Computer");
+		if (["Computer", "macOS"].includes(OS)) browser = browser.replace("Firefox", "Unsupported");
+		if ("iOS" == OS) {
+			browser = browser.replace(/Safari|Chrome/, "Standard");
+			browser = browser.replace("Edge", "Unsupported");
+		}
+		if ("Unsupported" == browser) OS = OS.replace(/iOS|macOS/, "Apple");
+		ID = OS + "-" + browser;
+		if (ID == "macOS-Safari") {
+			var match = userAgent.match(/Version\/(\d+)/);
+			if (match != null && parseInt(match[1]) < 17) {
+				ID = "Computer-Unsupported";
+			}
+		}
+	}
+	document.getElementById(ID).hidden = false;
+	browserText = "";
+	if (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") {
+		browserText = " in " + exactBrowser;
+	}
+	if (typeof exactOS == "undefined") {
+		exactOS = " einem unbekannten Betriebssystem";
+	}
+	document.getElementById("instructions").innerHTML = "Installation der Super‑Service‑ELF‑App" + browserText + " unter " + exactOS + ":";
 }
 
 function updateForm() {
