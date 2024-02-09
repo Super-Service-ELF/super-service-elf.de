@@ -9,7 +9,7 @@ function loadWindow() {
 	if (document.getElementById("404") != null) redirectFrom404();
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
-	updateLogo();
+	updateImages();
 	if (document.getElementById("app-button") != null) updateAppButton();
 	if (document.getElementById("sslcontactholder") != null) updateForm();
 	addYear();
@@ -41,7 +41,10 @@ function detectAndUpdateDeviceColorScheme() {
 	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme");
 	updateColorScheme();
 	if (window.matchMedia && !eventListenerAdded) {
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectAndUpdateDeviceColorScheme);
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+			detectAndUpdateDeviceColorScheme();
+			updateImages();
+		});
 		eventListenerAdded = true;
 	}
 }
@@ -79,7 +82,7 @@ function loadContents() {
 	}
 }
 
-function updateLogo() {
+function updateImages() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
 }
 
@@ -176,5 +179,5 @@ function toggleColorScheme() {
 	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme");
 	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
-	updateLogo();
+	updateImages();
 }
