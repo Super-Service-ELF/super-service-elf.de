@@ -6,6 +6,20 @@
 	"scope": "/",
 	"background_color": "#009DFF",
 	"theme_color": "#009DFF",
+	"shortcuts" : [
+		{
+			"name": "Auftrag aufgeben",
+			"short_name": "Auftrag",
+			"description": "Hier können Sie uns Aufträge aufgeben!",
+			"url": "/auftrag/"
+		},
+		{
+			"name": "Feedback geben",
+			"short_name": "Feedback",
+			"description": "Hier können Sie uns Feedback in Form von Lob, Kritik und Vorschlägen geben, damit wir uns für Sie verbessern können!",
+			"url": "/feedback/"
+		}
+	],
 	"icons": [
 		{
 			"src": "/images/app-icon.svg",
