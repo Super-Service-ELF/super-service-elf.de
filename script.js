@@ -156,6 +156,10 @@ function updateAppInstructions() {
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
 		}
+		if (OS == "iOS" && browser != "Safari") { 
+			var iOSVersion = userAgent.match(/OS (\d+_\d+)/);
+			if (iOSVersion == null || parseFloat(iOSVersion[1].replace("_", ".")) < 16.4) browser = "Unsupported";
+		}
 		if ("Unsupported" == browser) OS = OS.replace(/iOS|macOS/, "Apple");
 		ID = OS + "-" + browser;
 		if (ID == "macOS-Safari") {
