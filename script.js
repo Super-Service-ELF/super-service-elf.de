@@ -152,13 +152,13 @@ function updateAppInstructions() {
 		if (["Android", "Computer"].includes(OS)) browser = browser.replace("Safari", "Unknown");
 		if (["Chrome", "Edge"].includes(browser)) OS = OS.replace("macOS", "Computer");
 		if (["Computer", "macOS"].includes(OS)) browser = browser.replace("Firefox", "Unsupported");
+		if (OS == "iOS" && browser != "Safari") {
+			var iOSVersion = userAgent.match(/OS (\d+_\d+)/);
+			if (iOSVersion == null || parseFloat(iOSVersion[1].replace("_", ".")) < 16.4) browser = "Unsupported";
+		}
 		if ("iOS" == OS) {
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
-		}
-		if (OS == "iOS" && browser != "Safari") { 
-			var iOSVersion = userAgent.match(/OS (\d+_\d+)/);
-			if (iOSVersion == null || parseFloat(iOSVersion[1].replace("_", ".")) < 16.4) browser = "Unsupported";
 		}
 		if ("Unsupported" == browser) OS = OS.replace(/iOS|macOS/, "Apple");
 		ID = OS + "-" + browser;
