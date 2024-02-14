@@ -159,8 +159,8 @@ function updateAppInstructions() {
 		if ("Unsupported" == browser) OS = OS.replace(/iOS|macOS/, "Apple");
 		ID = OS + "-" + browser;
 		if (ID == "macOS-Safari") {
-			var match = userAgent.match(/Version\/(\d+)/);
-			if (match != null && parseInt(match[1]) < 17) {
+			var safariVersion = userAgent.match(/Version\/(\d+)/);
+			if (safariVersion == null || parseInt(safariVersion[1]) < 17) {
 				ID = "Computer-Unsupported";
 			}
 		}
