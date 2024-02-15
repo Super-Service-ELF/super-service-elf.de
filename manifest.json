@@ -1,5 +1,6 @@
 {
 	"name": "Super-Service-ELF",
+	"short_name": "ELF",
 	"display": "standalone",
 	"description": "Unsere neue App bietet Ihnen alle bewährten Vorteile unserer Webseite - jetzt noch schneller erreichbar per App!",
 	"start_url": "/",
