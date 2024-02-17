@@ -29,7 +29,7 @@ function redirectFrom404() {
 	];
 	for (let page in redirectPages) {
 		for (let alias in redirectPages[page]["aliases"]) {
-			if ("/" + redirectPages[page]["aliases"][alias] + "/" == window.location.pathname || "/" + redirectPages[page]["aliases"][alias] == window.location.pathname) {
+			if (window.location.pathname == "/" + redirectPages[page]["aliases"][alias] + "/" || window.location.pathname == "/" + redirectPages[page]["aliases"][alias]) {
 				window.location.pathname = redirectPages[page]["right"];
 			}
 		}
@@ -39,7 +39,7 @@ function redirectFrom404() {
 function detectAndUpdateDeviceColorScheme() {
 	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
 	else deviceColorScheme = "light";
-	if (localStorage.getItem("colorScheme") == deviceColorScheme) localStorage.removeItem("colorScheme");
+	if (deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
 	updateColorScheme();
 	if (window.matchMedia && !eventListenerAdded) {
 		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
@@ -163,7 +163,7 @@ function updateAppInstructions() {
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
 		}
-		if ("Unsupported" == browser) OS = OS.replace(/iOS|macOS/, "Apple");
+		if (browser == "Unsupported") OS = OS.replace(/iOS|macOS/, "Apple");
 		ID = OS + "-" + browser;
 		if (ID == "macOS-Safari") {
 			var safariVersion = userAgent.match(/Version\/(\d+)/);
