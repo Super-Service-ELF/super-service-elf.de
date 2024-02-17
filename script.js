@@ -156,7 +156,7 @@ function updateAppInstructions() {
 			var iOSVersion = userAgent.match(/OS (\d+_\d+)/);
 			if (iOSVersion != null) {
 				iOSVersion = parseFloat(iOSVersion[1].replace("_", "."));
-				if (browser != "Safari" && iOSVersion < 16.4) browser = "Unsupported";
+				if (iOSVersion < 16.4 && browser != "Safari") browser = "Unsupported";
 			}
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
