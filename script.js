@@ -156,9 +156,7 @@ function updateAppInstructions() {
 			var iOSVersion = userAgent.match(/OS (\d+_\d+)/);
 			if (iOSVersion != null) {
 				iOSVersion = parseFloat(iOSVersion[1].replace("_", "."));
-				if (browser != "Safari" && iOSVersion < 16.4) {
-					browser = "Unsupported";
-				}
+				if (browser != "Safari" && iOSVersion < 16.4) browser = "Unsupported";
 			}
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
@@ -172,12 +170,8 @@ function updateAppInstructions() {
 	}
 	document.getElementById(ID).hidden = false;
 	browserText = "";
-	if (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") {
-		browserText = " in " + exactBrowser;
-	}
-	if (typeof exactOS == "undefined") {
-		exactOS = " einem unbekannten Betriebssystem";
-	}
+	if (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") browserText = " in " + exactBrowser;
+	if (typeof exactOS == "undefined") exactOS = " einem unbekannten Betriebssystem";
 	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + exactOS + ":";
 }
 
@@ -233,9 +227,7 @@ function scrollToAnchor() {
 	var anchor = window.location.hash;
 	if (anchor) {
 		var element = document.querySelector(anchor);
-		if (element) {
-			element.scrollIntoView({ block: "center" });
-		}
+		if (element) element.scrollIntoView({ block: "center" });
 	}
 }
 
