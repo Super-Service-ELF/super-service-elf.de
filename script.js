@@ -108,6 +108,7 @@ function updateAppButton() {
 }
 
 function updateAppInstructions() {
+	var userAgent = navigator.userAgent;
 	const OSs = {
 		"Android": "Android",
 		"CrOS": "ChromeOS",
@@ -118,7 +119,6 @@ function updateAppInstructions() {
 		"Mac OS X": "macOS",
 		"Windows": "Windows",
 	};
-	var userAgent = navigator.userAgent;
 	var OS = "Unknown";
 	for (let testOS in OSs) {
 		if (userAgent.includes(testOS)) {
