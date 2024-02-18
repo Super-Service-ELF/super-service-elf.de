@@ -23,11 +23,6 @@
 	],
 	"icons": [
 		{
-			"src": "/images/app-icon.svg",
-			"sizes": "any",
-			"type": "image/svg+xml"
-		},
-		{
 			"src": "/images/app-icon-maskable.svg",
 			"sizes": "any",
 			"type": "image/svg+xml",
