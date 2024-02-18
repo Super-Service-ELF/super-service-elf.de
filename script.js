@@ -165,7 +165,10 @@ function updateAppInstructions() {
 		ID = OS + "-" + browser;
 		if (ID == "macOS-Safari") {
 			var safariVersion = userAgent.match(/Version\/(\d+)/);
-			if (safariVersion == null || parseInt(safariVersion[1]) < 17) ID = "Computer-Unsupported";
+			if (safariVersion != null) {
+				safariVersion = parseInt(safariVersion[1]);
+				if (safariVersion < 17) ID = "Computer-Unsupported";
+			}
 		}
 	}
 	document.getElementById(ID).hidden = false;
