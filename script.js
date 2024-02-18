@@ -157,6 +157,7 @@ function updateAppInstructions() {
 			if (safariVersion != null) {
 				safariVersion = parseFloat(safariVersion[1]);
 				if (safariVersion < 16.4 && browser != "Safari") browser = "Unsupported";
+				if (safariVersion >= 17.4 && exactOS == "iOS") browser = "Profile";
 			}
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
