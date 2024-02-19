@@ -12,7 +12,7 @@ function loadWindow() {
 	updateImages();
 	if (document.getElementById("app-button") != null) updateAppButton();
 	if (document.getElementById("app-instructions") != null) updateAppInstructions();
-	if (document.getElementById("sslcontactholder") != null) updateForm();
+	if (document.getElementsByClassName("form").length > 0) updateForm();
 	addYear();
 	scrollToAnchor();
 	if (document.getElementById("404") != null) addURLTo404Link();
