@@ -168,7 +168,7 @@ function updateAppInstructions() {
 			var safariVersion = userAgent.match(/Version\/(\d+)/);
 			if (safariVersion != null) {
 				safariVersion = parseInt(safariVersion[1]);
-				if (safariVersion < 17) ID = "Computer-Unsupported";
+				if (safariVersion < 17 || !document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) ID = "Computer-Unsupported";
 			}
 		}
 	}
