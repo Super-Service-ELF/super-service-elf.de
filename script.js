@@ -191,7 +191,7 @@ function cleanFormStyles() {
 		if (elements.length == 0) throw "";
 		for (let element of elements) element.removeAttribute("style");
 	}
-	catch { setTimeout(cleanFormStyles, 0) }
+	catch { setTimeout(cleanFormStyles) }
 }
 
 function replaceFormLabels() {
@@ -213,7 +213,7 @@ function replaceFormLabels() {
 			if (message.closest(".newsletter")) message.innerHTML = "E-Mail-Adresse";
 		}
 	}
-	catch { setTimeout(replaceFormLabels, 0) }
+	catch { setTimeout(replaceFormLabels) }
 }
 
 function observeForm() {
