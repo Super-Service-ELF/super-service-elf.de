@@ -1,10 +1,10 @@
 {
 	"name": "Super-Service-ELF",
 	"short_name": "ELF",
-	"display": "standalone",
 	"description": "Unsere neue App bietet Ihnen alle bewährten Vorteile unserer Webseite - jetzt noch schneller erreichbar per App!",
 	"start_url": "/",
 	"scope": "/",
+	"display": "standalone",
 	"background_color": "#009DFF",
 	"theme_color": "#009DFF",
 	"shortcuts" : [
