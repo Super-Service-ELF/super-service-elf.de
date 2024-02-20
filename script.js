@@ -196,10 +196,10 @@ function cleanFormStyles() {
 
 function replaceFormLabels() {
 	try {
-		var name = document.querySelector("label[for='firstname']");
-		var email = document.querySelector("label[for='email']");
-		var subject = document.querySelector("label[for='subject']");
-		var message = document.querySelector("label[for='message']");
+		var name = document.querySelector("[for=\"firstname\"]");
+		var email = document.querySelector("[for=\"email\"]");
+		var subject = document.querySelector("[for=\"subject\"]");
+		var message = document.querySelector("[for=\"message\"]");
 		if (message == null) throw "";
 		if (name != null) name.innerHTML = "Name";
 		if (email != null) email.innerHTML = "E-Mail-Adresse";
