@@ -150,10 +150,11 @@ textarea {
 	min-height: 128px;
 	resize: vertical;
 }
-#captcha {
-	width: 48px;
+#sslcontact_form > :nth-last-child(2){
+	display: none;
 }
 input[type="submit"] {
+	margin-top: 16px;
 	padding-inline: 8px;
 	width: unset;
 }

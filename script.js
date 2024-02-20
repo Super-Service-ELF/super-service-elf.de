@@ -182,6 +182,7 @@ function updateForm() {
 	if (observer != undefined) observer.disconnect();
 	cleanFormStyles();
 	replaceFormLabels();
+	solveCaptcha();
 	observeForm();
 }
 
@@ -214,6 +215,13 @@ function replaceFormLabels() {
 		}
 	}
 	catch { setTimeout(replaceFormLabels) }
+}
+
+function solveCaptcha() {
+	try {
+		document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
+	}
+	catch { setTimeout(solveCaptcha) }
 }
 
 function observeForm() {
