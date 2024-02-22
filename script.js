@@ -128,6 +128,7 @@ function updateAppInstructions() {
 	}
 	if (OS == "Unknown") ID = "Unknown";
 	else {
+		claimedOS = OS
 		if (OS == "macOS" && navigator.maxTouchPoints) OS = "iPadOS";
 		exactOS = OS
 		OS = OS.replace(/ChromeOS|Linux|Windows/, "Computer");
@@ -153,7 +154,9 @@ function updateAppInstructions() {
 		if (["Chrome", "Edge"].includes(browser)) OS = OS.replace("macOS", "Computer");
 		if (["Computer", "macOS"].includes(OS)) browser = browser.replace("Firefox", "Unsupported");
 		if (OS == "iOS") {
-			var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
+			if (!(claimedOS == "macOS")) {
+				var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
+			}
 			if (iOSVersion != null) {
 				iOSVersion = parseFloat(iOSVersion[1]);
 				if (iOSVersion < 16.4 && browser != "Safari") browser = "Unsupported";
