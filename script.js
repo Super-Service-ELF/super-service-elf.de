@@ -183,49 +183,39 @@ function updateAppInstructions() {
 }
 
 function updateForm() {
-	if (observer != undefined) observer.disconnect();
-	cleanFormStyles();
-	replaceFormLabels();
-	solveCaptcha();
-	observeForm();
+	try {
+		if (document.getElementById("sslcontact_form") == null) throw "";
+		if (observer != undefined) observer.disconnect();
+		cleanFormStyles();
+		replaceFormLabels();
+		solveCaptcha();
+		observeForm();
+	}
+	catch { setTimeout(updateForm) }
 }
 
 function cleanFormStyles() {
-	try {
-		var elements = document.querySelectorAll(".sslcontact *");
-		if (elements.length == 0) throw "";
-		for (let element of elements) element.removeAttribute("style");
-	}
-	catch { setTimeout(cleanFormStyles) }
+	for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 }
 
 function replaceFormLabels() {
-	try {
-		var name = document.querySelector("[for=\"firstname\"]");
-		var email = document.querySelector("[for=\"email\"]");
-		var subject = document.querySelector("[for=\"subject\"]");
-		var message = document.querySelector("[for=\"message\"]");
-		if (message == null) throw "";
-		if (name != null) name.innerHTML = "Name";
-		if (email != null) email.innerHTML = "E-Mail-Adresse";
-		if (subject != null) {
-			if (subject.closest(".auftrag")) subject.innerHTML = "Auftragsbetreff";
-			if (subject.closest(".feedback")) subject.innerHTML = "Feedbacksbetreff";
-		}
-		if (message != null) {
-			if (message.closest(".auftrag")) message.innerHTML = "Auftrag";
-			if (message.closest(".feedback")) message.innerHTML = "Feedback";
-			if (message.closest(".newsletter")) message.innerHTML = "E-Mail-Adresse";
-		}
+	var name = document.querySelector("[for=\"firstname\"]");
+	var email = document.querySelector("[for=\"email\"]");
+	var subject = document.querySelector("[for=\"subject\"]");
+	var message = document.querySelector("[for=\"message\"]");
+	if (name != null) name.innerHTML = "Name";
+	if (email != null) email.innerHTML = "E-Mail-Adresse";
+	if (subject != null) {
+		if (subject.closest(".auftrag")) subject.innerHTML = "Auftragsbetreff";
+		if (subject.closest(".feedback")) subject.innerHTML = "Feedbacksbetreff";
 	}
-	catch { setTimeout(replaceFormLabels) }
+	if (message.closest(".auftrag")) message.innerHTML = "Auftrag";
+	if (message.closest(".feedback")) message.innerHTML = "Feedback";
+	if (message.closest(".newsletter")) message.innerHTML = "E-Mail-Adresse";
 }
 
 function solveCaptcha() {
-	try {
-		document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
-	}
-	catch { setTimeout(solveCaptcha) }
+	document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
 }
 
 function observeForm() {
