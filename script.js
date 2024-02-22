@@ -151,7 +151,7 @@ function updateAppInstructions() {
 		}
 		exactBrowser = browser
 		if (browser == "Safari" && ["Android", "Computer"].includes(OS)) browser = "Unknown";
-		if (OS == "macOS" && ["Chrome", "Edge"].includes(browser)) OS = "Computer";
+		if (OS == "macOS" && (["Chrome", "Edge"].includes(browser) || browser != "Safari" && !new OffscreenCanvas(0, 0).getContext("webgl"))) OS = "Computer";
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(OS)) browser = "Unsupported";
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
