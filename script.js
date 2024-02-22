@@ -153,11 +153,11 @@ function updateAppInstructions() {
 		if (["Chrome", "Edge"].includes(browser)) OS = OS.replace("macOS", "Computer");
 		if (["Computer", "macOS"].includes(OS)) browser = browser.replace("Firefox", "Unsupported");
 		if (OS == "iOS") {
-			var safariVersion = userAgent.match(/Version\/(\d+\.\d+)/);
-			if (safariVersion != null) {
-				safariVersion = parseFloat(safariVersion[1]);
-				if (safariVersion < 16.4 && browser != "Safari") browser = "Unsupported";
-				if (safariVersion >= 17.4 && exactOS == "iOS") browser = "Profile";
+			var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
+			if (iOSVersion != null) {
+				iOSVersion = parseFloat(iOSVersion[1]);
+				if (iOSVersion < 16.4 && browser != "Safari") browser = "Unsupported";
+				if (iOSVersion >= 17.4 && exactOS == "iOS") browser = "Profile";
 			}
 			browser = browser.replace(/Safari|Chrome/, "Standard");
 			browser = browser.replace("Edge", "Unsupported");
