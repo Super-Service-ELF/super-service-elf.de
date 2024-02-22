@@ -156,6 +156,8 @@ function updateAppInstructions() {
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) {
 				var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
+			} else if (browser == "Safari") {
+				var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
 			}
 			if (iOSVersion != null) {
 				iOSVersion = parseFloat(iOSVersion[1]);
