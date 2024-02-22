@@ -150,16 +150,16 @@ function updateAppInstructions() {
 			}
 		}
 		exactBrowser = browser
-		if (["Android", "Computer"].includes(OS) && browser == "Safari") browser = "Unknown";
-		if (["Chrome", "Edge"].includes(browser) && OS == "macOS") OS = "Computer";
-		if (["Computer", "macOS"].includes(OS) && browser == "Firefox") browser = "Unsupported";
+		if (browser == "Safari" && ["Android", "Computer"].includes(OS)) browser = "Unknown";
+		if (OS == "macOS" && ["Chrome", "Edge"].includes(browser)) OS = "Computer";
+		if (browser == "Firefox" && ["Computer", "macOS"].includes(OS)) browser = "Unsupported";
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 			else if (browser == "Safari") var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
 			if (iOSVersion != null) {
 				iOSVersion = parseFloat(iOSVersion[1]);
-				if (iOSVersion < 16.4 && browser != "Safari") browser = "Unsupported";
-				if (iOSVersion >= 17.4 && exactOS == "iOS") browser = "Profile";
+				if (browser != "Safari" && iOSVersion < 16.4) browser = "Unsupported";
+				if (exactOS == "iOS" && iOSVersion >= 17.4) browser = "Profile";
 			}
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
 			if (browser == "Edge") browser = "Unsupported";
