@@ -131,8 +131,8 @@ function updateAppInstructions() {
 		claimedOS = OS
 		if (OS == "macOS" && navigator.maxTouchPoints) OS = "iPadOS";
 		exactOS = OS
-		OS = OS.replace(/ChromeOS|Linux|Windows/, "Computer");
-		OS = OS.replace("iPadOS", "iOS");
+		if (["ChromeOS", "Linux", "Windows"].includes(OS)) OS = "Computer";
+		if (OS == "iPadOS") OS = "iOS"
 		const browsers = {
 			"Edg": "Edge",
 			"EdgiOS": "Edge",
@@ -150,9 +150,9 @@ function updateAppInstructions() {
 			}
 		}
 		exactBrowser = browser
-		if (["Android", "Computer"].includes(OS)) browser = browser.replace("Safari", "Unknown");
-		if (["Chrome", "Edge"].includes(browser)) OS = OS.replace("macOS", "Computer");
-		if (["Computer", "macOS"].includes(OS)) browser = browser.replace("Firefox", "Unsupported");
+		if (["Android", "Computer"].includes(OS) && browser == "Safari") browser = "Unknown";
+		if (["Chrome", "Edge"].includes(browser) && OS == "macOS") OS = "Computer";
+		if (["Computer", "macOS"].includes(OS) && browser == "Firefox") browser = "Unsupported";
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 			else if (browser == "Safari") var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
@@ -161,17 +161,11 @@ function updateAppInstructions() {
 				if (iOSVersion < 16.4 && browser != "Safari") browser = "Unsupported";
 				if (iOSVersion >= 17.4 && exactOS == "iOS") browser = "Profile";
 			}
-			browser = browser.replace(/Safari|Chrome/, "Standard");
-			browser = browser.replace("Edge", "Unsupported");
+			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
+			if (browser == "Edge") browser = "Unsupported";
 		}
 		ID = OS + "-" + browser;
-		if (ID == "macOS-Safari") {
-			var safariVersion = userAgent.match(/Version\/(\d+)/);
-			if (safariVersion != null) {
-				safariVersion = parseInt(safariVersion[1]);
-				if (safariVersion < 17 || !document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) ID = "Computer-Unsupported";
-			}
-		}
+		if (ID == "macOS-Safari" && !document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) ID = "Computer-Unsupported";
 	}
 	document.getElementById(ID).hidden = false;
 	browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
