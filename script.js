@@ -174,15 +174,14 @@ function updateAppInstructions() {
 }
 
 function updateForm() {
-	try {
-		if (document.getElementById("sslcontact_form") == null) throw "";
+	if (document.getElementById("sslcontact_form") == null) setTimeout(updateForm);
+	else {
 		if (observer != undefined) observer.disconnect();
 		cleanFormStyles();
 		replaceFormLabels();
 		solveCaptcha();
 		observeForm();
 	}
-	catch { setTimeout(updateForm) }
 }
 
 function cleanFormStyles() {
