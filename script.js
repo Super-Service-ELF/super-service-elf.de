@@ -226,16 +226,16 @@ function scrollToAnchor() {
 	}
 }
 
+function markAsLoaded() {
+	document.body.classList.add("loaded");
+}
+
 function addURLTo404Link() {
 	var element = document.getElementById("404Link");
 	var oldLink = element.href;
 	var site = window.location.href;
 	var newLink = oldLink.replace("URL", site);
 	element.href = newLink;
-}
-
-function markAsLoaded() {
-	document.body.classList.add("loaded");
 }
 
 function toggleColorScheme() {
