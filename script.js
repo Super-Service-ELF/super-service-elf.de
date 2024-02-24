@@ -15,8 +15,8 @@ function loadWindow() {
 	if (document.getElementsByClassName("form").length > 0) updateForm();
 	addYear();
 	scrollToAnchor();
-	if (document.getElementById("404") != null) addURLTo404Link();
 	markAsLoaded();
+	if (document.getElementById("404") != null) addURLTo404Link();
 }
 
 function redirectFrom404() {
