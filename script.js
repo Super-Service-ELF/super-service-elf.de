@@ -27,20 +27,20 @@ function redirectFrom404() {
 	];
 	for (let page in redirectPages) {
 		for (let alias in redirectPages[page]["aliases"]) {
-			if (window.location.pathname == "/" + redirectPages[page]["aliases"][alias] + "/" || window.location.pathname == "/" + redirectPages[page]["aliases"][alias]) {
-				window.location.pathname = redirectPages[page]["right"];
+			if (location.pathname == "/" + redirectPages[page]["aliases"][alias] + "/" || location.pathname == "/" + redirectPages[page]["aliases"][alias]) {
+				location.pathname = redirectPages[page]["right"];
 			}
 		}
 	}
 }
 
 function detectAndUpdateDeviceColorScheme() {
-	if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
+	if (matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
 	else deviceColorScheme = "light";
 	if (deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
 	updateColorScheme();
-	if (window.matchMedia && !eventListenerAdded) {
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+	if (matchMedia && !eventListenerAdded) {
+		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
 			detectAndUpdateDeviceColorScheme();
 			updateImages();
 		});
@@ -94,7 +94,7 @@ function updateImages() {
 }
 
 function updateAppButton() {
-	window.addEventListener("beforeinstallprompt", (event) => {
+	addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
 		document.getElementById("app-button").hidden = false;
 		document.getElementById("app-instructions").hidden = true;
@@ -217,7 +217,7 @@ function addYear() {
 }
 
 function scrollToAnchor() {
-	var anchor = window.location.hash;
+	var anchor = location.hash;
 	if (anchor) {
 		var element = document.querySelector(anchor);
 		if (element) element.scrollIntoView({ block: "center" });
