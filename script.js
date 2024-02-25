@@ -126,11 +126,11 @@ function updateAppInstructions() {
 	}
 	if (OS == "Unknown") ID = "Unknown";
 	else {
-		claimedOS = OS
+		claimedOS = OS;
 		if (OS == "macOS" && navigator.maxTouchPoints) OS = "iPadOS";
-		exactOS = OS
+		exactOS = OS;
 		if (["ChromeOS", "Linux", "Windows"].includes(OS)) OS = "Computer";
-		if (OS == "iPadOS") OS = "iOS"
+		if (OS == "iPadOS") OS = "iOS";
 		const browsers = {
 			"Edg": "Edge",
 			"EdgiOS": "Edge",
@@ -147,7 +147,7 @@ function updateAppInstructions() {
 				break;
 			}
 		}
-		exactBrowser = browser
+		exactBrowser = browser;
 		if (browser == "Safari" && ["Android", "Computer"].includes(OS)) browser = "Unknown";
 		if (OS == "macOS" && (["Chrome", "Edge"].includes(browser) || browser != "Safari" && !new OffscreenCanvas(0, 0).getContext("webgl"))) OS = "Computer";
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(OS)) browser = "Unsupported";
