@@ -1,5 +1,3 @@
-window.onpageshow = function(event) { if (event.persisted) window.location.reload() }
-
 var colorScheme;
 var deviceColorScheme;
 var observer;
