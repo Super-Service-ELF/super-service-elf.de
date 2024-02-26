@@ -10,7 +10,7 @@ function loadWindow() {
 	updateImages();
 	if (document.getElementById("app-installation") != null) {
 		updateAppButton();
-		updateAppInstructions()
+		updateAppInstructions();
 	}
 	if (document.getElementsByClassName("form").length > 0) updateForm();
 	document.getElementById("year").innerHTML = new Date().getFullYear();
