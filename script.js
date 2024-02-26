@@ -11,9 +11,9 @@ function loadWindow() {
 	if (document.getElementById("app-button") != null) updateAppButton();
 	if (document.getElementById("app-instructions") != null) updateAppInstructions();
 	if (document.getElementsByClassName("form").length > 0) updateForm();
-	addYear();
+	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
-	markAsLoaded();
+	document.body.classList.add("loaded");
 	if (document.getElementById("404") != null) addURLTo404Link();
 }
 
@@ -175,15 +175,11 @@ function updateForm() {
 	if (document.getElementById("sslcontact_form") == null) setTimeout(updateForm);
 	else {
 		if (observer != undefined) observer.disconnect();
-		cleanFormStyles();
+		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
 		observeForm();
 	}
-}
-
-function cleanFormStyles() {
-	for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 }
 
 function replaceFormLabels() {
@@ -212,20 +208,12 @@ function observeForm() {
 	observer.observe(form, {childList: true});
 }
 
-function addYear() {
-	document.getElementById("year").innerHTML = new Date().getFullYear();
-}
-
 function scrollToAnchor() {
 	var anchor = location.hash;
 	if (anchor) {
 		var element = document.querySelector(anchor);
 		if (element) element.scrollIntoView({ block: "center" });
 	}
-}
-
-function markAsLoaded() {
-	document.body.classList.add("loaded");
 }
 
 function addURLTo404Link() {
