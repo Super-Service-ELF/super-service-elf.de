@@ -204,7 +204,7 @@ function solveCaptcha() {
 }
 
 function scrollToAnchor() {
-	var anchor = location.hash;
+	var anchor = decodeURI(location.hash);
 	if (anchor) {
 		var element = document.querySelector(anchor);
 		if (element) element.scrollIntoView({ block: "center" });
