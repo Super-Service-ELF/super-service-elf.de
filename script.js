@@ -178,8 +178,7 @@ function updateForm() {
 		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
-		observeForm();
-	}
+		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), {childList: true});	}
 }
 
 function replaceFormLabels() {
@@ -200,12 +199,6 @@ function replaceFormLabels() {
 
 function solveCaptcha() {
 	document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
-}
-
-function observeForm() {
-	var form = document.getElementById("sslcontactholder");
-	observer = new MutationObserver(updateForm);
-	observer.observe(form, {childList: true});
 }
 
 function scrollToAnchor() {
