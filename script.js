@@ -98,12 +98,12 @@ function updateImages() {
 function updateAppButton() {
 	addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
-		installPrompt = event;
-		document.getElementById("installButton").hidden = false;
+		installationPrompt = event;
+		document.getElementById("installationButton").hidden = false;
 		document.getElementById("installationNote").hidden = false;
 	});
-	document.getElementById("installButton").addEventListener("click", async () => {
-		await installPrompt.prompt();
+	document.getElementById("installationButton").addEventListener("click", async () => {
+		await installationPrompt.prompt();
 	});
 }
 
