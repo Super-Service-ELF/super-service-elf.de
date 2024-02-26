@@ -8,8 +8,10 @@ function loadWindow() {
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateImages();
-	if (document.getElementById("app-button") != null) updateAppButton();
-	if (document.getElementById("app-instructions") != null) updateAppInstructions();
+	if (document.getElementById("app-installation") != null) {
+		updateAppButton();
+		updateAppInstructions()
+	}
 	if (document.getElementsByClassName("form").length > 0) updateForm();
 	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
@@ -83,7 +85,7 @@ function loadContents() {
 
 function updateImages() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
-	if (document.getElementById("app-instructions") != null) {
+	if (document.getElementById("app-installation") != null) {
 		for (let className of ["add", "chrome", "dock", "edge", "share"]) {
 			for (let icon of document.getElementsByClassName(className)) {
 				icon.src = "/images/app-instructions/" + className + "-" + colorScheme + ".png";
@@ -96,9 +98,9 @@ function updateImages() {
 function updateAppButton() {
 	addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
-		document.getElementById("app-button").hidden = false;
-		document.getElementById("app-instructions").hidden = true;
 		installPrompt = event;
+		document.getElementById("installButton").hidden = false;
+		document.getElementById("installationNote").hidden = false;
 	});
 	document.getElementById("installButton").addEventListener("click", async () => {
 		await installPrompt.prompt();
