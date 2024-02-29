@@ -2,6 +2,8 @@ var colorScheme;
 var deviceColorScheme;
 var observer;
 var eventListenerAdded = false;
+var OS;
+var browser;
 
 function loadWindow() {
 	if (document.getElementById("404") != null) redirectFrom404();
@@ -119,7 +121,7 @@ function updateAppInstructions() {
 		"Mac OS X": "macOS",
 		"Windows": "Windows",
 	};
-	var OS = "Unknown";
+	OS = "Unknown";
 	for (let testOS in OSs) {
 		if (userAgent.includes(testOS)) {
 			OS = OSs[testOS];
@@ -142,7 +144,7 @@ function updateAppInstructions() {
 			"FxiOS": "Firefox",
 			"Safari": "Safari",
 		};
-		var browser = "Unknown";
+		browser = "Unknown";
 		for (let testBrowser in browsers) {
 			if (userAgent.includes(testBrowser)) {
 				browser = browsers[testBrowser];
