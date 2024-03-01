@@ -234,7 +234,7 @@ function sendStatistic() {
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
-			"Web App: " + String(navigator.standalone).replace("false", "Nein").replace("true", "Ja")
+			"Web App: " + String(Boolean(navigator.standalone)).replace("false", "Nein").replace("true", "Ja")
 		);
 	}
 	localStorage.setItem("mostRecentWebsiteVisit", time);
