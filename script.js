@@ -222,7 +222,7 @@ function sendAppInstallationStatistic() {
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
 			"Betriebssystem: " + OS + "\n" +
 			"Browser: " + browser
-		).replace("false", "Nein").replace("true", "Ja"));
+		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
 	}
 	localStorage.setItem("mostRecentAppInstallationVisit", time);
 }
