@@ -2,8 +2,8 @@ var colorScheme;
 var deviceColorScheme;
 var observer;
 var eventListenerAdded = false;
-var OS;
-var browser;
+var exactOS;
+var exactBrowser;
 
 function loadWindow() {
 	if (document.getElementById("404") != null) redirectFrom404();
@@ -124,7 +124,7 @@ function updateAppInstructions() {
 		"Mac OS X": "macOS",
 		"Windows": "Windows",
 	};
-	OS = "Unknown";
+	var OS = "Unknown";
 	for (let testOS in OSs) {
 		if (userAgent.includes(testOS)) {
 			OS = OSs[testOS];
@@ -147,7 +147,7 @@ function updateAppInstructions() {
 			"FxiOS": "Firefox",
 			"Safari": "Safari",
 		};
-		browser = "Unknown";
+		var browser = "Unknown";
 		for (let testBrowser in browsers) {
 			if (userAgent.includes(testBrowser)) {
 				browser = browsers[testBrowser];
@@ -220,8 +220,8 @@ function sendAppInstallationStatistic() {
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
-			"Betriebssystem: " + OS + "\n" +
-			"Browser: " + browser
+			"Betriebssystem: " + exactOS + "\n" +
+			"Browser: " + exactBrowser
 		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
 	}
 	localStorage.setItem("mostRecentAppInstallationVisit", time);
