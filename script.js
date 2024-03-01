@@ -19,7 +19,9 @@ function loadWindow() {
 	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
 	document.body.classList.add("loaded");
-	if (document.getElementById("404") != null) addURLTo404Link();
+	if (document.getElementById("404") != null) sendData("Seite nicht gefunden: " + location.pathname);
+	else if (document.getElementById("app-installation") != null) sendAppInstallationStatistic();
+	else if (document.getElementById("sslcontactholder") == null) sendStatistic();
 }
 
 function redirectFrom404() {
@@ -210,12 +212,51 @@ function scrollToAnchor() {
 	}
 }
 
-function addURLTo404Link() {
-	var element = document.getElementById("404Link");
-	var oldLink = element.href;
-	var site = window.location.href;
-	var newLink = oldLink.replace("URL", site);
-	element.href = newLink;
+function sendAppInstallationStatistic() {
+	time = new Date().getTime();
+	if (!(time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
+		sendData((
+			"Web App Installation:\n" +
+			"User Agent: " + navigator.userAgent + "\n" +
+			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
+			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
+			"Betriebssystem: " + OS + "\n" +
+			"Browser: " + browser
+		).replace("false", "Nein").replace("true", "Ja"));
+	}
+	localStorage.setItem("mostRecentAppInstallationVisit", time);
+}
+
+function sendStatistic() {
+	time = new Date().getTime();
+	if (!(time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
+		sendData(
+			"Webseitenaufruf:\n" +
+			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
+			"User Agent: " + navigator.userAgent + "\n" +
+			"Web App: " + String(navigator.standalone).replace("false", "Nein").replace("true", "Ja")
+		);
+	}
+	localStorage.setItem("mostRecentWebsiteVisit", time);
+}
+
+function sendData(data) {
+	var form = document.createElement("div");
+	form.id = "sslcontactholder";
+	form.hidden = true;
+	document.body.appendChild(form);
+	var script = document.createElement("script");
+	script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
+	document.head.appendChild(script);
+	submitData(data);
+}
+function submitData(data) {
+	if (document.getElementById("sslcontact_form") == null) setTimeout(submitData, 0, data);
+	else {
+		solveCaptcha();
+		document.getElementById("message").value = data;
+		document.getElementsByName("send")[0].click();
+	}
 }
 
 function toggleColorScheme() {
