@@ -233,8 +233,10 @@ function sendStatistic() {
 		sendData(
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
+			"Web App: " + String(Boolean(navigator.standalone)).replace("false", "Nein").replace("true", "Ja") + "\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
-			"Web App: " + String(Boolean(navigator.standalone)).replace("false", "Nein").replace("true", "Ja")
+			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
+			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
 		);
 	}
 	localStorage.setItem("mostRecentWebsiteVisit", time);
