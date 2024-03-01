@@ -158,11 +158,7 @@ function updateAppInstructions() {
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 			else if (browser == "Safari") var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
-			if (iOSVersion != null) {
-				iOSVersion = parseFloat(iOSVersion[1]);
-				if (browser != "Safari" && iOSVersion < 16.4) browser = "Unsupported";
-				if (exactOS == "iOS" && iOSVersion >= 17.4) browser = "Profile";
-			}
+			if (iOSVersion != null && browser != "Safari" && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
 			if (browser == "Edge") browser = "Unsupported";
 		}
