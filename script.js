@@ -10,6 +10,7 @@ function loadWindow() {
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateImages();
+	if (navigator.standalone) document.getElementById("appMenuItem").style.display = "none";
 	if (document.getElementById("app-installation") != null) {
 		updateAppButton();
 		updateAppInstructions();
