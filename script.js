@@ -230,14 +230,14 @@ function sendAppInstallationStatistic() {
 function sendStatistic() {
 	time = new Date().getTime();
 	if (!(time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
-		sendData(
+		sendData((
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
-			"Web App: " + String(Boolean(navigator.standalone)).replace("false", "Nein").replace("true", "Ja") + "\n" +
+			"Web App: " + Boolean(navigator.standalone) + "\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
-		);
+		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
 	}
 	localStorage.setItem("mostRecentWebsiteVisit", time);
 }
