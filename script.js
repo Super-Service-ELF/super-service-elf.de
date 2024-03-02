@@ -1,3 +1,20 @@
+onerror = function(event, source, lineno, colno, error) {
+	if (error != null) {
+		sendData((
+			"Fehler im Skript:\n" +
+			"User Agent: " + navigator.userAgent + "\n" +
+			"Web App: " + Boolean(navigator.standalone) + "\n" +
+			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
+			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
+			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
+			"Skript: " + source + "\n" +
+			"Zeile: " + lineno + "\n" +
+			"Spalte: " + colno + "\n" +
+			"Fehlermeldung:\n" + error
+		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
+	}
+}
+
 var colorScheme;
 var deviceColorScheme;
 var observer;
