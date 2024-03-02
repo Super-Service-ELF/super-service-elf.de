@@ -198,7 +198,7 @@ function updateForm() {
 		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
-		document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = this.scrollHeight + "px"; });
+		document.getElementsByTagName("textarea")[0].addEventListener("input", function() { if (document.getElementsByClassName("newsletter") == null) this.style.height = this.scrollHeight + "px"; });
 		document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), {childList: true});	}
 }
@@ -216,7 +216,11 @@ function replaceFormLabels() {
 	}
 	if (message.closest(".auftrag")) message.innerHTML = "Auftrag";
 	if (message.closest(".feedback")) message.innerHTML = "Feedback";
-	if (message.closest(".newsletter")) message.innerHTML = "E-Mail-Adresse";
+	if (message.closest(".newsletter")) {
+		message.innerHTML = "E-Mail-Adresse";
+		document.getElementById("message").style.minHeight = "32px";
+		document.getElementById("message").style.fontSize = "24px";
+	};
 }
 
 function solveCaptcha() {
