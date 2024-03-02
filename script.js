@@ -243,14 +243,18 @@ function sendStatistic() {
 }
 
 function sendData(data) {
-	var form = document.createElement("div");
-	form.id = "sslcontactholder";
-	form.hidden = true;
-	document.body.appendChild(form);
-	var script = document.createElement("script");
-	script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
-	document.head.appendChild(script);
-	submitData(data);
+	if (document.getElementsByClassName("form").length == 0) {
+		if (document.getElementById("sslcontactholder") == null) {
+			var form = document.createElement("div");
+			form.id = "sslcontactholder";
+			form.hidden = true;
+			document.body.appendChild(form);
+			var script = document.createElement("script");
+			script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
+			document.head.appendChild(script);
+		}
+		submitData(data);
+	}
 }
 function submitData(data) {
 	if (document.getElementById("sslcontact_form") == null) setTimeout(submitData, 0, data);
