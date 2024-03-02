@@ -144,7 +144,6 @@ input, textarea {
 	border: None;
 }
 textarea {
-	height: 128px;
 	min-height: 128px;
 	resize: none;
 }
