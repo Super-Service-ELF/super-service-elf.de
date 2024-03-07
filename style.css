@@ -177,6 +177,9 @@ footer *:not(a) {
 
 @media screen and (max-width: 960px) {
 
+	.redundant {
+		display: none;
+	}
 	#name, #logo, #auftragButton {
 		text-align: center;
 		float: unset;
