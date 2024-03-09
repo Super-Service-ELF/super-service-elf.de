@@ -1,6 +1,6 @@
 onerror = function(event, source, lineno, colno, error) {
 	if (error != null) {
-		sendData((
+		sendData(
 			"Fehler im Skript:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Web App: " + Boolean(navigator.standalone) + "\n" +
@@ -11,7 +11,7 @@ onerror = function(event, source, lineno, colno, error) {
 			"Zeile: " + lineno + "\n" +
 			"Spalte: " + colno + "\n" +
 			"Fehlermeldung:\n" + error
-		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
+		);
 	}
 }
 
@@ -241,14 +241,14 @@ function scrollToAnchor() {
 function sendAppInstallationStatistic() {
 	time = new Date().getTime();
 	if (!(time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
-		sendData((
+		sendData(
 			"Web App Installation:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
 			"Betriebssystem: " + exactOS + "\n" +
 			"Browser: " + exactBrowser
-		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
+		);
 	}
 	localStorage.setItem("mostRecentAppInstallationVisit", time);
 }
@@ -256,20 +256,21 @@ function sendAppInstallationStatistic() {
 function sendStatistic() {
 	time = new Date().getTime();
 	if (!(time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
-		sendData((
+		sendData(
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Web App: " + Boolean(navigator.standalone) + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
-		).replaceAll("false", "Nein").replaceAll("true", "Ja"));
+		);
 	}
 	localStorage.setItem("mostRecentWebsiteVisit", time);
 }
 
 function sendData(data) {
 	if (document.getElementsByClassName("form").length == 0) {
+		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja")
 		if (document.getElementById("sslcontactholder") == null) {
 			var form = document.createElement("div");
 			form.id = "sslcontactholder";
