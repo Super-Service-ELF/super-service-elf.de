@@ -27,6 +27,8 @@ var exactBrowser;
 
 function loadWindow() {
 	if (document.getElementById("404") != null) redirectFrom404();
+	try { localStorageAvailable = Boolean(localStorage); }
+	catch { localStorageAvailable = false; }
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateImages();
@@ -37,6 +39,7 @@ function loadWindow() {
 		updateAppInstructions();
 	}
 	if (document.getElementsByClassName("form").length > 0) updateForm();
+	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
 	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
 	document.body.classList.add("loaded");
@@ -65,7 +68,7 @@ function redirectFrom404() {
 function detectAndUpdateDeviceColorScheme() {
 	if (matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
 	else deviceColorScheme = "light";
-	if (deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
+	if (localStorageAvailable && deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
 	updateColorScheme();
 	if (matchMedia && !eventListenerAdded) {
 		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
@@ -77,7 +80,7 @@ function detectAndUpdateDeviceColorScheme() {
 }
 
 function updateColorScheme() {
-	if (!["light", "dark"].includes(localStorage.getItem("colorScheme"))) colorScheme = deviceColorScheme;
+	if (!(localStorageAvailable && ["light", "dark"].includes(localStorage.getItem("colorScheme")))) colorScheme = deviceColorScheme;
 	else colorScheme = localStorage.getItem("colorScheme");
 	switch (colorScheme) {
 		case "light":
@@ -243,7 +246,7 @@ function scrollToAnchor() {
 
 function sendAppInstallationStatistic() {
 	time = new Date().getTime();
-	if (!(time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
+	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
 		sendData(
 			"Web App Installation:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
@@ -254,12 +257,12 @@ function sendAppInstallationStatistic() {
 			"Browser: " + exactBrowser + " → " + browser
 		);
 	}
-	localStorage.setItem("mostRecentAppInstallationVisit", time);
+	if (localStorageAvailable) localStorage.setItem("mostRecentAppInstallationVisit", time);
 }
 
 function sendStatistic() {
 	time = new Date().getTime();
-	if (!(time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
+	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
 		sendData(
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
@@ -270,7 +273,7 @@ function sendStatistic() {
 			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
 		);
 	}
-	localStorage.setItem("mostRecentWebsiteVisit", time);
+	if (localStorageAvailable) localStorage.setItem("mostRecentWebsiteVisit", time);
 }
 
 function sendData(data) {
