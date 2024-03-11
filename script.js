@@ -180,7 +180,13 @@ function updateAppInstructions() {
 		}
 		exactBrowser = browser;
 		if (browser == "Safari" && ["Android", "Computer"].includes(OS)) browser = "Unknown";
-		if (OS == "macOS" && (["Chrome", "Edge"].includes(browser) || (browser != "Safari" && !new OffscreenCanvas(0, 0).getContext("webgl")))) OS = "Computer";
+		if (OS == "macOS" && browser != "Safari") {
+			if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) OS = "Computer";
+			else {
+				var macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
+				if (macOSVersion == null || parseFloat(macOSVersion[1]) != 10.15) OS = "Computer";
+			}
+		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(OS)) browser = "Unsupported";
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
