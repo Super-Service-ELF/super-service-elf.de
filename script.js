@@ -6,6 +6,7 @@ onerror = function(event, source, lineno, colno, error) {
 			"Web App: " + Boolean(navigator.standalone) + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
+			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
 			"Skript: " + source + "\n" +
 			"Zeile: " + lineno + "\n" +
@@ -248,6 +249,7 @@ function sendAppInstallationStatistic() {
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
+			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
 			"Betriebssystem: " + exactOS + " → " + OS + "\n" +
 			"Browser: " + exactBrowser + " → " + browser
 		);
@@ -264,7 +266,8 @@ function sendStatistic() {
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Web App: " + Boolean(navigator.standalone) + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
+			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
+			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
 		);
 	}
 	localStorage.setItem("mostRecentWebsiteVisit", time);
