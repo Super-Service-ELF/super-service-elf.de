@@ -127,6 +127,11 @@ div:not(#sslcontactholder *) {
 	padding-block: 32px;
 }
 
+video {
+	width: 75%;
+	height: min-content;
+}
+
 .sslcontact * {
 	display: block;
 	margin: auto;
