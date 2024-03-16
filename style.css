@@ -169,7 +169,9 @@ input[type="submit"] {
 	display: none;
 }
 .formular > div:nth-child(2) {
-	font-size: 24px;
+	font-size: 48px;
+	text-transform: uppercase;
+	padding-bottom: 32px;
 }
 
 footer *:not(a) {
