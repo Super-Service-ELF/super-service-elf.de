@@ -147,7 +147,7 @@ textarea {
 	min-height: 128px;
 	resize: none;
 }
-#sslcontact_form > :nth-last-child(2){
+#sslcontact_form > :nth-last-child(2) {
 	display: none;
 }
 input[type="submit"] {
