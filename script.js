@@ -34,7 +34,7 @@ function loadWindow() {
 	loadContents();
 	updateImages();
 	if (navigator.standalone) document.getElementById("appMenuItem").style.display = "none";
-	if (location.pathname.includes("auftrag")) document.getElementById("auftragButton").classList.add("redundant");
+	if (location.pathname == ("/auftrag/")) document.getElementById("auftragButton").classList.add("redundant");
 	if (document.getElementById("app-installation") != null) {
 		updateAppButton();
 		updateAppInstructions();
