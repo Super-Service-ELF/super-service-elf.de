@@ -26,6 +26,7 @@ var browser;
 var exactBrowser;
 
 function loadWindow() {
+	if (location.pathname == "/intern") localStorage.setItem("isInternal", true)
 	if (document.getElementById("404") != null) redirectFrom404();
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
@@ -50,7 +51,7 @@ function loadWindow() {
 
 function redirectFrom404() {
 	const redirectPages = [
-		{right: "", aliases: ["start", "super", "home"]},
+		{right: "", aliases: ["start", "super", "home", "intern"]},
 		{right: "über", aliases: ["ueber", "uber", "about"]},
 		{right: "feedback", aliases: ["bewerten", "bewertung"]},
 		{right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]},
@@ -302,7 +303,7 @@ function submitData(data) {
 	else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
-		document.getElementsByName("send")[0].click();
+		if (!localStorageAvailable || localStorage.getItem("isInternal") == null) document.getElementsByName("send")[0].click();
 	}
 }
 
