@@ -26,7 +26,6 @@ var browser;
 var exactBrowser;
 
 function loadWindow() {
-	if (location.pathname == "/i") localStorage.setItem("isInternal", true)
 	if (document.getElementById("404") != null) redirectFrom404();
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
@@ -50,6 +49,7 @@ function loadWindow() {
 }
 
 function redirectFrom404() {
+	if (location.pathname == "/i") localStorage.setItem("isInternal", true)
 	const redirectPages = [
 		{right: "", aliases: ["start", "super", "home", "i"]},
 		{right: "über", aliases: ["ueber", "uber", "about"]},
