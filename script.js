@@ -46,10 +46,14 @@ function loadWindow() {
 	if (document.getElementById("404") != null) sendData("Seite nicht gefunden: " + location.pathname);
 	else if (document.getElementById("app-installation") != null) sendAppInstallationStatistic();
 	else if (document.getElementById("sslcontactholder") == null) sendStatistic();
+	if (localStorageAvailable && localStorage.getItem("isInternal") != null) document.getElementById("auftragButton").style.color = "red";
 }
 
 function redirectFrom404() {
-	if (location.pathname == "/i") localStorage.setItem("isInternal", true)
+	if (location.pathname == "/i") {
+		if (localStorage.getItem("isInternal") == null) localStorage.setItem("isInternal", true);
+		else localStorage.removeItem("isInternal");
+	}
 	const redirectPages = [
 		{right: "", aliases: ["start", "super", "home", "i"]},
 		{right: "über", aliases: ["ueber", "uber", "about"]},
