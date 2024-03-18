@@ -289,7 +289,7 @@ function sendStatistic() {
 
 function sendData(data) {
 	if (document.getElementsByClassName("form").length == 0) {
-		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja")
+		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (document.getElementById("sslcontactholder") == null) {
 			var form = document.createElement("div");
 			form.id = "sslcontactholder";
