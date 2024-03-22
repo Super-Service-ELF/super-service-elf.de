@@ -54,7 +54,7 @@ function redirectFrom404() {
 	if (location.pathname == "/i") localStorage.setItem("isInternal", true);
 	else if (location.pathname == "/u") localStorage.removeItem("isInternal");
 	const redirectPages = [
-		{right: "", aliases: ["start", "super", "home", "i"]},
+		{right: "", aliases: ["start", "super", "home", "i", "u"]},
 		{right: "über", aliases: ["ueber", "uber", "about"]},
 		{right: "feedback", aliases: ["bewerten", "bewertung"]},
 		{right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]},
