@@ -1,5 +1,5 @@
 onerror = function(event, source, lineno, colno, error) {
-	if (error != null) {
+	if (error) {
 		sendData(
 			"Fehler im Skript:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
@@ -26,7 +26,7 @@ var browser;
 var exactBrowser;
 
 function loadWindow() {
-	if (document.getElementById("404") != null) redirectFrom404();
+	if (document.getElementById("404")) redirectFrom404();
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
 	detectAndUpdateDeviceColorScheme();
@@ -34,7 +34,7 @@ function loadWindow() {
 	updateImages();
 	if (navigator.standalone) document.getElementById("appMenuItem").style.display = "none";
 	if (location.pathname == ("/auftrag/")) document.getElementById("auftragButton").classList.add("redundant");
-	if (document.getElementById("app-installation") != null) {
+	if (document.getElementById("app-installation")) {
 		updateAppButton();
 		updateAppInstructions();
 	}
@@ -43,16 +43,16 @@ function loadWindow() {
 	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
 	document.body.classList.add("loaded");
-	if (document.getElementById("404") != null) sendData("Seite nicht gefunden: " + location.pathname);
-	else if (document.getElementById("app-installation") != null) sendAppInstallationStatistic();
-	else if (document.getElementById("sslcontactholder") == null) sendStatistic();
-	if (localStorageAvailable && localStorage.getItem("isInternal") != null) document.getElementById("auftragButton").style.color = "red";
+	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
+	else if (document.getElementById("app-installation")) sendAppInstallationStatistic();
+	else if (!document.getElementById("sslcontactholder")) sendStatistic();
+	if (localStorageAvailable && localStorage.getItem("isInternal")) document.getElementById("auftragButton").style.color = "red";
 	if (document.getElementById("werbefilm")) document.getElementsByTagName("video")[0].load()
 }
 
 function redirectFrom404() {
 	if (location.pathname == "/i") {
-		if (localStorage.getItem("isInternal") == null) localStorage.setItem("isInternal", true);
+		if (!localStorage.getItem("isInternal")) localStorage.setItem("isInternal", true);
 		else localStorage.removeItem("isInternal");
 	}
 	const redirectPages = [
@@ -120,7 +120,7 @@ function loadContents() {
 
 function updateImages() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
-	if (document.getElementById("app-installation") != null) {
+	if (document.getElementById("app-installation")) {
 		for (let className of ["add", "chrome", "dock", "edge", "share"]) {
 			for (let icon of document.getElementsByClassName(className)) {
 				icon.src = "/images/app-instructions/" + className + "-" + colorScheme + ".png";
@@ -190,14 +190,14 @@ function updateAppInstructions() {
 			if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) OS = "Computer";
 			else {
 				var macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
-				if (macOSVersion == null || parseFloat(macOSVersion[1]) != 10.15) OS = "Computer";
+				if (!macOSVersion || parseFloat(macOSVersion[1]) != 10.15) OS = "Computer";
 			}
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(OS)) browser = "Unsupported";
 		if (OS == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 			else if (browser == "Safari") var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
-			if (iOSVersion != null && browser != "Safari" && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
+			if (iOSVersion && browser != "Safari" && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
 			if (browser == "Edge") browser = "Unsupported";
 		}
@@ -211,7 +211,7 @@ function updateAppInstructions() {
 }
 
 function updateForm() {
-	if (document.getElementById("sslcontact_form") == null) setTimeout(updateForm);
+	if (!document.getElementById("sslcontact_form")) setTimeout(updateForm);
 	else {
 		if (observer != undefined) observer.disconnect();
 		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
@@ -229,9 +229,9 @@ function replaceFormLabels() {
 	var email = document.querySelector("[for=\"email\"]");
 	var subject = document.querySelector("[for=\"subject\"]");
 	var message = document.querySelector("[for=\"message\"]");
-	if (name != null) name.innerHTML = "Name";
-	if (email != null) email.innerHTML = "E-Mail-Adresse";
-	if (subject != null) {
+	if (name) name.innerHTML = "Name";
+	if (email) email.innerHTML = "E-Mail-Adresse";
+	if (subject) {
 		if (subject.closest(".auftrag")) subject.innerHTML = "Auftragsbetreff";
 		if (subject.closest(".feedback")) subject.innerHTML = "Feedbacksbetreff";
 	}
@@ -291,7 +291,7 @@ function sendStatistic() {
 function sendData(data) {
 	if (document.getElementsByClassName("form").length == 0) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
-		if (document.getElementById("sslcontactholder") == null) {
+		if (!document.getElementById("sslcontactholder")) {
 			var form = document.createElement("div");
 			form.id = "sslcontactholder";
 			form.hidden = true;
@@ -304,11 +304,11 @@ function sendData(data) {
 	}
 }
 function submitData(data) {
-	if (document.getElementById("sslcontact_form") == null) setTimeout(submitData, 0, data);
+	if (!document.getElementById("sslcontact_form")) setTimeout(submitData, 0, data);
 	else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
-		if (!localStorageAvailable || localStorage.getItem("isInternal") == null) document.getElementsByName("send")[0].click();
+		if (!localStorageAvailable || !localStorage.getItem("isInternal")) document.getElementsByName("send")[0].click();
 	}
 }
 
