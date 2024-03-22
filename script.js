@@ -47,6 +47,7 @@ function loadWindow() {
 	else if (document.getElementById("app-installation") != null) sendAppInstallationStatistic();
 	else if (document.getElementById("sslcontactholder") == null) sendStatistic();
 	if (localStorageAvailable && localStorage.getItem("isInternal") != null) document.getElementById("auftragButton").style.color = "red";
+	if (document.getElementById("werbefilm")) document.getElementsByTagName("video")[0].load()
 }
 
 function redirectFrom404() {
