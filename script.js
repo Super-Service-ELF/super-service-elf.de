@@ -38,7 +38,7 @@ function loadWindow() {
 		updateAppButton();
 		updateAppInstructions();
 	}
-	if (document.getElementsByClassName("form").length > 0) updateForm();
+	if (document.getElementsByClassName("form").length) updateForm();
 	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
 	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
@@ -215,7 +215,7 @@ function updateForm() {
 		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
-		if (document.getElementsByClassName("newsletter").length == 0) {
+		if (!document.getElementsByClassName("newsletter").length) {
 			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = this.scrollHeight + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
@@ -287,7 +287,7 @@ function sendStatistic() {
 }
 
 function sendData(data) {
-	if (document.getElementsByClassName("form").length == 0) {
+	if (!document.getElementsByClassName("form").length) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (!document.getElementById("sslcontactholder")) {
 			var form = document.createElement("div");
