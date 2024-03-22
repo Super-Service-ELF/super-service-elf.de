@@ -66,7 +66,7 @@ p, textarea, ::placeholder {
 p {
 	line-height: 200%;
 }
-p a:not(.button), a p {
+p a:not(.button), a p, h3 a {
 	color: var(--secondaryColor);
 	text-decoration: underline;
 }
