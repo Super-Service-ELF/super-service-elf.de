@@ -51,10 +51,8 @@ function loadWindow() {
 }
 
 function redirectFrom404() {
-	if (location.pathname == "/i") {
-		if (!localStorage.getItem("isInternal")) localStorage.setItem("isInternal", true);
-		else localStorage.removeItem("isInternal");
-	}
+	if (location.pathname == "/i") localStorage.setItem("isInternal", true);
+	else if (location.pathname == "/u") localStorage.removeItem("isInternal");
 	const redirectPages = [
 		{right: "", aliases: ["start", "super", "home", "i"]},
 		{right: "über", aliases: ["ueber", "uber", "about"]},
