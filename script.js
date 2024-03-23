@@ -219,7 +219,7 @@ function updateForm() {
 			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = this.scrollHeight + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
-		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), {childList: true});	}
+		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), {childList: true}); }
 }
 
 function replaceFormLabels() {
