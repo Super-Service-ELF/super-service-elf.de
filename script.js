@@ -20,7 +20,7 @@ var colorScheme;
 var deviceColorScheme;
 var observer;
 var eventListenerAdded = false;
-var OS;
+var os;
 var exactOS;
 var browser;
 var exactBrowser;
@@ -141,7 +141,7 @@ function updateAppButton() {
 
 function updateAppInstructions() {
 	var userAgent = navigator.userAgent;
-	const OSs = {
+	const oses = {
 		"Android": "Android",
 		"CrOS": "ChromeOS",
 		"iPad": "iPadOS",
@@ -151,20 +151,20 @@ function updateAppInstructions() {
 		"Mac OS X": "macOS",
 		"Windows": "Windows",
 	};
-	OS = "Unknown";
-	for (let testOS in OSs) {
+	os = "Unknown";
+	for (let testOS in oses) {
 		if (userAgent.includes(testOS)) {
-			OS = OSs[testOS];
+			os = oses[testOS];
 			break;
 		}
 	}
-	if (OS == "Unknown") ID = "Unknown";
+	if (os == "Unknown") id = "Unknown";
 	else {
-		var claimedOS = OS;
-		if (OS == "macOS" && navigator.maxTouchPoints) OS = "iPadOS";
-		exactOS = OS;
-		if (["ChromeOS", "Linux", "Windows"].includes(OS)) OS = "Computer";
-		if (OS == "iPadOS") OS = "iOS";
+		var claimedOS = os;
+		if (os == "macOS" && navigator.maxTouchPoints) os = "iPadOS";
+		exactOS = os;
+		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
+		if (os == "iPadOS") os = "iOS";
 		const browsers = {
 			"Edg": "Edge",
 			"EdgiOS": "Edge",
@@ -182,26 +182,26 @@ function updateAppInstructions() {
 			}
 		}
 		exactBrowser = browser;
-		if (browser == "Safari" && ["Android", "Computer"].includes(OS)) browser = "Unknown";
-		if (OS == "macOS") {
-			if (browser == "Safari") if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { OS = "Computer"; browser = "Unsupported"; }
-			else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) OS = "Computer";
+		if (browser == "Safari" && ["Android", "Computer"].includes(os)) browser = "Unknown";
+		if (os == "macOS") {
+			if (browser == "Safari") if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
+			else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) os = "Computer";
 			else {
 				var macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
-				if (!macOSVersion || parseFloat(macOSVersion[1]) != 10.15) OS = "Computer";
+				if (!macOSVersion || parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
 			}
 		}
-		if (browser == "Firefox" && ["Computer", "macOS"].includes(OS)) browser = "Unsupported";
-		if (OS == "iOS") {
+		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
+		if (os == "iOS") {
 			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 			else if (browser == "Safari") var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
 			if (iOSVersion && browser != "Safari" && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
 			if (browser == "Edge") browser = "Unsupported";
 		}
-		ID = OS + "-" + browser;
+		id = os + "-" + browser;
 	}
-	document.getElementById(ID).hidden = false;
+	document.getElementById(id).hidden = false;
 	browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
 	osText = (typeof exactOS !== "undefined") ? exactOS : " einem unbekannten Betriebssystem";
 	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + osText + ":";
@@ -262,7 +262,7 @@ function sendAppInstallationStatistic() {
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
 			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
-			"Betriebssystem: " + exactOS + " → " + OS + "\n" +
+			"Betriebssystem: " + exactOS + " → " + os + "\n" +
 			"Browser: " + exactBrowser + " → " + browser
 		);
 	}
