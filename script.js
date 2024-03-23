@@ -160,7 +160,7 @@ function updateAppInstructions() {
 	}
 	if (OS == "Unknown") ID = "Unknown";
 	else {
-		claimedOS = OS;
+		var claimedOS = OS;
 		if (OS == "macOS" && navigator.maxTouchPoints) OS = "iPadOS";
 		exactOS = OS;
 		if (["ChromeOS", "Linux", "Windows"].includes(OS)) OS = "Computer";
