@@ -203,8 +203,8 @@ function updateAppInstructions() {
 	}
 	document.getElementById(ID).hidden = false;
 	browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
-	if (typeof exactOS == "undefined") exactOS = " einem unbekannten Betriebssystem";
-	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + exactOS + ":";
+	osText = (typeof exactOS !== "undefined") ? exactOS : " einem unbekannten Betriebssystem";
+	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + osText + ":";
 }
 
 function updateForm() {
