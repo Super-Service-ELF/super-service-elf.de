@@ -25,7 +25,7 @@ var exactOS;
 var browser;
 var exactBrowser;
 
-function loadWindow() {
+addEventListener("DOMContentLoaded", function() {
 	if (document.getElementById("404")) redirectFrom404();
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
@@ -48,7 +48,7 @@ function loadWindow() {
 	else if (!document.getElementById("sslcontactholder")) sendStatistic();
 	if (localStorageAvailable && localStorage.getItem("isInternal")) document.getElementById("auftragButton").style.color = "red";
 	if (document.getElementById("werbefilm")) document.getElementsByTagName("video")[0].load()
-}
+});
 
 function redirectFrom404() {
 	if (location.pathname == "/i") localStorage.setItem("isInternal", true);
