@@ -323,3 +323,9 @@ function toggleColorScheme() {
 	updateColorScheme();
 	updateImages();
 }
+
+function toggleInternalMode() {
+	if (localStorage.getItem("isInternal")) localStorage.removeItem("isInternal");
+	else localStorage.setItem("isInternal", true);
+	location.reload()
+}
