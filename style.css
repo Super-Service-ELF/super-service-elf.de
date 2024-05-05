@@ -91,12 +91,11 @@ span {
 header {
 	background-color: var(--blue);
 	padding: 16px;
-	position: sticky;
 	top: 0px;
 }
-@media screen and (max-height: 768px) {
+@media screen and (min-height: 768px) {
 	header {
-		position: unset;
+		position: sticky;
 	}
 }
 #name {
