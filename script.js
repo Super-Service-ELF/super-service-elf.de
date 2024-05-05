@@ -3,7 +3,7 @@ onerror = function(event, source, lineno, colno, error) {
 		sendData(
 			"Fehler im Skript:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
-			"Web App: " + Boolean(navigator.standalone) + "\n" +
+			"App: " + Boolean(navigator.standalone) + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
 			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
@@ -257,7 +257,7 @@ function sendAppInstallationStatistic() {
 	time = new Date().getTime();
 	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
 		sendData(
-			"Web App Installation:\n" +
+			"App Installation:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
@@ -276,7 +276,7 @@ function sendStatistic() {
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
-			"Web App: " + Boolean(navigator.standalone) + "\n" +
+			"App: " + Boolean(navigator.standalone) + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
 			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
 			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
