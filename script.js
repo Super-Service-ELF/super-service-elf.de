@@ -33,7 +33,7 @@ addEventListener("DOMContentLoaded", function() {
 	loadContents();
 	updateImages();
 	if (navigator.standalone) document.getElementById("appMenuItem").style.display = "none";
-	if (location.pathname == ("/auftrag/")) document.getElementById("auftragButton").classList.add("redundant");
+	if (location.pathname == ("/auftrag")) document.getElementById("auftragButton").classList.add("redundant");
 	if (document.getElementById("app-installation")) {
 		updateAppButton();
 		updateAppInstructions();
@@ -65,6 +65,7 @@ function redirectFrom404() {
 			location.pathname = redirectPages[page]["right"];
 		}
 	}
+	if (location.pathname.slice(-1) == "/") { location.pathname = location.pathname.replaceAll("/", "")}
 }
 
 function detectAndUpdateDeviceColorScheme() {
