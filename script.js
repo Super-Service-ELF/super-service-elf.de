@@ -26,7 +26,6 @@ var browser;
 var exactBrowser;
 
 addEventListener("DOMContentLoaded", function() {
-	if (document.getElementById("404")) redirectFrom404();
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
 	detectAndUpdateDeviceColorScheme();
