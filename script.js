@@ -60,8 +60,9 @@ function redirectFrom404() {
 		{right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"]},
 	];
 	for (let page in redirectPages) {
-		if (redirectPages[page]["aliases"].includes(location.pathname.replaceAll("/", ""))) {
-			location.pathname = redirectPages[page]["right"];
+		if (redirectPages[page].aliases.includes(location.pathname.slice(1))) {
+			location.pathname = "/" + redirectPages[page].right;
+			break;
 		}
 	}
 	if (location.pathname.slice(-1) == "/") { location.pathname = location.pathname.replaceAll("/", "")}
