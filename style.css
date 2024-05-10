@@ -170,11 +170,6 @@ input[type="submit"] {
 .formular > div:first-child, .formular > div:last-child {
 	display: none;
 }
-.formular > div:nth-child(2) {
-	font-size: 48px;
-	text-transform: uppercase;
-	padding-bottom: 32px;
-}
 
 footer *:not(a) {
 	padding: 4px;
