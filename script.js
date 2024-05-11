@@ -189,7 +189,7 @@ function updateAppInstructions() {
 			} else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) os = "Computer";
 			else {
 				var macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
-				if (!macOSVersion || parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
+				if (macOSVersion && parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
 			}
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
