@@ -184,7 +184,7 @@ function updateAppInstructions() {
 		exactBrowser = browser;
 		if (browser == "Safari" && ["Android", "Computer"].includes(os)) browser = "Unknown";
 		if (os == "macOS") {
-			if (browser == "Safari") { if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) os = "Computer"; browser = "Unsupported"; }
+			if (browser == "Safari") if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
 			else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) os = "Computer";
 			else {
 				var macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
