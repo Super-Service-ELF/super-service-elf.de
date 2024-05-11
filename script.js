@@ -193,7 +193,7 @@ function updateAppInstructions() {
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
 		if (os == "iOS") {
-			if (!(claimedOS == "macOS")) var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
+			if (claimedOS != "macOS") var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 			else if (browser == "Safari") var iOSVersion = userAgent.match(/Version\/(\d+\.\d+)/);
 			if (iOSVersion && browser != "Safari" && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
