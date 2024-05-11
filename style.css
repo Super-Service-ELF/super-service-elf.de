@@ -20,7 +20,7 @@
 	word-wrap: break-word;
 	text-decoration: none;
 	padding: 0px;
-	margin: 0px;
+	margin: 0px auto;
 	color: var(--primaryText);
 }
 
@@ -84,7 +84,6 @@ span {
 	cursor: pointer;
 	padding: 12px;
 	width: fit-content;
-	margin: 0 auto;
 }
 
 
@@ -131,7 +130,6 @@ video {
 
 .sslcontact * {
 	display: block;
-	margin: auto;
 }
 label {
 	padding-top: 16px;
@@ -187,7 +185,6 @@ footer *:not(a) {
 		float: unset;
 	}
 	#name {
-		margin-top: 0px;
 		font-size: 32px;
 	}
 	#auftragButton {
@@ -199,7 +196,6 @@ footer *:not(a) {
 	}
 	li {
 		display: block;
-		margin: 0px;
 		margin-top: 8px;
 	}
 
