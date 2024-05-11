@@ -53,11 +53,11 @@ function redirectFrom404() {
 	if (location.pathname == "/i") localStorage.setItem("isInternal", true);
 	else if (location.pathname == "/u") localStorage.removeItem("isInternal");
 	const redirectPages = [
-		{right: "", aliases: ["start", "super", "home", "i", "u"]},
-		{right: "über", aliases: ["ueber", "uber", "about"]},
-		{right: "feedback", aliases: ["bewerten", "bewertung"]},
-		{right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"]},
-		{right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"]},
+		{ right: "", aliases: ["start", "super", "home", "i", "u"] },
+		{ right: "über", aliases: ["ueber", "uber", "about"] },
+		{ right: "feedback", aliases: ["bewerten", "bewertung"] },
+		{ right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"] },
+		{ right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"] },
 	];
 	for (let page in redirectPages) {
 		if (redirectPages[page].aliases.includes(location.pathname.slice(1))) {
@@ -65,7 +65,7 @@ function redirectFrom404() {
 			break;
 		}
 	}
-	if (location.pathname.slice(-1) == "/") { location.pathname = location.pathname.replaceAll("/", "")}
+	if (location.pathname.slice(-1) == "/") location.pathname = location.pathname.replaceAll("/", "");
 }
 
 function detectAndUpdateDeviceColorScheme() {
@@ -218,7 +218,8 @@ function updateForm() {
 			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = this.scrollHeight + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
-		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), {childList: true}); }
+		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
+	}
 }
 
 function replaceFormLabels() {
