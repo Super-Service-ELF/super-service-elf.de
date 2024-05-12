@@ -105,6 +105,13 @@ function loadContents() {
 	var elements = document.body.querySelectorAll("header, div, footer");
 	for (let element of elements) {
 		var elementID = element.id;
+		if (elementID == "webmail") {
+			var message = new URLSearchParams(window.location.search).get("message");
+			if (message) {
+				element.innerHTML = message;
+				continue;
+			}
+		}
 		var url = "/contents/" + elementID + ".html";
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
