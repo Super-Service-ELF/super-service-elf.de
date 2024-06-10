@@ -265,7 +265,7 @@ function scrollToAnchor() {
 
 function sendAppInstallationStatistic() {
 	time = new Date().getTime();
-	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
+	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
 		sendData(
 			"App Installation:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
@@ -281,7 +281,7 @@ function sendAppInstallationStatistic() {
 
 function sendStatistic() {
 	time = new Date().getTime();
-	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
+	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
 		sendData(
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
