@@ -223,7 +223,7 @@ function updateForm() {
 		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
-		if (!document.getElementsByClassName("newsletter").length) {
+		if (!document.getElementsByClassName("newsletter")) {
 			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = (this.scrollHeight - 16) + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
