@@ -145,6 +145,7 @@ input, textarea {
 }
 textarea {
 	min-height: 128px;
+	padding: 8px;
 	resize: none;
 }
 #sslcontact_form > :nth-last-child(2) {

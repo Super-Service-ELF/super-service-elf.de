@@ -224,7 +224,7 @@ function updateForm() {
 		replaceFormLabels();
 		solveCaptcha();
 		if (!document.getElementsByClassName("newsletter").length) {
-			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = this.scrollHeight + "px"; });
+			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = (this.scrollHeight - 16) + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
 		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
