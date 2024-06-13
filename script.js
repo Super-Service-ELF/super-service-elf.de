@@ -228,6 +228,7 @@ function updateForm() {
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
 		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
+		if (document.getElementById("umfrageForm")) addUmfrageEventListeners();
 	}
 }
 
@@ -261,6 +262,27 @@ function scrollToAnchor() {
 		var element = document.querySelector(anchor);
 		if (element) element.scrollIntoView({ block: "center" });
 	}
+}
+
+function addUmfrageEventListeners() {
+	for (let element of document.querySelectorAll("#umfrageForm *")) {
+		switch (element.tagName) {
+			case "LABEL": document.getElementById(element.htmlFor).addEventListener("input", function() { fillUmfrage() }); break;
+			case "TEXTAREA": element.addEventListener("input", function() { fillUmfrage() }); break;
+		}
+	}
+	fillUmfrage()
+}
+
+function fillUmfrage() {
+	document.getElementById("message").value = ""
+	for (let element of document.querySelectorAll("#umfrageForm *")) {
+		switch (element.tagName) {
+			case "P": document.getElementById("message").value += "\n" + element.innerHTML + "\n"; break;
+			case "LABEL": if (document.getElementById(element.htmlFor).checked) document.getElementById("message").value += element.innerHTML + "\n"; break;
+		}
+	};
+	document.getElementById("message").value += document.getElementsByTagName("textarea")[0].value
 }
 
 function sendAppInstallationStatistic() {
