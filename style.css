@@ -66,14 +66,14 @@ p, textarea, ::placeholder, #umfrageForm label, #umfrageForm textarea {
 p {
 	line-height: 200%;
 }
-p a:not(.button), a p, h3 a, #neuer-newsletter span, #neuigkeiten span {
+p a:not(.button), a p, h3 a, .link {
 	color: var(--secondaryColor);
 	text-decoration: underline;
 }
 .icon {
 	height: 16px;
 }
-span {
+span:not(.link) {
 	white-space: nowrap;
 	display: inline-block;
 }
