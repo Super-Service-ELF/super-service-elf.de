@@ -17,5 +17,5 @@ jobs:
             {
               "fourth-anniversary": {
                 "dist": "/fourth-anniversary"
-              },
+              }
             }
