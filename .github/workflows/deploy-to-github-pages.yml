@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 on: [push, workflow_dispatch]
 concurrency:
-  group: "deploy-to-github-pages"
+  group: deploy-to-github-pages
 jobs:
   Deploy-to-GitHub-Pages:
     name: Deploy to GitHub Pages
@@ -12,7 +12,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: Sauloxd/review-apps@v2.0.0
         with:
-          branch: "main"
+          branch: main
           apps: |
             {
               "fourth-anniversary": {
