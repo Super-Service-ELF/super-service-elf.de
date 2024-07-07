@@ -17,6 +17,6 @@ jobs:
           apps: |
             {
               "fourth-anniversary": {
-                "dist": "/fourth-anniversary"
+                "dist": "fourth-anniversary"
               }
             }
