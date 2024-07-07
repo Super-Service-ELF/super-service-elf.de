@@ -13,6 +13,7 @@ jobs:
         uses: Sauloxd/review-apps@v2.0.0
         with:
           branch: "main"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           apps: |
             {
               "fourth-anniversary": {
