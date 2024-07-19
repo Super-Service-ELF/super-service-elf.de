@@ -142,11 +142,11 @@ input:not([type="radio"]), textarea {
 	border-radius: 16px;
 	color: var(--secondaryText);
 	border: None;
+	resize: none;
 }
-textarea {
+textarea:not(.newsletter *) {
 	min-height: 128px;
 	padding: 8px;
-	resize: none;
 }
 .umfrage #sslcontact_form > :nth-last-child(3) {
 	display: none;
