@@ -60,7 +60,7 @@ h2 {
 h3, label, input, li, #umfrageForm p {
 	font-size: 24px;
 }
-p, textarea, ::placeholder, #umfrageForm label, #umfrageForm textarea {
+p, textarea, ::placeholder, #umfrageForm label {
 	font-size: 16px;
 }
 p {
