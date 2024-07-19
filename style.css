@@ -138,6 +138,7 @@ input:not([type="radio"]), textarea {
 	height: 32px;
 	width: 75%;
 	max-width: 512px;
+	padding-inline: 8px;
 	background-color: var(--secondaryColor);
 	border-radius: 16px;
 	color: var(--secondaryText);
