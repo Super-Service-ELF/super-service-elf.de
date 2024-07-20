@@ -128,7 +128,7 @@ video {
 	height: min-content;
 }
 
-.sslcontact * {
+.sslcontact *, #umfrageForm textarea {
 	display: block;
 }
 label:not(#umfrageForm label) {
@@ -155,7 +155,7 @@ textarea:not(.newsletter *) {
 #umfrageForm label {
 	font-size: 32px;
 }
-#umfrageForm input[type="radio"], #umfrageForm textarea {
+#umfrageForm input[type="radio"] {
 	margin-left: 64px;
 }
 #sslcontact_form > :nth-last-child(2) {
