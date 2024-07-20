@@ -15,8 +15,6 @@
 
 *, ::placeholder {
 	font-family: "GothamRounded";
-	text-align: center;
-	align-items: center;
 	word-wrap: break-word;
 	text-decoration: none;
 	padding: 0px;
@@ -44,6 +42,12 @@ body.loaded * {
 }
 
 
+h2, h3, p, label, input:not([type="radio"]), textarea, video, .umfrage {
+	width: 75%;
+}
+h2, h3, label, #werbefilm, #colorSchemeToggle {
+	text-align: center;
+}
 h2, h3, p {
 	padding-inline: 16px;
 	padding-top: 16px;
@@ -73,7 +77,7 @@ p a:not(.button), a p, h3 a, .link {
 .icon {
 	height: 16px;
 }
-span:not(.link) {
+span:not(.link, .umfrage) {
 	white-space: nowrap;
 	display: inline-block;
 }
@@ -124,11 +128,10 @@ div:not(#sslcontactholder *) {
 }
 
 video {
-	width: 75%;
 	height: min-content;
 }
 
-.sslcontact *, #umfrageForm textarea {
+.sslcontact *, #umfrageForm .umfrage {
 	display: block;
 }
 label:not(#umfrageForm label) {
@@ -136,7 +139,6 @@ label:not(#umfrageForm label) {
 }
 input:not([type="radio"]), textarea {
 	height: 32px;
-	width: 75%;
 	max-width: 512px;
 	padding-inline: 8px;
 	background-color: var(--secondaryColor);
@@ -154,9 +156,7 @@ textarea:not(.newsletter *) {
 }
 #umfrageForm label {
 	font-size: 32px;
-}
-#umfrageForm input[type="radio"] {
-	margin-left: 64px;
+	margin-right: 12px;
 }
 #sslcontact_form > :nth-last-child(2) {
 	display: none;
@@ -190,6 +190,9 @@ footer *:not(a) {
 
 	.redundant {
 		display: none;
+	}
+	header {
+		text-align: center;
 	}
 	#name, #logo, #auftragButton {
 		text-align: center;
