@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.12
 
 
-import os
+from os.path import dirname
 from email import message_from_file
 from email.utils import formatdate
 
@@ -10,7 +10,7 @@ from getpass import getpass
 from copy import deepcopy
 
 
-directory = os.path.dirname(__file__)
+directory = dirname(__file__)
 
 with open(f"{directory}/config.py") as f:
 	config = eval(f.read())

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3.12
 
 
-import os
+from os.path import dirname
+from os import listdir
 from base64 import b64encode
 from datetime import datetime
 
@@ -10,7 +11,7 @@ from email.mime.text import MIMEText
 from email.utils import make_msgid
 
 
-directory = os.path.dirname(__file__)
+directory = dirname(__file__)
 
 with open(f"{directory}/config.py") as f:
 	config = eval(f.read())
@@ -26,7 +27,7 @@ Ihr Super-Service-ELF-Team\
 with open(f"{directory}/template.html") as f:
 	html = f.read()
 
-for font in os.listdir(f"{directory}/../fonts/"):
+for font in listdir(f"{directory}/../fonts/"):
 	if font.startswith("."): continue
 	with open(f"{directory}/../fonts/{font}", "rb") as f:
 		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
