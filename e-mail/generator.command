@@ -1,0 +1,55 @@
+#!/usr/bin/env python3.12
+
+
+import os
+from base64 import b64encode
+from datetime import datetime
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.utils import make_msgid
+
+
+directory = os.path.dirname(__file__)
+
+with open(f"{directory}/config.py") as f:
+	config = eval(f.read())
+
+
+text = f"""\
+Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
+{config["link"]}
+
+Ihr Super-Service-ELF-Team\
+"""
+
+with open(f"{directory}/template.html") as f:
+	html = f.read()
+
+for font in os.listdir(f"{directory}/../fonts/"):
+	if font.startswith("."): continue
+	with open(f"{directory}/../fonts/{font}", "rb") as f:
+		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
+
+with open(f"{directory}/..{config["message"]}") as f:
+	message = f.read()
+html = html.replace("linkPlaceholder", config["link"])
+html = html.replace("messagePlaceholder", message)
+
+html = html.replace("yearPlaceholder", str(datetime.now().year))
+
+
+email = MIMEMultipart(
+	_subtype="alternative",
+	_subparts=[
+		MIMEText(_text=text, _subtype="plain"),
+		MIMEText(_text=html, _subtype="html", _charset="utf-8")
+	]
+)
+
+email["From"] = email["Bcc"] = "Super-Service-ELF <mail@super-service-elf.de>"
+email["Subject"] = config["subject"]
+email['Message-ID'] = make_msgid(domain="super-service-elf.de")
+
+with open(f"{directory}/e-mail.eml", "w") as f:
+	f.write(email.as_string())

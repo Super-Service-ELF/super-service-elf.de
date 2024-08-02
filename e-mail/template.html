@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head></head>
+<head>
+	<meta charset="UTF-8">
+	<title>Super-Service-ELF</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="light dark">
+	<style>
+		:root {
+			--blue: #009DFF;
+			--primaryColor: #80CEFF;
+			--secondaryColor: #004F80;
+			--primaryText: #000000;
+			--secondaryText: #FFFFFF;
+		}
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--primaryColor: #004F80;
+				--secondaryColor: #80CEFF;
+				--primaryText: #FFFFFF;
+				--secondaryText: #000000;
+			}
+		}
+		@font-face {
+			font-family: "GothamRounded";
+			src: url("data:font/woff2;base64,GothamRounded.woff2Placeholder");
+		}
+		@font-face {
+			font-family: "GothamRounded-Bold";
+			src: url("data:font/woff2;base64,GothamRounded-Bold.woff2Placeholder");
+		}
+		* {
+			font-family: "GothamRounded", "Arial";
+			word-wrap: break-word;
+			text-decoration: none;
+			margin: auto;
+			color: var(--primaryText);
+			transition: color 0.5s ease, background-color 0.5s ease;
+		}
+		body {
+			background-color: var(--blue);
+			min-width: 320px;
+			padding: 0;
+		}
+		header, footer {
+			overflow: hidden;
+		}
+		header {
+			padding: 16px;
+		}
+		main {
+			background-color: var(--primaryColor);
+		}
+		main div {
+			padding-block: 16px;
+		}
+		header, h2, h3 {
+			text-align: center;
+		}
+		h2, h3, p {
+			width: 75%;
+		}
+		h1, h2, h3 {
+			font-family: "GothamRounded-Bold", "Arial Bold", "Arial Black", "Arial";
+		}
+		h1, h2 {
+			font-size: 32px;
+		}
+		h2 {
+			margin-block: 16px;
+		}
+		h3 {
+			font-size: 24px;
+			margin-block: 8px;
+		}
+		p {
+			font-size: 16px;
+			line-height: 200%;
+		}
+		p a {
+			color: var(--secondaryColor);
+			text-decoration: underline;
+		}
+		.button {
+			background-color: var(--secondaryColor);
+			color: var(--secondaryText);
+			border-radius: 64px;
+			cursor: pointer;
+			padding-inline: 16px;
+			padding-block: 0px;
+			width: fit-content;
+		}
+		@media screen and (min-height: 768px) {
+			header {
+				position: sticky;
+			}
+		}
+		@media screen and (min-width: 944px) {
+			h1 {
+				font-size: 64px;
+				margin-top: 64px;
+			}
+			#name, #logo {
+				float: left;
+			}
+			#auftragButton {
+				float: right;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div style="display: none;">messagePlaceholder</div>
+	<header>
+		<a href="https://super-service-elf.de">
+			<h1 id="name">Super-Service-</h1>
+			<svg id="logo" alt="Das Logo des Super-Service-ELFs" width="128px" height="128px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1024 1024" xml:space="preserve">
+				<ellipse fill="var(--primaryColor)" transform="matrix(0.7553 -0.6554 0.6554 0.7553 -36.418 494.2324)" cx="643.63" cy="295.88" rx="156.24" ry="111.91"/>
+				<ellipse fill="#FFFFFF" transform="matrix(0.7476 -0.6642 0.6642 0.7476 35.2963 532.3298)" cx="717.96" cy="219.73" rx="58.87" ry="46.47"/>
+				<path fill="var(--primaryText)" d="M365.26,688.48H257.73l-21.19,51.73h63.04c29.24,0,49.14,29.66,38.05,56.71l-0.34,0.83c-6.33,15.44-21.36,25.52-38.05,25.52h-96.75c-8.78,21.42-17.34,42.32-26.33,64.27h78.72c29.23,0,49.13,29.65,38.04,56.7l-0.34,0.84c-6.33,15.44-21.36,25.52-38.04,25.52H91.2c-20.07,0-33.73-20.36-26.12-38.94c41.06-100.2,82.09-200.33,122.86-299.8c6.69-16.34,22.58-26.97,40.24-26.97l137.44,0c29.42,0,49.44,29.84,38.28,57.06l-0.34,0.83C397.19,678.33,382.06,688.48,365.26,688.48z"/>
+				<path fill="var(--primaryText)" d="M456.97,886.49h70.01c29.9,0,50.26,30.33,38.92,58l0,0c-6.47,15.79-21.85,26.11-38.92,26.11H370.31c-20.01,0-33.66-20.24-26.18-38.79l164.72-408.08h94.03L456.97,886.49z"/>
+				<path fill="var(--primaryText)" d="M731.8,852.01l-37.41,91.29c-6.77,16.52-22.85,27.31-40.7,27.31h0c-31.28,0-52.56-31.72-40.7-60.67l113.37-276.66c7.04-17.17,23.75-28.38,42.31-28.38h135.41c29.43,0,49.45,29.85,38.3,57.08l-0.33,0.81c-6.37,15.54-21.5,25.69-38.3,25.69H798.81l-32.75,79.94h55.88c29.41,0,49.43,29.83,38.28,57.05l-0.33,0.81c-6.38,15.56-21.52,25.72-38.34,25.72H731.8z"/>
+				<path fill="var(--primaryText)" d="M721.92,51.81c-140.07,0-287.68,113.55-329.7,253.62s37.47,253.62,177.54,253.62c140.07,0,287.68-113.55,329.7-253.62S861.99,51.81,721.92,51.81z M585.76,482.33c-100.67,0-157.81-81.61-127.6-182.29s136.3-182.29,236.97-182.29c100.67,0,157.8,81.61,127.6,182.29S686.44,482.33,585.76,482.33z"/>
+			</svg>
+		</a>
+		<a href="https://super-service-elf.de/auftrag"><h1 class="button" id="auftragButton">Auftrag</h1></a>
+	</header>
+	<main>
+		<div>
+			<p>Sollte dieser Newsletter nicht korrekt dargestellt werden, lesen Sie ihn bitte <a href="linkPlaceholder">im Browser</a>.</p>
+		</div>
+		<div>
+			messagePlaceholder
+		</div>
+	</main>
+	<footer>
+		<h2>Super-Service-ELF yearPlaceholder</h2>
+		<a href="https://super-service-elf.de/kontakt"><h3>Kontakt</h3></a>
+		<a href="https://super-service-elf.de/impressum"><h3>Impressum</h3></a>
+		<a href="https://super-service-elf.de/nutzungsbedingungen"><h3>Nutzungsbedingungen</h3></a>
+		<a href="https://super-service-elf.de/datenschutz"><h3>Datenschutzerklärung</h3></a>
+	</footer>
+</body>
+</html>
