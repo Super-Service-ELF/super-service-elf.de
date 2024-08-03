@@ -4,6 +4,7 @@
 from os.path import dirname
 from os import listdir
 from base64 import b64encode
+from locale import setlocale, LC_TIME
 from datetime import datetime
 
 from email.mime.multipart import MIMEMultipart
@@ -11,13 +12,15 @@ from email.mime.text import MIMEText
 from email.utils import make_msgid
 
 
+setlocale(LC_TIME, "de_DE")
+
 directory = dirname(__file__)
 
 with open(f"{directory}/config.py") as f:
 	config = eval(f.read())
 
 
-text = f"""\
+plain = f"""\
 Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
 {config["link"]}
 
@@ -37,13 +40,13 @@ with open(f"{directory}/..{config["message"]}") as f:
 html = html.replace("linkPlaceholder", config["link"])
 html = html.replace("messagePlaceholder", message)
 
-html = html.replace("yearPlaceholder", str(datetime.now().year))
+html = html.replace("datePlaceholder", datetime.today().strftime('%-d. %B %Y'))
 
 
 email = MIMEMultipart(
 	_subtype="alternative",
 	_subparts=[
-		MIMEText(_text=text, _subtype="plain"),
+		MIMEText(_text=plain, _subtype="plain"),
 		MIMEText(_text=html, _subtype="html", _charset="utf-8")
 	]
 )
@@ -52,5 +55,5 @@ email["From"] = email["Bcc"] = "Super-Service-ELF <mail@super-service-elf.de>"
 email["Subject"] = config["subject"]
 email['Message-ID'] = make_msgid(domain="super-service-elf.de")
 
-with open(f"{directory}/e-mail.eml", "w") as f:
+with open(f"{directory}/email.eml", "w") as f:
 	f.write(email.as_string())
