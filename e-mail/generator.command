@@ -17,7 +17,7 @@ with open(f"{directory}/config.py") as f:
 	config = eval(f.read())
 
 
-text = f"""\
+plain = f"""\
 Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
 {config["link"]}
 
@@ -43,7 +43,7 @@ html = html.replace("yearPlaceholder", str(datetime.now().year))
 email = MIMEMultipart(
 	_subtype="alternative",
 	_subparts=[
-		MIMEText(_text=text, _subtype="plain"),
+		MIMEText(_text=plain, _subtype="plain"),
 		MIMEText(_text=html, _subtype="html", _charset="utf-8")
 	]
 )
