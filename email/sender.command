@@ -16,7 +16,7 @@ with open(f"{directory}/config.py") as f:
 	config = eval(f.read())
 
 
-with open(f"{directory}/e-mail.eml") as f:
+with open(f"{directory}/email.eml") as f:
 	email = message_from_file(f)
 
 email["Date"] = formatdate(localtime=True)

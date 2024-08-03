@@ -52,5 +52,5 @@ email["From"] = email["Bcc"] = "Super-Service-ELF <mail@super-service-elf.de>"
 email["Subject"] = config["subject"]
 email['Message-ID'] = make_msgid(domain="super-service-elf.de")
 
-with open(f"{directory}/e-mail.eml", "w") as f:
+with open(f"{directory}/email.eml", "w") as f:
 	f.write(email.as_string())
