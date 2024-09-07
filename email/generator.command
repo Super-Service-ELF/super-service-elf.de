@@ -7,7 +7,6 @@ from base64 import b64encode
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.utils import make_msgid
 
 
 directory = dirname(__file__)
@@ -47,7 +46,6 @@ email = MIMEMultipart(
 
 email["From"] = email["Bcc"] = "Super-Service-ELF <mail@super-service-elf.de>"
 email["Subject"] = config["subject"]
-email['Message-ID'] = make_msgid(domain="super-service-elf.de")
 
 with open(f"{directory}/email.eml", "w") as f:
 	f.write(email.as_string())

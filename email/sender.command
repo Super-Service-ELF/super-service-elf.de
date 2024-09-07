@@ -3,6 +3,7 @@
 
 from os.path import dirname
 from email import message_from_file
+from email.utils import make_msgid
 from email.utils import formatdate
 
 from smtplib import SMTP_SSL
@@ -19,6 +20,7 @@ with open(f"{directory}/config.py") as f:
 with open(f"{directory}/email.eml") as f:
 	email = message_from_file(f)
 
+email["Message-ID"] = make_msgid(domain="super-service-elf.de")
 email["Date"] = formatdate(localtime=True)
 
 
