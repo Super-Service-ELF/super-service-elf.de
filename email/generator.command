@@ -44,7 +44,7 @@ email = MIMEMultipart(
 	]
 )
 
-email["From"] = email["Bcc"] = "Super-Service-ELF <mail@super-service-elf.de>"
+email["From"] = "Super-Service-ELF <mail@super-service-elf.de>"
 email["Subject"] = config["subject"]
 
 with open(f"{directory}/email.eml", "w") as f:
