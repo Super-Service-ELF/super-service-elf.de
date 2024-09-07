@@ -3,12 +3,12 @@
 
 from os.path import dirname
 from email import message_from_file
-from email.utils import make_msgid
 from email.utils import formatdate
 
 from smtplib import SMTP_SSL
 from getpass import getpass
 from copy import deepcopy
+from email.utils import make_msgid
 
 
 directory = dirname(__file__)
@@ -20,7 +20,6 @@ with open(f"{directory}/config.py") as f:
 with open(f"{directory}/email.eml") as f:
 	email = message_from_file(f)
 
-email["Message-ID"] = make_msgid(domain="super-service-elf.de")
 email["Date"] = formatdate(localtime=True)
 
 
@@ -28,5 +27,6 @@ with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 	server.login(user="mail@super-service-elf.de", password=getpass())
 	for recipient in config["recipients"]:
 		emailCopy = deepcopy(email)
+		emailCopy["Message-ID"] = make_msgid(domain="super-service-elf.de")
 		emailCopy["To"] = recipient
 		server.send_message(emailCopy)
