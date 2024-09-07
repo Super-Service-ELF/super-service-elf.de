@@ -31,9 +31,9 @@ for font in listdir(f"{directory}/../fonts/"):
 		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
 
 with open(f"{directory}/..{config["message"]}") as f:
-	message = f.read()
+	html = html.replace("messagePlaceholder", f.read())
+
 html = html.replace("linkPlaceholder", config["link"])
-html = html.replace("messagePlaceholder", message)
 
 
 email = MIMEMultipart(
