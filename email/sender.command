@@ -25,7 +25,7 @@ email["Date"] = formatdate(localtime=True)
 
 with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 	server.login(user="mail@super-service-elf.de", password=getpass())
-	for recipient in config["recipients"]:
+	for recipient in config["recipients"] + ["mail@super-service-elf.de"]:
 		emailCopy = deepcopy(email)
 		emailCopy["Message-ID"] = make_msgid(domain="super-service-elf.de")
 		emailCopy["To"] = recipient
