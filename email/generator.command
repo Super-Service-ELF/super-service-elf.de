@@ -31,7 +31,8 @@ for font in listdir(f"{directory}/../fonts/"):
 		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
 
 with open(f"{directory}/..{config["message"]}") as f:
-	html = html.replace("messagePlaceholder", f.read())
+	message = f.read().replace("href=\"/", "href=\"https://super-service-elf.de/")
+html = html.replace("messagePlaceholder", message)
 
 html = html.replace("linkPlaceholder", config["link"])
 
