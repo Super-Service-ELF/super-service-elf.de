@@ -57,10 +57,10 @@ h1 {
 h2 {
 	font-size: 32px;
 }
-h3, label, input, li, #umfrageForm p {
+h3, label, input, li {
 	font-size: 24px;
 }
-p, textarea, ::placeholder, #umfrageForm label {
+p, textarea, ::placeholder {
 	font-size: 16px;
 }
 p {
@@ -128,10 +128,10 @@ video {
 	height: min-content;
 }
 
-.sslcontact *, #umfrageForm textarea {
+.sslcontact * {
 	display: block;
 }
-label:not(#umfrageForm label) {
+label {
 	padding-top: 16px;
 }
 input:not([type="radio"]), textarea {
@@ -148,15 +148,6 @@ input:not([type="radio"]), textarea {
 textarea:not(.newsletter *) {
 	min-height: 128px;
 	padding: 8px;
-}
-.umfrage #sslcontact_form > :nth-last-child(3) {
-	display: none;
-}
-#umfrageForm label {
-	font-size: 32px;
-}
-#umfrageForm input[type="radio"] {
-	margin-left: 64px;
 }
 #sslcontact_form > :nth-last-child(2) {
 	display: none;
