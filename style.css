@@ -134,7 +134,7 @@ video {
 label {
 	padding-top: 16px;
 }
-input:not([type="radio"]), textarea {
+input, textarea {
 	height: 32px;
 	width: 75%;
 	max-width: 512px;
