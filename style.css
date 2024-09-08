@@ -46,7 +46,7 @@ body.loaded * {
 
 h2, h3, p {
 	padding-inline: 16px;
-	padding-top: 16px;
+	padding-block: 16px;
 }
 h1, h2, h2 *, h3 {
 	font-family: "GothamRounded-Bold";
