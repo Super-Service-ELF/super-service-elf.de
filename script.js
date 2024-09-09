@@ -1,6 +1,6 @@
 onerror = function(event, source, lineno, colno, error) {
 	if (error) {
-		sendData(
+		alert(
 			"Fehler im Skript:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
 			"App: " + Boolean(navigator.standalone) + "\n" +
@@ -53,7 +53,7 @@ function redirectFrom404() {
 	if (location.pathname == "/i") localStorage.setItem("isInternal", true);
 	else if (location.pathname == "/u") localStorage.removeItem("isInternal");
 	const redirectPages = [
-		{ right: "", aliases: ["start", "super", "home", "i", "u"] },
+		{ right: "", aliases: ["start", "super", "home", "i", "u", "404.html"] },
 		{ right: "über", aliases: ["ueber", "uber", "about"] },
 		{ right: "feedback", aliases: ["bewerten", "bewertung"] },
 		{ right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"] },
@@ -265,7 +265,7 @@ function scrollToAnchor() {
 
 function sendAppInstallationStatistic() {
 	time = new Date().getTime();
-	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
+	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000) || true) {
 		sendData(
 			"App Installation:\n" +
 			"User Agent: " + navigator.userAgent + "\n" +
@@ -281,7 +281,7 @@ function sendAppInstallationStatistic() {
 
 function sendStatistic() {
 	time = new Date().getTime();
-	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
+	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000) || true) {
 		sendData(
 			"Webseitenaufruf:\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
@@ -301,7 +301,7 @@ function sendData(data) {
 		if (!document.getElementById("sslcontactholder")) {
 			var form = document.createElement("div");
 			form.id = "sslcontactholder";
-			form.hidden = true;
+			// form.hidden = true;
 			document.body.appendChild(form);
 			var script = document.createElement("script");
 			script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
@@ -315,7 +315,7 @@ function submitData(data) {
 	else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
-		if (!localStorageAvailable || !localStorage.getItem("isInternal")) document.getElementsByName("send")[0].click();
+		if (!localStorageAvailable || !localStorage.getItem("isInternal")) if (false) document.getElementsByName("send")[0].click();
 	}
 }
 
