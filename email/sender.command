@@ -7,7 +7,6 @@ from email.utils import formatdate
 
 from smtplib import SMTP_SSL
 from getpass import getpass
-from copy import deepcopy
 from email.utils import make_msgid
 
 
