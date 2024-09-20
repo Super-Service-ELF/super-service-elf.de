@@ -148,46 +148,42 @@ function updateAppButton() {
 
 function updateAppInstructions() {
 	var userAgent = navigator.userAgent;
-	const oses = {
-		"Android": "Android",
-		"CrOS": "ChromeOS",
-		"iPad": "iPadOS",
-		"iPhone": "iOS",
-		"iPod": "iOS",
-		"Linux": "Linux",
-		"Mac OS X": "macOS",
-		"Windows": "Windows",
-	};
-	os = "Unknown";
-	for (let testOS in oses) {
-		if (userAgent.includes(testOS)) {
-			os = oses[testOS];
-			break;
-		}
-	}
-	if (os == "Unknown") id = "Unknown";
-	else {
+	id = (function() {
+		os = (function() {
+			const oses = {
+				"Android": "Android",
+				"CrOS": "ChromeOS",
+				"iPad": "iPadOS",
+				"iPhone": "iOS",
+				"iPod": "iOS",
+				"Linux": "Linux",
+				"Mac OS X": "macOS",
+				"Windows": "Windows",
+			};
+			for (let testOS in oses) {
+				if (userAgent.includes(testOS)) return oses[testOS];
+			}
+			return "Unknown";
+		})();
+		if (os == "Unknown") return "Unknown";
 		var claimedOS = os;
 		if (os == "macOS" && navigator.maxTouchPoints) os = "iPadOS";
 		exactOS = os;
 		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
 		if (os == "iPadOS") os = "iOS";
-		const browsers = {
-			"Edg": "Edge",
-			"EdgiOS": "Edge",
-			"CriOS": "Chrome",
-			"Chrome": "Chrome",
-			"Firefox": "Firefox",
-			"FxiOS": "Firefox",
-			"Safari": "Safari",
-		};
-		browser = "Unknown";
-		for (let testBrowser in browsers) {
-			if (userAgent.includes(testBrowser)) {
-				browser = browsers[testBrowser];
-				break;
+		browser = (function() {
+			const browsers = {
+				"Edg": "Edge",
+				"Chr": "Chrome",
+				"Firefox": "Firefox",
+				"FxiOS": "Firefox",
+				"Safari": "Safari",
+			};
+			for (let testBrowser in browsers) {
+				if (userAgent.includes(testBrowser)) return browsers[testBrowser];
 			}
-		}
+			return "Unknown";
+		})();
 		exactBrowser = browser;
 		if (browser == "Safari" && ["Android", "Computer"].includes(os)) browser = "Unknown";
 		if (os == "macOS") {
@@ -208,8 +204,8 @@ function updateAppInstructions() {
 			}
 			if (browser == "Edge") browser = "Unsupported";
 		}
-		id = os + "-" + browser;
-	}
+		return os + "-" + browser;
+	})();
 	document.getElementById(id).hidden = false;
 	browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
 	osText = (typeof exactOS !== "undefined") ? exactOS : " einem unbekannten Betriebssystem";
