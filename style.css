@@ -176,6 +176,7 @@ input[type="submit"] {
 	text-align: center;
 	font-size: 32px;
 	font-family: "GothamRounded-Bold";
+	color: red;
 }
 
 footer *:not(a) {
