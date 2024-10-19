@@ -45,7 +45,7 @@ body.loaded * {
 h2, h3, p, label, input, textarea, video {
 	width: 75%;
 }
-h2, h3, label, #werbefilm, #colorSchemeToggle {
+h2, h3, label, #video, #colorSchemeToggle {
 	text-align: center;
 }
 h2, h3, p {

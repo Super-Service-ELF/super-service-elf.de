@@ -46,7 +46,7 @@ addEventListener("DOMContentLoaded", function() {
 	else if (document.getElementById("app-installation")) sendAppInstallationStatistic();
 	else if (!document.getElementById("sslcontactholder")) sendStatistic();
 	if (localStorageAvailable && localStorage.getItem("isInternal")) document.getElementById("auftragButton").style.color = "red";
-	if (document.getElementById("werbefilm")) document.getElementsByTagName("video")[0].load();
+	if (document.getElementById("video")) document.getElementsByTagName("video")[0].load();
 });
 
 function redirectFrom404() {
