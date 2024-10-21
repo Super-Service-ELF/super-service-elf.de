@@ -33,7 +33,8 @@ for font in listdir(f"{directory}/../fonts/"):
 
 with open(f"{directory}/..{config["message"]}") as f:
 	message = f.read().replace("href=\"/", "href=\"https://super-service-elf.de/")
-html = html.replace("messagePlaceholder", sub(r"<h\d>.*?</h\d>", "", message))
+html = html.replace("messagePreviewPlaceholder", sub(r"<h\d>.*?</h\d>", "", message))
+html = html.replace("messagePlaceholder", message)
 
 html = html.replace("linkPlaceholder", config["link"])
 
