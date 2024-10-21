@@ -43,8 +43,6 @@ addEventListener("DOMContentLoaded", function() {
 	scrollToAnchor();
 	document.body.classList.add("loaded");
 	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
-	else if (document.getElementById("app-installation")) sendAppInstallationStatistic();
-	else if (!document.getElementById("sslcontactholder")) sendStatistic();
 	if (localStorageAvailable && localStorage.getItem("isInternal")) document.getElementById("auftragButton").style.color = "red";
 	if (document.getElementById("video")) document.getElementsByTagName("video")[0].load();
 });
@@ -257,38 +255,6 @@ function scrollToAnchor() {
 		var element = document.querySelector(anchor);
 		if (element) element.scrollIntoView({ block: "center" });
 	}
-}
-
-function sendAppInstallationStatistic() {
-	time = new Date().getTime();
-	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentAppInstallationVisit")) + 900000)) {
-		sendData(
-			"App Installation:\n" +
-			"User Agent: " + navigator.userAgent + "\n" +
-			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
-			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
-			"Betriebssystem: " + exactOS + " → " + os + "\n" +
-			"Browser: " + exactBrowser + " → " + browser
-		);
-	}
-	if (localStorageAvailable) localStorage.setItem("mostRecentAppInstallationVisit", time);
-}
-
-function sendStatistic() {
-	time = new Date().getTime();
-	if (!(localStorageAvailable && time <= parseInt(localStorage.getItem("mostRecentWebsiteVisit")) + 900000)) {
-		sendData(
-			"Webseitenaufruf:\n" +
-			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
-			"User Agent: " + navigator.userAgent + "\n" +
-			"App: " + Boolean(navigator.standalone) + "\n" +
-			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
-			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
-		);
-	}
-	if (localStorageAvailable) localStorage.setItem("mostRecentWebsiteVisit", time);
 }
 
 function sendData(data) {
