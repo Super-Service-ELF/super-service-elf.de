@@ -3,7 +3,6 @@
     "message": "/contents/newsletter/template.html",
     "subject": "XX. ELF-Newsletter XXXX",
     "recipients": [
-        "mail1@example.com",
-        "mail2@example.com",
+        "mail@example.com",
     ],
 }
