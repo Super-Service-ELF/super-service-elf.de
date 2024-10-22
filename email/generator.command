@@ -40,9 +40,9 @@ with open(f"{directory}/..{config["message"]}") as f:
 html = html.replace("messagePreviewPlaceholder", sub(r"<h\d>.*?</h\d>", "", message))
 html = html.replace("messagePlaceholder", message)
 
-html = html.replace("datePlaceholder", datetime.today().strftime('%-d. %B %Y'))
-
 html = html.replace("linkPlaceholder", config["link"])
+
+html = html.replace("datePlaceholder", datetime.today().strftime("%-d. %B %Y"))
 
 
 email = MIMEMultipart(
