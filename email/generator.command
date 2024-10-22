@@ -21,10 +21,10 @@ with open(f"{directory}/config.py") as f:
 
 
 plain = f"""\
-Ihr E‑Mail-Programm stellt formatierte E‑Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
+Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
 {config["link"]}
 
-Ihr Super‑Service‑ELF‑Team\
+Ihr Super-Service-ELF-Team\
 """
 
 with open(f"{directory}/template.html") as f:

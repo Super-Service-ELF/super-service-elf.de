@@ -15,7 +15,8 @@
 
 *, ::placeholder {
 	font-family: "GothamRounded";
-	word-wrap: break-word;
+	overflow-wrap: break-word;
+	word-break: keep-all;
 	text-decoration: none;
 	padding: 0px;
 	margin: 0px auto;
