@@ -106,7 +106,7 @@ function loadContents() {
 	for (let element of elements) {
 		var elementID = element.id;
 		if (elementID == "webmail") {
-			var message = new URLSearchParams(window.location.search).get("message");
+			var message = new URLSearchParams(location.search).get("message");
 			if (message) {
 				element.innerHTML = message;
 				continue;
