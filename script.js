@@ -129,7 +129,6 @@ function updateImages() {
 			}
 		}
 	}
-
 }
 
 function updateAppButton() {
