@@ -1,27 +1,10 @@
 {
-	"name": "Super-Service-ELF",
-	"short_name": "ELF",
-	"description": "Unsere neue App bietet Ihnen alle bewährten Vorteile unserer Webseite - jetzt noch schneller erreichbar per App!",
-	"start_url": "/",
-	"scope": "/",
-	"display": "standalone",
-	"orientation": "any",
 	"background_color": "#009DFF",
-	"theme_color": "#009DFF",
-	"shortcuts" : [
-		{
-			"name": "Auftrag aufgeben",
-			"short_name": "Auftrag",
-			"description": "Hier können Sie uns Aufträge aufgeben!",
-			"url": "/auftrag"
-		},
-		{
-			"name": "Feedback geben",
-			"short_name": "Feedback",
-			"description": "Hier können Sie uns Feedback in Form von Lob, Kritik und Vorschlägen geben, damit wir uns für Sie verbessern können!",
-			"url": "/feedback"
-		}
+	"categories": [
+		"productivity"
 	],
+	"description": "Unsere neue App bietet Ihnen alle bewährten Vorteile unserer Webseite - jetzt noch schneller erreichbar per App!",
+	"display": "standalone",
 	"icons": [
 		{
 			"src": "/images/app-icon-maskable.svg",
@@ -41,5 +24,25 @@
 			"type": "image/png",
 			"purpose": "maskable"
 		}
-	]
+	],
+	"name": "Super-Service-ELF",
+	"orientation": "any",
+	"scope": "/",
+	"short_name": "ELF",
+	"shortcuts": [
+		{
+			"name": "Auftrag aufgeben",
+			"short_name": "Auftrag",
+			"description": "Hier können Sie uns Aufträge aufgeben!",
+			"url": "/auftrag"
+		},
+		{
+			"name": "Feedback geben",
+			"short_name": "Feedback",
+			"description": "Hier können Sie uns Feedback in Form von Lob, Kritik und Vorschlägen geben, damit wir uns für Sie verbessern können!",
+			"url": "/feedback"
+		}
+	],
+	"start_url": "/",
+	"theme_color": "#009DFF"
 }
