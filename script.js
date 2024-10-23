@@ -52,6 +52,9 @@ function redirectFrom404() {
 		case "/i": localStorage.setItem("isInternal", true); break;
 		case "/u": localStorage.removeItem("isInternal"); break;
 	}
+	const decodedPathname = decodeURIComponent(location.pathname);
+	const lowercasedPathname = decodedPathname.toLowerCase();
+	if (decodedPathname != lowercasedPathname) location.replace(lowercasedPathname);
 	const redirectPages = [
 		{ right: "", aliases: ["start", "super", "home", "i", "u"] },
 		{ right: "über", aliases: ["ueber", "uber", "about"] },
