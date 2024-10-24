@@ -39,7 +39,6 @@ addEventListener("DOMContentLoaded", function() {
 	}
 	if (document.getElementsByClassName("form").length) updateForm();
 	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
-	document.getElementById("year").innerHTML = new Date().getFullYear();
 	scrollToAnchor();
 	document.body.classList.add("loaded");
 	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
