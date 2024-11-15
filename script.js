@@ -59,11 +59,11 @@ function redirectFrom404() {
 		{ right: "über", aliases: ["ueber", "uber", "about"] },
 		{ right: "feedback", aliases: ["bewerten", "bewertung"] },
 		{ right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"] },
-		{ right: "newsletter-archiv", aliases: ["newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"] },
+		{ right: "newsletter#newsletter-archiv", aliases: ["newsletter-archiv", "newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"] },
 	];
 	for (let page in redirectPages) {
 		if (redirectPages[page].aliases.includes(location.pathname.slice(1))) {
-			location.pathname = "/" + redirectPages[page].right;
+			location.href = "/" + redirectPages[page].right;
 			break;
 		}
 	}
