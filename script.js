@@ -16,14 +16,14 @@ onerror = function(event, source, lineno, colno, error) {
 	}
 }
 
-var colorScheme;
-var deviceColorScheme;
-var observer;
-var eventListenerAdded = false;
-var os;
-var exactOS;
-var browser;
-var exactBrowser;
+let colorScheme;
+let deviceColorScheme;
+let observer;
+let eventListenerAdded = false;
+let os;
+let exactOS;
+let browser;
+let exactBrowser;
 
 addEventListener("DOMContentLoaded", function() {
 	try { localStorageAvailable = Boolean(localStorage); }
@@ -104,18 +104,18 @@ function updateColorScheme() {
 }
 
 function loadContents() {
-	var elements = document.body.querySelectorAll("header, div, footer");
+	let elements = document.body.querySelectorAll("header, div, footer");
 	for (let element of elements) {
-		var elementID = element.id;
+		let elementID = element.id;
 		if (elementID == "webmail") {
-			var message = new URLSearchParams(location.search).get("message");
+			let message = new URLSearchParams(location.search).get("message");
 			if (message) {
 				element.innerHTML = message;
 				continue;
 			}
 		}
-		var url = "/contents/" + elementID + ".html";
-		var xhr = new XMLHttpRequest();
+		let url = "/contents/" + elementID + ".html";
+		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
 		}
@@ -148,7 +148,7 @@ function updateAppButton() {
 }
 
 function updateAppInstructions() {
-	var userAgent = navigator.userAgent;
+	let userAgent = navigator.userAgent;
 	id = (function() {
 		os = (function() {
 			const oses = {
@@ -167,7 +167,7 @@ function updateAppInstructions() {
 			return "Unknown";
 		})();
 		if (os == "Unknown") return "Unknown";
-		var claimedOS = os;
+		let claimedOS = os;
 		if (os == "macOS" && navigator.maxTouchPoints) os = "iPadOS";
 		exactOS = os;
 		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
@@ -192,14 +192,14 @@ function updateAppInstructions() {
 				if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
 			} else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) os = "Computer";
 			else {
-				var macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
+				let macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
 				if (macOSVersion && parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
 			}
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
 		if (os == "iOS") {
 			if (browser != "Safari" && claimedOS != "macOS") {
-				var iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
+				let iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 				if (iOSVersion && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			}
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
@@ -229,10 +229,10 @@ function updateForm() {
 }
 
 function replaceFormLabels() {
-	var name = document.querySelector("[for=\"firstname\"]");
-	var email = document.querySelector("[for=\"email\"]");
-	var subject = document.querySelector("[for=\"subject\"]");
-	var message = document.querySelector("[for=\"message\"]");
+	let name = document.querySelector("[for=\"firstname\"]");
+	let email = document.querySelector("[for=\"email\"]");
+	let subject = document.querySelector("[for=\"subject\"]");
+	let message = document.querySelector("[for=\"message\"]");
 	if (name) name.innerHTML = "Name";
 	if (email) email.innerHTML = "E-Mail-Adresse";
 	if (subject) {
@@ -253,9 +253,9 @@ function solveCaptcha() {
 }
 
 function scrollToAnchor() {
-	var anchor = decodeURI(location.hash);
+	let anchor = decodeURI(location.hash);
 	if (anchor) {
-		var element = document.querySelector(anchor);
+		let element = document.querySelector(anchor);
 		if (element) element.scrollIntoView({ block: "center" });
 	}
 }
@@ -264,11 +264,11 @@ function sendData(data) {
 	if (!document.getElementsByClassName("form").length) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (!document.getElementById("sslcontactholder")) {
-			var form = document.createElement("div");
+			let form = document.createElement("div");
 			form.id = "sslcontactholder";
 			form.hidden = true;
 			document.body.appendChild(form);
-			var script = document.createElement("script");
+			let script = document.createElement("script");
 			script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
 			document.head.appendChild(script);
 		}
