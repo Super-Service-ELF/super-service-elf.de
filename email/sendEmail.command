@@ -31,3 +31,6 @@ with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 		email["Message-ID"] = make_msgid(domain="super-service-elf.de")
 		email["To"] = recipient
 		server.send_message(email)
+
+
+print("Done!")
