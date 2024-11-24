@@ -4,15 +4,11 @@
 from os.path import dirname
 from os import listdir
 from base64 import b64encode
-from locale import setlocale, LC_TIME
-from datetime import datetime
 from re import sub
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-
-setlocale(LC_TIME, "de_DE")
 
 directory = dirname(__file__)
 
@@ -41,8 +37,6 @@ html = html.replace("messagePreviewPlaceholder", sub(r"<h\d>.*?</h\d>", "", mess
 html = html.replace("messagePlaceholder", message)
 
 html = html.replace("linkPlaceholder", config["link"])
-
-html = html.replace("datePlaceholder", datetime.today().strftime("%-d. %B %Y"))
 
 
 email = MIMEMultipart(
