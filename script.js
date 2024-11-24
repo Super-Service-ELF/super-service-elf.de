@@ -280,7 +280,7 @@ function submitData(data) {
 	else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
-		if (!localStorageAvailable || !localStorage.getItem("isInternal")) document.getElementsByName("send")[0].click();
+		if (!(localStorageAvailable && localStorage.getItem("isInternal"))) document.getElementsByName("send")[0].click();
 	}
 }
 
