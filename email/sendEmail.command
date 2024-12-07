@@ -25,7 +25,7 @@ email["Date"] = formatdate(localtime=True)
 with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 	server.login(user="mail@super-service-elf.de", password=getpass())
 	for recipient in config["recipients"] + ["sent@super-service-elf.de"]:
-		print(f"Sending to {recipient}...")
+		print(f"Sending to {"Sent mailbox" if recipient == "sent@super-service-elf.de" else recipient}...")
 		del email["Message-ID"]
 		del email["To"]
 		email["Message-ID"] = make_msgid(domain="super-service-elf.de")
