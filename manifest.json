@@ -7,19 +7,19 @@
 	"display": "standalone",
 	"icons": [
 		{
-			"src": "/images/app-icon-maskable.svg",
+			"src": "/images/logo-maskable.svg",
 			"sizes": "any",
 			"type": "image/svg+xml",
 			"purpose": "maskable"
 		},
 		{
-			"src": "/images/app-icon.png",
+			"src": "/images/logo-app.png",
 			"sizes": "1024x1024",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "/images/app-icon-maskable.png",
+			"src": "/images/logo-maskable.png",
 			"sizes": "1024x1024",
 			"type": "image/png",
 			"purpose": "maskable"
