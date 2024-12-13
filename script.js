@@ -275,6 +275,7 @@ function sendData(data) {
 		submitData(data);
 	}
 }
+
 function submitData(data) {
 	if (!document.getElementById("sslcontact_form")) setTimeout(submitData, 0, data);
 	else {
