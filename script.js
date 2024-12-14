@@ -1,19 +1,17 @@
 onerror = function(event, source, lineno, colno, error) {
-	if (error) {
-		sendData(
-			"Fehler im Skript:\n" +
-			"User Agent: " + navigator.userAgent + "\n" +
-			"App: " + Boolean(navigator.standalone) + "\n" +
-			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-			"Audio-Test: " + audioSupported() + "\n" +
-			"WebGL-Test: " + webGLSupported() + "\n" +
-			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
-			"Skript: " + source + "\n" +
-			"Zeile: " + lineno + "\n" +
-			"Spalte: " + colno + "\n" +
-			"Fehlermeldung:\n" + error
-		);
-	}
+	sendData(
+		"Fehler im Skript:\n" +
+		"User Agent: " + navigator.userAgent + "\n" +
+		"App: " + Boolean(navigator.standalone) + "\n" +
+		"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
+		"Audio-Test: " + audioSupported() + "\n" +
+		"WebGL-Test: " + webGLSupported() + "\n" +
+		"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
+		"Skript: " + source + "\n" +
+		"Zeile: " + lineno + "\n" +
+		"Spalte: " + colno + "\n" +
+		"Fehlermeldung:\n" + error
+	);
 };
 
 let colorScheme;
