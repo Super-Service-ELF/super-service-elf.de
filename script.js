@@ -5,8 +5,8 @@ onerror = function(event, source, lineno, colno, error) {
 			"User Agent: " + navigator.userAgent + "\n" +
 			"App: " + Boolean(navigator.standalone) + "\n" +
 			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
-			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
+			"Audio-Test: " + audioSupported() + "\n" +
+			"WebGL-Test: " + webGLSupported() + "\n" +
 			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
 			"Skript: " + source + "\n" +
 			"Zeile: " + lineno + "\n" +
@@ -142,6 +142,14 @@ function updateAppButton() {
 	});
 }
 
+function audioSupported() {
+	return Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
+}
+
+function webGLSupported() {
+	return Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
+}
+
 function updateAppInstructions() {
 	let userAgent = navigator.userAgent;
 	id = (function() {
@@ -185,7 +193,7 @@ function updateAppInstructions() {
 		if (os == "macOS") {
 			if (browser == "Safari") {
 				if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
-			} else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) os = "Computer";
+			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) os = "Computer";
 			else {
 				let macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
 				if (macOSVersion && parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
