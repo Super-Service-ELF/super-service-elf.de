@@ -99,6 +99,7 @@ header {
 @media screen and (min-height: 768px) {
 	header {
 		position: sticky;
+		top: 0px;
 	}
 }
 #name {
