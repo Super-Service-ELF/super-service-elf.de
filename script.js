@@ -147,7 +147,7 @@ function audioSupported() {
 }
 
 function webGLSupported() {
-	return Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
+	return typeof OffscreenCanvas !== "undefined" && Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
 }
 
 function updateAppInstructions() {
