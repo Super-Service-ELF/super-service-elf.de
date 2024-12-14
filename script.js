@@ -42,20 +42,15 @@ addEventListener("DOMContentLoaded", function() {
 	scrollToAnchor();
 	document.body.classList.add("loaded");
 	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
-	if (localStorageAvailable && localStorage.getItem("isInternal")) document.getElementById("auftragButton").style.color = "red";
 	if (document.getElementById("video")) document.getElementsByTagName("video")[0].load();
 });
 
 function redirectFrom404() {
-	switch (location.pathname) {
-		case "/i": localStorage.setItem("isInternal", true); break;
-		case "/u": localStorage.removeItem("isInternal"); break;
-	}
 	const decodedPathname = decodeURIComponent(location.pathname);
 	const lowercasedPathname = decodedPathname.toLowerCase();
 	if (decodedPathname != lowercasedPathname) location.replace(lowercasedPathname);
 	const redirectPages = [
-		{ right: "", aliases: ["start", "super", "home", "i", "u"] },
+		{ right: "", aliases: ["start", "super", "home"] },
 		{ right: "über", aliases: ["ueber", "uber", "about"] },
 		{ right: "feedback", aliases: ["bewerten", "bewertung"] },
 		{ right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"] },
@@ -281,7 +276,7 @@ function submitData(data) {
 	else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
-		if (!(localStorageAvailable && localStorage.getItem("isInternal"))) document.getElementsByName("send")[0].click();
+		document.getElementsByName("send")[0].click();
 	}
 }
 
@@ -298,10 +293,4 @@ function toggleColorScheme() {
 	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
 	updateImages();
-}
-
-function toggleInternalMode() {
-	if (localStorage.getItem("isInternal")) localStorage.removeItem("isInternal");
-	else localStorage.setItem("isInternal", true);
-	location.reload();
 }
