@@ -96,7 +96,7 @@ header {
 	background-color: var(--blue);
 	padding: 16px;
 }
-@media screen and (min-height: 768px) {
+@media screen and (min-height: 640px) {
 	header {
 		position: sticky;
 		top: 0px;
