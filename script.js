@@ -1,12 +1,20 @@
+function runFunctionSafe(functionToRun) {
+	try {
+		return functionToRun();
+	} catch (error) {
+		return "Fehler: " + error;
+	}
+};
+
 onerror = function(event, source, lineno, colno, error) {
 	sendData(
 		"Fehler im Skript:\n" +
-		"User Agent: " + navigator.userAgent + "\n" +
-		"App: " + Boolean(navigator.standalone) + "\n" +
-		"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-		"Audio-Test: " + audioSupported() + "\n" +
-		"WebGL-Test: " + webGLSupported() + "\n" +
-		"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
+		"User Agent: " + runFunctionSafe(() => navigator.userAgent) + "\n" +
+		"App: " + runFunctionSafe(() => Boolean(navigator.standalone)) + "\n" +
+		"Touchscreen: " + runFunctionSafe(() => Boolean(navigator.maxTouchPoints)) + "\n" +
+		"Audio-Test: " + runFunctionSafe(audioSupported) + "\n" +
+		"WebGL-Test: " + runFunctionSafe(webGLSupported) + "\n" +
+		"Seite: " + runFunctionSafe(() => decodeURI(location.pathname + location.hash)) + "\n" +
 		"Skript: " + source + "\n" +
 		"Zeile: " + lineno + "\n" +
 		"Spalte: " + colno + "\n" +
