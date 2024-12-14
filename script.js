@@ -14,7 +14,7 @@ onerror = function(event, source, lineno, colno, error) {
 			"Fehlermeldung:\n" + error
 		);
 	}
-}
+};
 
 let colorScheme;
 let deviceColorScheme;
