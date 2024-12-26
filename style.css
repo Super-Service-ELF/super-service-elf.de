@@ -196,7 +196,6 @@ footer *:not(a) {
 		text-align: center;
 	}
 	#name, #logo, #auftragButton {
-		text-align: center;
 		float: unset;
 	}
 	#name {
