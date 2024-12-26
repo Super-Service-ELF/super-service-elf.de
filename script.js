@@ -6,7 +6,7 @@ function runFunctionSafe(functionToRun) {
 	}
 };
 
-onerror = function(event, source, lineno, colno, error) {
+onerror = (event, source, lineno, colno, error) => {
 	sendData(
 		"Fehler im Skript:\n" +
 		"User Agent: " + runFunctionSafe(() => navigator.userAgent) + "\n" +
@@ -31,7 +31,7 @@ let exactOS;
 let browser;
 let exactBrowser;
 
-addEventListener("DOMContentLoaded", function() {
+addEventListener("DOMContentLoaded", () => {
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
 	detectAndUpdateDeviceColorScheme();
@@ -51,7 +51,7 @@ addEventListener("DOMContentLoaded", function() {
 	dispatchEvent(new Event("resize"));
 });
 
-addEventListener("resize", function() {
+addEventListener("resize", () => {
 	updateScrollMargin();
 });
 
@@ -81,7 +81,7 @@ function detectAndUpdateDeviceColorScheme() {
 	if (localStorageAvailable && deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
 	updateColorScheme();
 	if (matchMedia && !eventListenerAdded) {
-		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 			detectAndUpdateDeviceColorScheme();
 			updateImages();
 		});
@@ -121,7 +121,7 @@ function loadContents() {
 		}
 		const url = "/contents/" + elementID + ".html";
 		const xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
+		xhr.onreadystatechange = () => {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
 		}
 		xhr.open("GET", url, false);
@@ -161,8 +161,8 @@ function webGLSupported() {
 
 function updateAppInstructions() {
 	const userAgent = navigator.userAgent;
-	id = (function() {
-		os = (function() {
+	id = (() => {
+		os = (() => {
 			const oses = {
 				"Android": "Android",
 				"CrOS": "ChromeOS",
@@ -184,7 +184,7 @@ function updateAppInstructions() {
 		exactOS = os;
 		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
 		if (os == "iPadOS") os = "iOS";
-		browser = (function() {
+		browser = (() => {
 			const browsers = {
 				"Edg": "Edge",
 				"Chr": "Chrome",
@@ -233,7 +233,7 @@ function updateForm() {
 		replaceFormLabels();
 		solveCaptcha();
 		if (!document.getElementsByClassName("newsletter")) {
-			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = (this.scrollHeight - 16) + "px"; });
+			document.getElementsByTagName("textarea")[0].addEventListener("input", () => { this.style.height = (this.scrollHeight - 16) + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
 		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
@@ -266,7 +266,7 @@ function solveCaptcha() {
 
 function updateScrollMargin() {
 	const headerHeight = document.querySelector("header").offsetHeight + "px";
-	document.querySelectorAll("*").forEach(function(element) {
+	document.querySelectorAll("*").forEach((element) => {
 		element.style.scrollMarginTop = headerHeight;
 	});
 }
