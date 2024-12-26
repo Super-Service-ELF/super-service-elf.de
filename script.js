@@ -66,7 +66,7 @@ function redirectFrom404() {
 		{ right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"] },
 		{ right: "newsletter#newsletter-archiv", aliases: ["newsletter-archiv", "newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"] },
 	];
-	for (let page in redirectPages) {
+	for (const page in redirectPages) {
 		if (redirectPages[page].aliases.includes(location.pathname.slice(1))) {
 			location.href = "/" + redirectPages[page].right;
 			break;
@@ -109,18 +109,18 @@ function updateColorScheme() {
 }
 
 function loadContents() {
-	let elements = document.body.querySelectorAll("header, div, footer");
-	for (let element of elements) {
-		let elementID = element.id;
+	const elements = document.body.querySelectorAll("header, div, footer");
+	for (const element of elements) {
+		const elementID = element.id;
 		if (elementID == "webmail") {
-			let message = new URLSearchParams(location.search).get("message");
+			const message = new URLSearchParams(location.search).get("message");
 			if (message) {
 				element.innerHTML = message;
 				continue;
 			}
 		}
-		let url = "/contents/" + elementID + ".html";
-		let xhr = new XMLHttpRequest();
+		const url = "/contents/" + elementID + ".html";
+		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
 		}
@@ -132,8 +132,8 @@ function loadContents() {
 function updateImages() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
 	if (document.getElementById("app-installation")) {
-		for (let className of ["add", "chrome", "dock", "edge", "share"]) {
-			for (let icon of document.getElementsByClassName(className)) {
+		for (const className of ["add", "chrome", "dock", "edge", "share"]) {
+			for (const icon of document.getElementsByClassName(className)) {
 				icon.src = "/images/app-instructions/" + className + "-" + colorScheme + ".png";
 			}
 		}
@@ -160,7 +160,7 @@ function webGLSupported() {
 }
 
 function updateAppInstructions() {
-	let userAgent = navigator.userAgent;
+	const userAgent = navigator.userAgent;
 	id = (function() {
 		os = (function() {
 			const oses = {
@@ -173,13 +173,13 @@ function updateAppInstructions() {
 				"Mac OS X": "macOS",
 				"Windows": "Windows",
 			};
-			for (let testOS in oses) {
+			for (const testOS in oses) {
 				if (userAgent.includes(testOS)) return oses[testOS];
 			}
 			return "Unknown";
 		})();
 		if (os == "Unknown") return "Unknown";
-		let claimedOS = os;
+		const claimedOS = os;
 		if (os == "macOS" && navigator.maxTouchPoints) os = "iPadOS";
 		exactOS = os;
 		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
@@ -192,7 +192,7 @@ function updateAppInstructions() {
 				"FxiOS": "Firefox",
 				"Safari": "Safari",
 			};
-			for (let testBrowser in browsers) {
+			for (const testBrowser in browsers) {
 				if (userAgent.includes(testBrowser)) return browsers[testBrowser];
 			}
 			return "Unknown";
@@ -204,14 +204,14 @@ function updateAppInstructions() {
 				if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
 			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) os = "Computer";
 			else {
-				let macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
+				const macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
 				if (macOSVersion && parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
 			}
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
 		if (os == "iOS") {
 			if (browser != "Safari" && claimedOS != "macOS") {
-				let iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
+				const iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 				if (iOSVersion && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			}
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
@@ -229,7 +229,7 @@ function updateForm() {
 	if (!document.getElementById("sslcontact_form")) setTimeout(updateForm);
 	else {
 		if (observer != undefined) observer.disconnect();
-		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
+		for (const element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
 		if (!document.getElementsByClassName("newsletter")) {
@@ -241,10 +241,10 @@ function updateForm() {
 }
 
 function replaceFormLabels() {
-	let name = document.querySelector("[for=\"firstname\"]");
-	let email = document.querySelector("[for=\"email\"]");
-	let subject = document.querySelector("[for=\"subject\"]");
-	let message = document.querySelector("[for=\"message\"]");
+	const name = document.querySelector("[for=\"firstname\"]");
+	const email = document.querySelector("[for=\"email\"]");
+	const subject = document.querySelector("[for=\"subject\"]");
+	const message = document.querySelector("[for=\"message\"]");
 	if (name) name.innerHTML = "Name";
 	if (email) email.innerHTML = "E-Mail-Adresse";
 	if (subject) {
@@ -265,7 +265,7 @@ function solveCaptcha() {
 }
 
 function updateScrollMargin() {
-	let headerHeight = document.querySelector("header").offsetHeight + "px";
+	const headerHeight = document.querySelector("header").offsetHeight + "px";
 	document.querySelectorAll("*").forEach(function(element) {
 		element.style.scrollMarginTop = headerHeight;
 	});
@@ -275,11 +275,11 @@ function sendData(data) {
 	if (!document.getElementsByClassName("form").length) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (!document.getElementById("sslcontactholder")) {
-			let form = document.createElement("div");
+			const form = document.createElement("div");
 			form.id = "sslcontactholder";
 			form.hidden = true;
 			document.body.appendChild(form);
-			let script = document.createElement("script");
+			const script = document.createElement("script");
 			script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
 			document.head.appendChild(script);
 		}
