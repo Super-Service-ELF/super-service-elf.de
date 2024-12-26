@@ -45,10 +45,14 @@ addEventListener("DOMContentLoaded", function() {
 	}
 	if (document.getElementsByClassName("form").length) updateForm();
 	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
-	scrollToAnchor();
 	document.body.classList.add("loaded");
 	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
 	if (document.getElementById("video")) document.getElementsByTagName("video")[0].load();
+	dispatchEvent(new Event("resize"));
+});
+
+addEventListener("resize", function() {
+	updateScrollMargin();
 });
 
 function redirectFrom404() {
@@ -261,12 +265,11 @@ function solveCaptcha() {
 	document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
 }
 
-function scrollToAnchor() {
-	let anchor = decodeURI(location.hash);
-	if (anchor) {
-		let element = document.querySelector(anchor);
-		if (element) element.scrollIntoView({ block: "center" });
-	}
+function updateScrollMargin() {
+	let headerHeight = document.querySelector("header").offsetHeight + "px";
+	document.querySelectorAll("*").forEach(function(element) {
+		element.style.scrollMarginTop = headerHeight;
+	});
 }
 
 function sendData(data) {
