@@ -141,14 +141,13 @@ function updateImages() {
 }
 
 function updateAppButton() {
-	addEventListener("beforeinstallprompt", (event) => {
-		event.preventDefault();
-		installationPrompt = event;
+	addEventListener("beforeinstallprompt", (beforeInstallPromptEvent) => {
+		beforeInstallPromptEvent.preventDefault();
 		document.getElementById("installationButton").hidden = false;
 		document.getElementById("installationNote").hidden = false;
-	});
-	document.getElementById("installationButton").addEventListener("click", async () => {
-		await installationPrompt.prompt();
+		document.getElementById("installationButton").addEventListener("click", async () => {
+			if (beforeInstallPromptEvent) await beforeInstallPromptEvent.prompt();
+		});
 	});
 }
 
