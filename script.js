@@ -6,7 +6,7 @@ function runFunctionSafe(functionToRun) {
 	}
 };
 
-onerror = (event, source, lineno, colno, error) => {
+onerror = (message, source, lineno, colno, error) => {
 	sendData(
 		"Fehler im Skript:\n" +
 		"User Agent: " + runFunctionSafe(() => navigator.userAgent) + "\n" +
@@ -15,10 +15,11 @@ onerror = (event, source, lineno, colno, error) => {
 		"Audio-Test: " + runFunctionSafe(audioSupported) + "\n" +
 		"WebGL-Test: " + runFunctionSafe(webGLSupported) + "\n" +
 		"Seite: " + runFunctionSafe(() => decodeURI(location.pathname + location.hash)) + "\n" +
+		"Fehlermeldung\n: " + message + "\n" +
 		"Skript: " + source + "\n" +
 		"Zeile: " + lineno + "\n" +
 		"Spalte: " + colno + "\n" +
-		"Fehlermeldung:\n" + error
+		"Fehler:\n" + error
 	);
 };
 
