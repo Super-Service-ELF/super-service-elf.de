@@ -1,20 +1,27 @@
-onerror = function(event, source, lineno, colno, error) {
-	if (error) {
-		sendData(
-			"Fehler im Skript:\n" +
-			"User Agent: " + navigator.userAgent + "\n" +
-			"App: " + Boolean(navigator.standalone) + "\n" +
-			"Touchscreen: " + Boolean(navigator.maxTouchPoints) + "\n" +
-			"Audio-Test: " + Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) + "\n" +
-			"WebGL-Test: " + Boolean(new OffscreenCanvas(0, 0).getContext("webgl")) + "\n" +
-			"Seite: " + decodeURI(location.pathname + location.hash) + "\n" +
-			"Skript: " + source + "\n" +
-			"Zeile: " + lineno + "\n" +
-			"Spalte: " + colno + "\n" +
-			"Fehlermeldung:\n" + error
-		);
+function runFunctionSafe(functionToRun) {
+	try {
+		return functionToRun();
+	} catch (error) {
+		return "Fehler: " + error;
 	}
-}
+};
+
+onerror = (message, source, lineno, colno, error) => {
+	sendData(
+		"Fehler im Skript:\n" +
+		"User Agent: " + runFunctionSafe(() => navigator.userAgent) + "\n" +
+		"App: " + runFunctionSafe(() => Boolean(navigator.standalone)) + "\n" +
+		"Touchscreen: " + runFunctionSafe(() => Boolean(navigator.maxTouchPoints)) + "\n" +
+		"Audio-Test: " + runFunctionSafe(audioSupported) + "\n" +
+		"WebGL-Test: " + runFunctionSafe(webGLSupported) + "\n" +
+		"Seite: " + runFunctionSafe(() => decodeURI(location.pathname + location.hash)) + "\n" +
+		"Fehlermeldung\n: " + message + "\n" +
+		"Skript: " + source + "\n" +
+		"Zeile: " + lineno + "\n" +
+		"Spalte: " + colno + "\n" +
+		"Fehler:\n" + error
+	);
+};
 
 let colorScheme;
 let deviceColorScheme;
@@ -25,7 +32,7 @@ let exactOS;
 let browser;
 let exactBrowser;
 
-addEventListener("DOMContentLoaded", function() {
+addEventListener("DOMContentLoaded", () => {
 	try { localStorageAvailable = Boolean(localStorage); }
 	catch { localStorageAvailable = false; }
 	detectAndUpdateDeviceColorScheme();
@@ -39,29 +46,28 @@ addEventListener("DOMContentLoaded", function() {
 	}
 	if (document.getElementsByClassName("form").length) updateForm();
 	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
-	scrollToAnchor();
 	document.body.classList.add("loaded");
 	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
-	if (localStorageAvailable && localStorage.getItem("isInternal")) document.getElementById("auftragButton").style.color = "red";
 	if (document.getElementById("video")) document.getElementsByTagName("video")[0].load();
+	dispatchEvent(new Event("resize"));
+});
+
+addEventListener("resize", () => {
+	updateScrollMargin();
 });
 
 function redirectFrom404() {
-	switch (location.pathname) {
-		case "/i": localStorage.setItem("isInternal", true); break;
-		case "/u": localStorage.removeItem("isInternal"); break;
-	}
 	const decodedPathname = decodeURIComponent(location.pathname);
 	const lowercasedPathname = decodedPathname.toLowerCase();
 	if (decodedPathname != lowercasedPathname) location.replace(lowercasedPathname);
 	const redirectPages = [
-		{ right: "", aliases: ["start", "super", "home", "i", "u"] },
+		{ right: "", aliases: ["start", "super", "home"] },
 		{ right: "über", aliases: ["ueber", "uber", "about"] },
 		{ right: "feedback", aliases: ["bewerten", "bewertung"] },
 		{ right: "newsletter", aliases: ["elf-newsletter", "elfnewsletter"] },
 		{ right: "newsletter#newsletter-archiv", aliases: ["newsletter-archiv", "newsletterarchiv", "elf-newsletter-archiv", "elfnewsletterarchiv", "archiv"] },
 	];
-	for (let page in redirectPages) {
+	for (const page in redirectPages) {
 		if (redirectPages[page].aliases.includes(location.pathname.slice(1))) {
 			location.href = "/" + redirectPages[page].right;
 			break;
@@ -76,7 +82,7 @@ function detectAndUpdateDeviceColorScheme() {
 	if (localStorageAvailable && deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
 	updateColorScheme();
 	if (matchMedia && !eventListenerAdded) {
-		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 			detectAndUpdateDeviceColorScheme();
 			updateImages();
 		});
@@ -104,19 +110,19 @@ function updateColorScheme() {
 }
 
 function loadContents() {
-	let elements = document.body.querySelectorAll("header, div, footer");
-	for (let element of elements) {
-		let elementID = element.id;
+	const elements = document.body.querySelectorAll("header, div, footer");
+	for (const element of elements) {
+		const elementID = element.id;
 		if (elementID == "webmail") {
-			let message = new URLSearchParams(location.search).get("message");
+			const message = new URLSearchParams(location.search).get("message");
 			if (message) {
 				element.innerHTML = message;
 				continue;
 			}
 		}
-		let url = "/contents/" + elementID + ".html";
-		let xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
+		const url = "/contents/" + elementID + ".html";
+		const xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = () => {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
 		}
 		xhr.open("GET", url, false);
@@ -127,8 +133,8 @@ function loadContents() {
 function updateImages() {
 	document.getElementById("logo").src = "/images/logo-" + colorScheme + ".svg";
 	if (document.getElementById("app-installation")) {
-		for (let className of ["add", "chrome", "dock", "edge", "share"]) {
-			for (let icon of document.getElementsByClassName(className)) {
+		for (const className of ["add", "chrome", "dock", "edge", "share"]) {
+			for (const icon of document.getElementsByClassName(className)) {
 				icon.src = "/images/app-instructions/" + className + "-" + colorScheme + ".png";
 			}
 		}
@@ -136,21 +142,28 @@ function updateImages() {
 }
 
 function updateAppButton() {
-	addEventListener("beforeinstallprompt", (event) => {
-		event.preventDefault();
-		installationPrompt = event;
+	addEventListener("beforeinstallprompt", (beforeInstallPromptEvent) => {
+		beforeInstallPromptEvent.preventDefault();
 		document.getElementById("installationButton").hidden = false;
 		document.getElementById("installationNote").hidden = false;
-	});
-	document.getElementById("installationButton").addEventListener("click", async () => {
-		await installationPrompt.prompt();
+		document.getElementById("installationButton").addEventListener("click", async () => {
+			if (beforeInstallPromptEvent) await beforeInstallPromptEvent.prompt();
+		});
 	});
 }
 
+function audioSupported() {
+	return Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
+}
+
+function webGLSupported() {
+	return typeof OffscreenCanvas !== "undefined" && Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
+}
+
 function updateAppInstructions() {
-	let userAgent = navigator.userAgent;
-	id = (function() {
-		os = (function() {
+	const userAgent = navigator.userAgent;
+	id = (() => {
+		os = (() => {
 			const oses = {
 				"Android": "Android",
 				"CrOS": "ChromeOS",
@@ -161,18 +174,18 @@ function updateAppInstructions() {
 				"Mac OS X": "macOS",
 				"Windows": "Windows",
 			};
-			for (let testOS in oses) {
+			for (const testOS in oses) {
 				if (userAgent.includes(testOS)) return oses[testOS];
 			}
 			return "Unknown";
 		})();
 		if (os == "Unknown") return "Unknown";
-		let claimedOS = os;
+		const claimedOS = os;
 		if (os == "macOS" && navigator.maxTouchPoints) os = "iPadOS";
 		exactOS = os;
 		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
 		if (os == "iPadOS") os = "iOS";
-		browser = (function() {
+		browser = (() => {
 			const browsers = {
 				"Edg": "Edge",
 				"Chr": "Chrome",
@@ -180,7 +193,7 @@ function updateAppInstructions() {
 				"FxiOS": "Firefox",
 				"Safari": "Safari",
 			};
-			for (let testBrowser in browsers) {
+			for (const testBrowser in browsers) {
 				if (userAgent.includes(testBrowser)) return browsers[testBrowser];
 			}
 			return "Unknown";
@@ -190,16 +203,16 @@ function updateAppInstructions() {
 		if (os == "macOS") {
 			if (browser == "Safari") {
 				if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
-			} else if (["Chrome", "Edge"].includes(browser) || !new OffscreenCanvas(0, 0).getContext("webgl")) os = "Computer";
+			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) os = "Computer";
 			else {
-				let macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
+				const macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
 				if (macOSVersion && parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
 			}
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
 		if (os == "iOS") {
 			if (browser != "Safari" && claimedOS != "macOS") {
-				let iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
+				const iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
 				if (iOSVersion && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
 			}
 			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
@@ -217,11 +230,11 @@ function updateForm() {
 	if (!document.getElementById("sslcontact_form")) setTimeout(updateForm);
 	else {
 		if (observer != undefined) observer.disconnect();
-		for (let element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
+		for (const element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
 		replaceFormLabels();
 		solveCaptcha();
 		if (!document.getElementsByClassName("newsletter")) {
-			document.getElementsByTagName("textarea")[0].addEventListener("input", function() { this.style.height = (this.scrollHeight - 16) + "px"; });
+			document.getElementsByTagName("textarea")[0].addEventListener("input", () => { this.style.height = (this.scrollHeight - 16) + "px"; });
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
 		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
@@ -229,10 +242,10 @@ function updateForm() {
 }
 
 function replaceFormLabels() {
-	let name = document.querySelector("[for=\"firstname\"]");
-	let email = document.querySelector("[for=\"email\"]");
-	let subject = document.querySelector("[for=\"subject\"]");
-	let message = document.querySelector("[for=\"message\"]");
+	const name = document.querySelector("[for=\"firstname\"]");
+	const email = document.querySelector("[for=\"email\"]");
+	const subject = document.querySelector("[for=\"subject\"]");
+	const message = document.querySelector("[for=\"message\"]");
 	if (name) name.innerHTML = "Name";
 	if (email) email.innerHTML = "E-Mail-Adresse";
 	if (subject) {
@@ -252,35 +265,35 @@ function solveCaptcha() {
 	document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
 }
 
-function scrollToAnchor() {
-	let anchor = decodeURI(location.hash);
-	if (anchor) {
-		let element = document.querySelector(anchor);
-		if (element) element.scrollIntoView({ block: "center" });
-	}
+function updateScrollMargin() {
+	const headerHeight = document.querySelector("header").offsetHeight + "px";
+	document.querySelectorAll("*").forEach((element) => {
+		element.style.scrollMarginTop = headerHeight;
+	});
 }
 
 function sendData(data) {
 	if (!document.getElementsByClassName("form").length) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (!document.getElementById("sslcontactholder")) {
-			let form = document.createElement("div");
+			const form = document.createElement("div");
 			form.id = "sslcontactholder";
 			form.hidden = true;
 			document.body.appendChild(form);
-			let script = document.createElement("script");
+			const script = document.createElement("script");
 			script.src = "https://extern.ssl-contact.de/ujs/11111hGDbjs0UFVa0IGqSi489htGYteCJbKIx/sslcontactscript.js";
 			document.head.appendChild(script);
 		}
 		submitData(data);
 	}
 }
+
 function submitData(data) {
 	if (!document.getElementById("sslcontact_form")) setTimeout(submitData, 0, data);
 	else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
-		if (!(localStorageAvailable && localStorage.getItem("isInternal"))) document.getElementsByName("send")[0].click();
+		document.getElementsByName("send")[0].click();
 	}
 }
 
@@ -297,10 +310,4 @@ function toggleColorScheme() {
 	else localStorage.setItem("colorScheme", colorScheme);
 	updateColorScheme();
 	updateImages();
-}
-
-function toggleInternalMode() {
-	if (localStorage.getItem("isInternal")) localStorage.removeItem("isInternal");
-	else localStorage.setItem("isInternal", true);
-	location.reload();
 }

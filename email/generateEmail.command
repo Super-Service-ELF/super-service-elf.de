@@ -27,12 +27,13 @@ with open(f"{directory}/template.html") as f:
 	html = f.read()
 
 for font in listdir(f"{directory}/../fonts/"):
-	if font.startswith("."): continue
+	if font.startswith("."):
+		continue
 	with open(f"{directory}/../fonts/{font}", "rb") as f:
 		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
 
 with open(f"{directory}/..{config["message"]}") as f:
-	message = f.read().replace("href=\"/", "href=\"https://super-service-elf.de/")
+	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
 html = html.replace("messagePreviewPlaceholder", sub(r"<h\d>.*?</h\d>", "", message))
 html = html.replace("messagePlaceholder", message)
 
@@ -43,8 +44,8 @@ email = MIMEMultipart(
 	_subtype="alternative",
 	_subparts=[
 		MIMEText(_text=plain, _subtype="plain"),
-		MIMEText(_text=html, _subtype="html", _charset="utf-8")
-	]
+		MIMEText(_text=html, _subtype="html", _charset="utf-8"),
+	],
 )
 
 email["From"] = "Super-Service-ELF <mail@super-service-elf.de>"
