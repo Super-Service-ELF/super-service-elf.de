@@ -275,7 +275,6 @@ function updateScrollMargin() {
 
 function sendData(data) {
 	alert(data);
-	return;
 	if (!document.getElementsByClassName("form").length) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (!document.getElementById("sslcontactholder")) {
