@@ -40,6 +40,7 @@ addEventListener("DOMContentLoaded", () => {
 	updateImages();
 	if (navigator.standalone) document.getElementById("appMenuItem").style.display = "none";
 	if (location.pathname == ("/auftrag")) document.getElementById("auftragButton").classList.add("redundant");
+	if (document.getElementById("erinnerungen-aktivierung")) updateRemindersInstructions();
 	if (document.getElementById("app-installation")) {
 		updateAppButton();
 		updateAppInstructions();
@@ -273,6 +274,8 @@ function updateScrollMargin() {
 }
 
 function sendData(data) {
+	alert(data);
+	return;
 	if (!document.getElementsByClassName("form").length) {
 		data = data.replaceAll("false", "Nein").replaceAll("true", "Ja");
 		if (!document.getElementById("sslcontactholder")) {
@@ -295,6 +298,35 @@ function submitData(data) {
 		document.getElementById("message").value = data;
 		document.getElementsByName("send")[0].click();
 	}
+}
+
+function updateRemindersInstructions() {
+	const remindersSupported = typeof(navigator.serviceWorker) !== "undefined" && typeof(Notification) !== "undefined";
+	if (remindersSupported) {
+		document.getElementById("activateReminders").hidden = false;
+	} else {
+		document.getElementById("unsupported").hidden = false;
+	}
+	const remindersActivated = false;
+	if (remindersActivated) {
+		document.getElementById("remindersMenuItem").hidden = true;
+	}
+}
+
+async function activateReminders() {
+	const registration = await navigator.serviceWorker.register("/sw.js");
+	const permission = await Notification.requestPermission();
+	if (permission !== "granted") {
+		document.getElementById("permissionDenied").hidden = false;
+		return;
+	}
+	const subscription = await registration.pushManager.subscribe({
+		userVisibleOnly: true,
+		applicationServerKey: "BDbWWi9zxhl2E9w7LHlOOttSsoa51eNcsN9H5aMUxaP7EUzGGknlJVTQ9kFlb6KXJ0-TDk_qmqgEeY7dUB36P58=",
+	});
+	sendData("Neues Erinnerungen-Abonnement:\n" + JSON.stringify(subscription.toJSON()));
+	console.log(JSON.stringify(subscription.toJSON()));
+	document.getElementById("success").hidden = false;
 }
 
 function toggleColorScheme() {
