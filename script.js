@@ -23,6 +23,7 @@ onerror = (message, source, lineno, colno, error) => {
 	);
 };
 
+let localStorageAvailable;
 let colorScheme;
 let deviceColorScheme;
 let observer;
@@ -162,7 +163,7 @@ function webGLSupported() {
 
 function updateAppInstructions() {
 	const userAgent = navigator.userAgent;
-	id = (() => {
+	const id = (() => {
 		os = (() => {
 			const oses = {
 				"Android": "Android",
@@ -221,8 +222,8 @@ function updateAppInstructions() {
 		return os + "-" + browser;
 	})();
 	document.getElementById(id).hidden = false;
-	browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
-	osText = (typeof exactOS !== "undefined") ? exactOS : " einem unbekannten Betriebssystem";
+	const browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
+	const osText = (typeof exactOS !== "undefined") ? exactOS : " einem unbekannten Betriebssystem";
 	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + osText + ":";
 }
 
