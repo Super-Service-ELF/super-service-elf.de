@@ -7,14 +7,7 @@ function runFunctionSafe(functionToRun) {
 };
 
 onerror = (message, source, lineno, colno, error) => {
-	sendData(
-		"Fehler im Skript:\n" +
-		"User Agent: " + runFunctionSafe(() => navigator.userAgent) + "\n" +
-		"App: " + runFunctionSafe(() => Boolean(navigator.standalone)) + "\n" +
-		"Touchscreen: " + runFunctionSafe(() => Boolean(navigator.maxTouchPoints)) + "\n" +
-		"Audio-Test: " + runFunctionSafe(audioSupported) + "\n" +
-		"WebGL-Test: " + runFunctionSafe(webGLSupported) + "\n" +
-		"Seite: " + runFunctionSafe(() => decodeURI(location.pathname + location.hash)) + "\n" +
+	sendError(
 		"Skript: " + source + "\n" +
 		"Zeile: " + lineno + "\n" +
 		"Spalte: " + colno + "\n" +
@@ -271,6 +264,19 @@ function updateScrollMargin() {
 	document.querySelectorAll("*").forEach((element) => {
 		element.style.scrollMarginTop = headerHeight;
 	});
+}
+
+function sendError(errorDescription) {
+	sendData(
+		"Fehler im Skript:\n" +
+		"User Agent: " + runFunctionSafe(() => navigator.userAgent) + "\n" +
+		"App: " + runFunctionSafe(() => Boolean(navigator.standalone)) + "\n" +
+		"Touchscreen: " + runFunctionSafe(() => Boolean(navigator.maxTouchPoints)) + "\n" +
+		"Audio-Test: " + runFunctionSafe(audioSupported) + "\n" +
+		"WebGL-Test: " + runFunctionSafe(webGLSupported) + "\n" +
+		"Seite: " + runFunctionSafe(() => decodeURI(location.pathname + location.hash)) + "\n" +
+		errorDescription
+	);
 }
 
 function sendData(data) {
