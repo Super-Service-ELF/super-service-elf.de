@@ -147,8 +147,8 @@ function updateAppButton() {
 		beforeInstallPromptEvent.preventDefault();
 		document.getElementById("installationButton").hidden = false;
 		document.getElementById("installationNote").hidden = false;
-		document.getElementById("installationButton").addEventListener("click", async () => {
-			if (beforeInstallPromptEvent) await beforeInstallPromptEvent.prompt();
+		document.getElementById("installationButton").addEventListener("click", () => {
+			beforeInstallPromptEvent.prompt();
 		}, { once: true });
 	});
 }
