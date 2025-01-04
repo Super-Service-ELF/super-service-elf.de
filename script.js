@@ -1,8 +1,8 @@
 function runFunctionSafe(functionToRun) {
 	try {
 		return functionToRun();
-	} catch (error) {
-		return "Fehler: " + error;
+	} catch (exception) {
+		return "Fehler: " + exception;
 	}
 };
 
