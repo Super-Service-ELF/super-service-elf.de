@@ -6,15 +6,15 @@ function runFunctionSafe(functionToRun) {
 	}
 };
 
-onerror = (message, source, lineno, colno, error) => {
+addEventListener("error", (errorEvent) => {
 	sendError(
-		"Skript: " + source + "\n" +
-		"Zeile: " + lineno + "\n" +
-		"Spalte: " + colno + "\n" +
-		"Fehler:\n" + error + "\n" +
-		"Fehlermeldung:\n" + message
+		"Skript: " + errorEvent.filename + "\n" +
+		"Zeile: " + errorEvent.lineno + "\n" +
+		"Spalte: " + errorEvent.colno + "\n" +
+		"Fehler:\n" + errorEvent.error + "\n" +
+		"Fehlermeldung:\n" + errorEvent.message
 	);
-};
+});
 
 let localStorageAvailable;
 let colorScheme;
