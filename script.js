@@ -20,7 +20,6 @@ let localStorageAvailable;
 let colorScheme;
 let deviceColorScheme;
 let observer;
-let eventListenerAdded = false;
 let os;
 let exactOS;
 let browser;
@@ -75,12 +74,11 @@ function detectAndUpdateDeviceColorScheme() {
 	else deviceColorScheme = "light";
 	if (localStorageAvailable && deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
 	updateColorScheme();
-	if (matchMedia && !eventListenerAdded) {
+	if (matchMedia) {
 		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 			detectAndUpdateDeviceColorScheme();
 			updateImages();
-		});
-		eventListenerAdded = true;
+		}, { once: true });
 	}
 }
 
