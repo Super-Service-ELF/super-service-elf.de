@@ -17,20 +17,20 @@ with open(f"{directory}/config.py") as f:
 
 
 with open(f"{directory}/email.eml") as f:
-	email = message_from_file(f)
+	message = message_from_file(f)
 
-email["Date"] = formatdate(localtime=True)
+message["Date"] = formatdate(localtime=True)
 
 
 with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 	server.login(user="mail@super-service-elf.de", password=getpass())
 	for recipient in config["recipients"] + ["sent@super-service-elf.de"]:
 		print(f"Sending to {"Sent mailbox" if recipient == "sent@super-service-elf.de" else recipient}...")
-		del email["Message-ID"]
-		del email["To"]
-		email["Message-ID"] = make_msgid(domain="super-service-elf.de")
-		email["To"] = recipient
-		server.send_message(email)
+		del message["Message-ID"]
+		del message["To"]
+		message["Message-ID"] = make_msgid(domain="super-service-elf.de")
+		message["To"] = recipient
+		server.send_message(message)
 
 
 print("Done!")
