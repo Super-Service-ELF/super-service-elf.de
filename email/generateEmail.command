@@ -1,16 +1,14 @@
 #!/usr/bin/env python3.13
 
 
-from os.path import dirname
-from os import listdir
+import os
 from base64 import b64encode
-from re import sub
-
+import re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-directory = dirname(__file__)
+directory = os.path.dirname(__file__)
 
 with open(f"{directory}/config.py") as f:
 	config = eval(f.read())
@@ -26,7 +24,7 @@ Ihr Super-Service-ELF-Team\
 with open(f"{directory}/template.html") as f:
 	html = f.read()
 
-for font in listdir(f"{directory}/../fonts/"):
+for font in os.listdir(f"{directory}/../fonts/"):
 	if font.startswith("."):
 		continue
 	with open(f"{directory}/../fonts/{font}", "rb") as f:
@@ -34,7 +32,7 @@ for font in listdir(f"{directory}/../fonts/"):
 
 with open(f"{directory}/..{config["message"]}") as f:
 	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
-html = html.replace("messagePreviewPlaceholder", sub(r"<h\d>.*?</h\d>", "", message))
+html = html.replace("messagePreviewPlaceholder", re.sub(r"<h\d>.*?</h\d>", "", message))
 html = html.replace("messagePlaceholder", message)
 
 html = html.replace("linkPlaceholder", config["link"])
