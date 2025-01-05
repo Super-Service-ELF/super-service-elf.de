@@ -194,7 +194,7 @@ function updateAppInstructions() {
 		if (browser == "Safari" && ["Android", "Computer"].includes(os)) browser = "Unknown";
 		if (os == "macOS") {
 			if (browser == "Safari") {
-				if (!document.createElement("audio").canPlayType("audio/wav; codecs=\"1\"")) { os = "Computer"; browser = "Unsupported"; }
+				if (!audioSupported()) { os = "Computer"; browser = "Unsupported"; }
 			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) os = "Computer";
 			else {
 				const macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
