@@ -198,7 +198,7 @@ function updateAppInstructions() {
 			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) os = "Computer";
 			else {
 				const macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
-				if (macOSVersion && parseFloat(macOSVersion[1]) != 10.15) os = "Computer";
+				if (macOSVersion && macOSVersion[1] != "10.15") os = "Computer";
 			}
 		}
 		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
