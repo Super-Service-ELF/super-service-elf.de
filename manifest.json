@@ -7,22 +7,22 @@
 	"display": "standalone",
 	"icons": [
 		{
-			"src": "/images/app-icon-maskable.svg",
+			"purpose": "maskable",
 			"sizes": "any",
-			"type": "image/svg+xml",
-			"purpose": "maskable"
+			"src": "/images/logo-maskable.svg",
+			"type": "image/svg+xml"
 		},
 		{
-			"src": "/images/app-icon.png",
+			"purpose": "any",
 			"sizes": "1024x1024",
-			"type": "image/png",
-			"purpose": "any"
+			"src": "/images/logo-app.png",
+			"type": "image/png"
 		},
 		{
-			"src": "/images/app-icon-maskable.png",
+			"purpose": "maskable",
 			"sizes": "1024x1024",
-			"type": "image/png",
-			"purpose": "maskable"
+			"src": "/images/logo-maskable.png",
+			"type": "image/png"
 		}
 	],
 	"name": "Super-Service-ELF",
@@ -31,15 +31,15 @@
 	"short_name": "ELF",
 	"shortcuts": [
 		{
+			"description": "Hier können Sie uns Aufträge aufgeben!",
 			"name": "Auftrag aufgeben",
 			"short_name": "Auftrag",
-			"description": "Hier können Sie uns Aufträge aufgeben!",
 			"url": "/auftrag"
 		},
 		{
+			"description": "Hier können Sie uns Feedback in Form von Lob, Kritik und Vorschlägen geben, damit wir uns für Sie verbessern können!",
 			"name": "Feedback geben",
 			"short_name": "Feedback",
-			"description": "Hier können Sie uns Feedback in Form von Lob, Kritik und Vorschlägen geben, damit wir uns für Sie verbessern können!",
 			"url": "/feedback"
 		}
 	],

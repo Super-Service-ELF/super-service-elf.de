@@ -96,9 +96,13 @@ header {
 	background-color: var(--blue);
 	padding: 16px;
 }
-@media screen and (min-height: 768px) {
+@media
+	(max-width: 960px) and (min-height: 960px),
+	(min-width: 961px) and (min-height: 640px)
+{
 	header {
 		position: sticky;
+		top: 0px;
 	}
 }
 #name {
@@ -116,7 +120,6 @@ header {
 	padding-block: 0px;
 }
 ul {
-	text-align: left;
 	clear: both;
 }
 li {
@@ -186,7 +189,7 @@ footer *:not(a) {
 
 
 
-@media screen and (max-width: 960px) {
+@media (max-width: 960px) {
 
 	.redundant {
 		display: none;
@@ -195,7 +198,6 @@ footer *:not(a) {
 		text-align: center;
 	}
 	#name, #logo, #auftragButton {
-		text-align: center;
 		float: unset;
 	}
 	#name {
