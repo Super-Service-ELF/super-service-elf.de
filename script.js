@@ -4,7 +4,7 @@ function runFunctionSafe(functionToRun) {
 	} catch (exception) {
 		return "Fehler: " + exception;
 	}
-};
+}
 
 addEventListener("error", (errorEvent) => {
 	sendError(
@@ -26,33 +26,34 @@ let browser;
 let exactBrowser;
 
 addEventListener("DOMContentLoaded", () => {
-	try { localStorageAvailable = Boolean(localStorage); }
-	catch { localStorageAvailable = false; }
+	try {
+		localStorageAvailable = Boolean(localStorage);
+	} catch {
+		localStorageAvailable = false;
+	}
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateImages();
-	if (navigator.standalone) document.getElementById("appMenuItem").style.display = "none";
-	if (location.pathname == ("/auftrag")) document.getElementById("auftragButton").classList.add("redundant");
+	if (navigator.standalone) { document.getElementById("appMenuItem").style.display = "none"; }
+	if (location.pathname == "/auftrag") { document.getElementById("auftragButton").classList.add("redundant"); }
 	if (document.getElementById("app-installation")) {
 		updateAppButton();
 		updateAppInstructions();
 	}
-	if (document.getElementsByClassName("form").length) updateForm();
+	if (document.getElementsByClassName("form").length) { updateForm(); }
 	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
 	document.body.classList.add("loaded");
-	if (document.getElementById("404")) sendData("Seite nicht gefunden: " + location.pathname);
-	if (document.getElementById("video")) document.getElementsByTagName("video")[0].load();
+	if (document.getElementById("404")) { sendData("Seite nicht gefunden: " + location.pathname); }
+	if (document.getElementById("video")) { document.getElementsByTagName("video")[0].load(); }
 	dispatchEvent(new Event("resize"));
 });
 
-addEventListener("resize", () => {
-	updateScrollMargin();
-});
+addEventListener("resize", updateScrollMargin);
 
 function redirectFrom404() {
 	const decodedPathname = decodeURIComponent(location.pathname);
 	const lowercasedPathname = decodedPathname.toLowerCase();
-	if (decodedPathname != lowercasedPathname) location.replace(lowercasedPathname);
+	if (decodedPathname != lowercasedPathname) { location.replace(lowercasedPathname); }
 	const redirectPages = [
 		{ right: "", aliases: ["start", "super", "home"] },
 		{ right: "über", aliases: ["ueber", "uber", "about"] },
@@ -66,13 +67,20 @@ function redirectFrom404() {
 			break;
 		}
 	}
-	if (location.pathname.slice(-1) == "/") location.pathname = location.pathname.replaceAll("/", "");
+	if (location.pathname.slice(-1) == "/") {
+		location.pathname = location.pathname.replaceAll("/", "");
+	}
 }
 
 function detectAndUpdateDeviceColorScheme() {
-	if (matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) deviceColorScheme = "dark";
-	else deviceColorScheme = "light";
-	if (localStorageAvailable && deviceColorScheme == localStorage.getItem("colorScheme")) localStorage.removeItem("colorScheme");
+	if (matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) {
+		deviceColorScheme = "dark";
+	} else {
+		deviceColorScheme = "light";
+	}
+	if (localStorageAvailable && deviceColorScheme == localStorage.getItem("colorScheme")) {
+		localStorage.removeItem("colorScheme");
+	}
 	updateColorScheme();
 	if (matchMedia) {
 		matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
@@ -83,8 +91,11 @@ function detectAndUpdateDeviceColorScheme() {
 }
 
 function updateColorScheme() {
-	if (!(localStorageAvailable && ["light", "dark"].includes(localStorage.getItem("colorScheme")))) colorScheme = deviceColorScheme;
-	else colorScheme = localStorage.getItem("colorScheme");
+	if (!(localStorageAvailable && ["light", "dark"].includes(localStorage.getItem("colorScheme")))) {
+		colorScheme = deviceColorScheme;
+	} else {
+		colorScheme = localStorage.getItem("colorScheme");
+	}
 	switch (colorScheme) {
 		case "light":
 			document.querySelector(":root").style.setProperty("--primaryColor", "#80CEFF");
@@ -115,8 +126,10 @@ function loadContents() {
 		const url = "/contents/" + elementID + ".html";
 		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = () => {
-			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) element.innerHTML = xhr.responseText;
-		}
+			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+				element.innerHTML = xhr.responseText;
+			}
+		};
 		xhr.open("GET", url, false);
 		xhr.send();
 	}
@@ -145,11 +158,11 @@ function updateAppButton() {
 }
 
 function audioSupported() {
-	return Boolean(document.createElement("audio").canPlayType("audio/wav; codecs=\"1\""))
+	return Boolean(document.createElement("audio").canPlayType('audio/wav; codecs="1"'));
 }
 
 function webGLSupported() {
-	return typeof OffscreenCanvas !== "undefined" && Boolean(new OffscreenCanvas(0, 0).getContext("webgl"))
+	return typeof OffscreenCanvas !== "undefined" && Boolean(new OffscreenCanvas(0, 0).getContext("webgl"));
 }
 
 function updateAppInstructions() {
@@ -167,16 +180,18 @@ function updateAppInstructions() {
 				"Windows": "Windows",
 			};
 			for (const testOS in oses) {
-				if (userAgent.includes(testOS)) return oses[testOS];
+				if (userAgent.includes(testOS)) {
+					return oses[testOS];
+				}
 			}
 			return "Unknown";
 		})();
-		if (os == "Unknown") return "Unknown";
+		if (os == "Unknown") { return "Unknown"; }
 		const claimedOS = os;
-		if (os == "macOS" && navigator.maxTouchPoints) os = "iPadOS";
+		if (os == "macOS" && navigator.maxTouchPoints) { os = "iPadOS"; }
 		exactOS = os;
-		if (["ChromeOS", "Linux", "Windows"].includes(os)) os = "Computer";
-		if (os == "iPadOS") os = "iOS";
+		if (["ChromeOS", "Linux", "Windows"].includes(os)) { os = "Computer"; }
+		if (os == "iPadOS") { os = "iOS"; }
 		browser = (() => {
 			const browsers = {
 				"Edg": "Edge",
@@ -186,47 +201,60 @@ function updateAppInstructions() {
 				"Safari": "Safari",
 			};
 			for (const testBrowser in browsers) {
-				if (userAgent.includes(testBrowser)) return browsers[testBrowser];
+				if (userAgent.includes(testBrowser)) {
+					return browsers[testBrowser];
+				}
 			}
 			return "Unknown";
 		})();
 		exactBrowser = browser;
-		if (browser == "Safari" && ["Android", "Computer"].includes(os)) browser = "Unknown";
+		if (browser == "Safari" && ["Android", "Computer"].includes(os)) { browser = "Unknown"; }
 		if (os == "macOS") {
 			if (browser == "Safari") {
-				if (!audioSupported()) { os = "Computer"; browser = "Unsupported"; }
-			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) os = "Computer";
-			else {
+				if (!audioSupported()) {
+					os = "Computer";
+					browser = "Unsupported";
+				}
+			} else if (["Chrome", "Edge"].includes(browser) || !webGLSupported()) {
+				os = "Computer";
+			} else {
 				const macOSVersion = userAgent.replace("_", ".").match(/Mac OS X (\d+\.\d+)/);
-				if (macOSVersion && macOSVersion[1] != "10.15") os = "Computer";
+				if (macOSVersion && macOSVersion[1] != "10.15") {
+					os = "Computer";
+				}
 			}
 		}
-		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) browser = "Unsupported";
+		if (browser == "Firefox" && ["Computer", "macOS"].includes(os)) { browser = "Unsupported"; }
 		if (os == "iOS") {
 			if (browser != "Safari" && claimedOS != "macOS") {
 				const iOSVersion = userAgent.replace("_", ".").match(/OS (\d+\.\d+)/);
-				if (iOSVersion && parseFloat(iOSVersion[1]) < 16.4) browser = "Unsupported";
+				if (iOSVersion && parseFloat(iOSVersion[1]) < 16.4) { browser = "Unsupported"; }
 			}
-			if (["Safari", "Chrome"].includes(browser)) browser = "Standard";
-			if (browser == "Edge") browser = "Unsupported";
+			if (["Safari", "Chrome"].includes(browser)) { browser = "Standard"; }
+			if (browser == "Edge") { browser = "Unsupported"; }
 		}
 		return os + "-" + browser;
 	})();
 	document.getElementById(id).hidden = false;
-	const browserText = (typeof exactBrowser !== "undefined" && exactBrowser != "Unknown") ? " in " + exactBrowser : "";
-	const osText = (typeof exactOS !== "undefined") ? exactOS : " einem unbekannten Betriebssystem";
+	const browserText = typeof exactBrowser !== "undefined" && exactBrowser != "Unknown" ? " in " + exactBrowser : "";
+	const osText = typeof exactOS !== "undefined" ? exactOS : " einem unbekannten Betriebssystem";
 	document.getElementById("instructions").innerHTML = "Installation unserer App" + browserText + " unter " + osText + ":";
 }
 
 function updateForm() {
-	if (!document.getElementById("sslcontact_form")) setTimeout(updateForm);
-	else {
-		if (observer != undefined) observer.disconnect();
-		for (const element of document.querySelectorAll(".sslcontact *")) element.removeAttribute("style");
+	if (!document.getElementById("sslcontact_form")) {
+		setTimeout(updateForm);
+	} else {
+		if (observer != undefined) { observer.disconnect(); }
+		for (const element of document.querySelectorAll(".sslcontact *")) {
+			element.removeAttribute("style");
+		}
 		replaceFormLabels();
 		solveCaptcha();
 		if (!document.getElementsByClassName("newsletter")) {
-			document.getElementsByTagName("textarea")[0].addEventListener("input", () => { this.style.height = (this.scrollHeight - 16) + "px"; });
+			document.getElementsByTagName("textarea")[0].addEventListener("input", () => {
+				this.style.height = this.scrollHeight - 16 + "px";
+			});
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
 		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
@@ -234,27 +262,27 @@ function updateForm() {
 }
 
 function replaceFormLabels() {
-	const name = document.querySelector("[for=\"firstname\"]");
-	const email = document.querySelector("[for=\"email\"]");
-	const subject = document.querySelector("[for=\"subject\"]");
-	const message = document.querySelector("[for=\"message\"]");
-	if (name) name.innerHTML = "Name";
-	if (email) email.innerHTML = "E-Mail-Adresse";
+	const name = document.querySelector('[for="firstname"]');
+	const email = document.querySelector('[for="email"]');
+	const subject = document.querySelector('[for="subject"]');
+	const message = document.querySelector('[for="message"]');
+	if (name) { name.innerHTML = "Name"; }
+	if (email) { email.innerHTML = "E-Mail-Adresse"; }
 	if (subject) {
-		if (subject.closest(".auftrag")) subject.innerHTML = "Auftragsbetreff";
-		if (subject.closest(".feedback")) subject.innerHTML = "Feedbacksbetreff";
+		if (subject.closest(".auftrag")) { subject.innerHTML = "Auftragsbetreff"; }
+		if (subject.closest(".feedback")) { subject.innerHTML = "Feedbacksbetreff"; }
 	}
-	if (message.closest(".auftrag")) message.innerHTML = "Auftrag";
-	if (message.closest(".feedback")) message.innerHTML = "Feedback";
+	if (message.closest(".auftrag")) { message.innerHTML = "Auftrag"; }
+	if (message.closest(".feedback")) { message.innerHTML = "Feedback"; }
 	if (message.closest(".newsletter")) {
 		message.innerHTML = "E-Mail-Adresse";
 		document.getElementById("message").style.minHeight = "32px";
 		document.getElementById("message").style.fontSize = "24px";
-	};
+	}
 }
 
 function solveCaptcha() {
-	document.getElementById("captcha").value = eval(document.querySelectorAll("[for=\"captcha\"]")[1].innerHTML.replace("=", ""));
+	document.getElementById("captcha").value = eval(document.querySelectorAll('[for="captcha"]')[1].innerHTML.replace("=", ""));
 }
 
 function updateScrollMargin() {
@@ -294,8 +322,9 @@ function sendData(data) {
 }
 
 function submitData(data) {
-	if (!document.getElementById("sslcontact_form")) setTimeout(submitData, 0, data);
-	else {
+	if (!document.getElementById("sslcontact_form")) {
+		setTimeout(submitData, 0, data);
+	} else {
 		solveCaptcha();
 		document.getElementById("message").value = data;
 		document.getElementsByName("send")[0].click();
@@ -311,8 +340,11 @@ function toggleColorScheme() {
 			colorScheme = "light";
 			break;
 	}
-	if (colorScheme == deviceColorScheme) localStorage.removeItem("colorScheme");
-	else localStorage.setItem("colorScheme", colorScheme);
+	if (colorScheme == deviceColorScheme) {
+		localStorage.removeItem("colorScheme");
+	} else {
+		localStorage.setItem("colorScheme", colorScheme);
+	}
 	updateColorScheme();
 	updateImages();
 }
