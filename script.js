@@ -296,7 +296,9 @@ function solveCaptcha() {
 }
 
 function updateScrollMargin() {
-	const headerHeight = document.querySelector("header").offsetHeight + "px";
+	const header = document.querySelector("header");
+	if (getComputedStyle(header).position != "sticky") { return; }
+	const headerHeight = header.offsetHeight + "px";
 	document.querySelectorAll("*").forEach((element) => {
 		element.style.scrollMarginTop = headerHeight;
 	});
