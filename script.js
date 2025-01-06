@@ -218,6 +218,7 @@ function updateAppInstructions() {
 			return "Unknown";
 		})();
 		exactBrowser = browser;
+		if (navigator.standalone) { return "already-installed" }
 		if (browser == "Safari" && ["Android", "Computer"].includes(os)) { browser = "Unknown"; }
 		if (os == "macOS") {
 			if (browser == "Safari") {
