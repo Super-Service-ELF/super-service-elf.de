@@ -176,8 +176,8 @@ function webGLSupported() {
 }
 
 function updateAppInstructions() {
-	const userAgent = navigator.userAgent;
 	const id = (() => {
+		const userAgent = navigator.userAgent;
 		os = (() => {
 			const oses = {
 				"Android": "Android",
