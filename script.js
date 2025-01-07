@@ -298,10 +298,8 @@ function solveCaptcha() {
 
 function updateScrollMargin() {
 	const header = document.querySelector("header");
-	if (getComputedStyle(header).position != "sticky") { return; }
-	const headerHeight = header.offsetHeight + "px";
 	document.querySelectorAll("*").forEach((element) => {
-		element.style.scrollMarginTop = headerHeight;
+		element.style.scrollMarginTop = getComputedStyle(header).position == "sticky" ? header.offsetHeight + "px" : "";
 	});
 }
 
