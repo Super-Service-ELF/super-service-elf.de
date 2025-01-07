@@ -9,8 +9,8 @@ from getpass import getpass
 
 directory = os.path.dirname(__file__)
 
-with open(f"{directory}/config.py") as f:
-	config = eval(f.read())
+with open(f"{directory}/recipients.py") as f:
+	recipients = eval(f.read())
 
 
 with open(f"{directory}/email.eml") as f:
@@ -24,7 +24,7 @@ with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 		user="mail@super-service-elf.de",
 		password=getpass("SMTP server password for mail@super-service-elf.de: "),
 	)
-	for recipient in config["recipients"] + ["sent@super-service-elf.de"]:
+	for recipient in recipients + ["sent@super-service-elf.de"]:
 		print(f"Sending to {recipient if recipient != "sent@super-service-elf.de" else "Sent mailbox"}...")
 		del message["Message-ID"]
 		del message["To"]
