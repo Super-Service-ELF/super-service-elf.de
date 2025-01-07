@@ -2,8 +2,8 @@
 
 
 import os
-import json
 from pywebpush import webpush
+import json
 
 
 directory = os.path.dirname(__file__)
