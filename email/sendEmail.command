@@ -20,7 +20,7 @@ message["Date"] = email.utils.formatdate(localtime=True)
 
 
 with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
-	server.login(user="mail@super-service-elf.de", password=getpass())
+	server.login(user="mail@super-service-elf.de", password=getpass("SMTP server password for mail@super-service-elf.de: "))
 	for recipient in config["recipients"] + ["sent@super-service-elf.de"]:
 		print(f"Sending to {"Sent mailbox" if recipient == "sent@super-service-elf.de" else recipient}...")
 		del message["Message-ID"]
