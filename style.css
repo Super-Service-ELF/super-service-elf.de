@@ -21,6 +21,7 @@
 	padding: 0px;
 	margin: 0px auto;
 	color: var(--primaryText);
+	scroll-behavior: smooth;
 }
 
 
@@ -176,7 +177,7 @@ input[type="submit"] {
 .formular > div:first-child, .formular > div:last-child {
 	display: none;
 }
-.loader, .formular > div:nth-child(2) {
+.loader, .formular > div:nth-child(2), #permissionDenied, #failure {
 	text-align: center;
 	font-size: 32px;
 	font-family: "GothamRounded-Bold";

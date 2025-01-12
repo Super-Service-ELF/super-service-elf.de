@@ -16,6 +16,13 @@ addEventListener("error", (errorEvent) => {
 	);
 });
 
+addEventListener("unhandledrejection", (promiseRejectionEvent) => {
+	sendError(
+		"Fehler: Unhandled Promise Rejection\n" +
+		"Grund: " + promiseRejectionEvent.reason
+	);
+});
+
 let localStorageAvailable;
 let colorScheme;
 let deviceColorScheme;
@@ -34,8 +41,11 @@ addEventListener("DOMContentLoaded", () => {
 	detectAndUpdateDeviceColorScheme();
 	loadContents();
 	updateImages();
-	if (navigator.standalone) { document.getElementById("appMenuItem").style.display = "none"; }
+	if (navigator.standalone) {
+		document.getElementById("appMenuItem").style.display = "none";
+	}
 	if (location.pathname == "/auftrag") { document.getElementById("auftragButton").classList.add("redundant"); }
+	if (document.getElementById("erinnerungen-aktivierung")) { updateRemindersInstructions(); }
 	if (document.getElementById("app-installation")) {
 		updateAppButton();
 		updateAppInstructions();
@@ -166,8 +176,8 @@ function webGLSupported() {
 }
 
 function updateAppInstructions() {
-	const userAgent = navigator.userAgent;
 	const id = (() => {
+		const userAgent = navigator.userAgent;
 		os = (() => {
 			const oses = {
 				"Android": "Android",
@@ -208,6 +218,7 @@ function updateAppInstructions() {
 			return "Unknown";
 		})();
 		exactBrowser = browser;
+		if (navigator.standalone) { return "already-installed" }
 		if (browser == "Safari" && ["Android", "Computer"].includes(os)) { browser = "Unknown"; }
 		if (os == "macOS") {
 			if (browser == "Safari") {
@@ -286,9 +297,9 @@ function solveCaptcha() {
 }
 
 function updateScrollMargin() {
-	const headerHeight = document.querySelector("header").offsetHeight + "px";
+	const header = document.querySelector("header");
 	document.querySelectorAll("*").forEach((element) => {
-		element.style.scrollMarginTop = headerHeight;
+		element.style.scrollMarginTop = getComputedStyle(header).position == "sticky" ? header.offsetHeight + "px" : "";
 	});
 }
 
@@ -329,6 +340,55 @@ function submitData(data) {
 		document.getElementById("message").value = data;
 		document.getElementsByName("send")[0].click();
 	}
+}
+
+function updateRemindersInstructions() {
+	const remindersSupported = typeof navigator.serviceWorker !== "undefined" && typeof Notification !== "undefined";
+	if (remindersSupported) {
+		if (!navigator.standalone) {
+			document.getElementById("appReminders").hidden = false;
+		}
+		document.getElementById("remindersInstructions").hidden = false;
+		document.getElementById("activateReminders").hidden = false;
+		document.getElementById("deactivateReminders").hidden = false;	
+	} else {
+		if (navigator.standalone) {
+			document.getElementById("unsupportedApp").hidden = false;
+		} else {
+			document.getElementById("unsupported").hidden = false;
+		}
+	}
+}
+
+function activateReminders() {
+	document.getElementById("failure").hidden = true;
+	(async () => {
+		const registration = await navigator.serviceWorker.register("/sw.js");
+		const permission = await Notification.requestPermission();
+		if (permission !== "granted") {
+			document.getElementById("permissionDenied").hidden = false;
+			return;
+		} else {
+			document.getElementById("permissionDenied").hidden = true;
+		}
+		const subscription = await registration.pushManager.subscribe({
+			userVisibleOnly: true,
+			applicationServerKey: "BOOXRPBndtdIJ3ophhkE4KT2lDzwmSQsCLfi5IRRlN4TB6olhN-Tb2rBZv4ZyTwOK9AVxp7Qs6SnByWqx7c_CAc",
+		});
+		const jsonSubscription = subscription.toJSON();
+		if (!(
+			jsonSubscription.endpoint &&
+			jsonSubscription.keys.auth &&
+			jsonSubscription.keys.p256dh
+		)) {
+			throw new Error("Invalid subscription properties:\n" + JSON.stringify(jsonSubscription));
+		}
+		sendData("Neues Erinnerungen-Abonnement:\n" + JSON.stringify(jsonSubscription));
+		registration.active.postMessage("Activation successful");
+	})().catch((reason) => {
+		document.getElementById("failure").hidden = false;
+		return Promise.reject(reason);
+	});
 }
 
 function toggleColorScheme() {

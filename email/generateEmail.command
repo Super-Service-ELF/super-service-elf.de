@@ -10,9 +10,12 @@ from email.mime.text import MIMEText
 
 directory = os.path.dirname(__file__)
 
-with open(f"{directory}/config.py") as f:
-	config = eval(f.read())
+email_id = input("Email ID to generate: ")
 
+with open(f"{directory}/config.py") as f:
+	config = eval(f.read())[email_id]
+
+print(f'Generating email with subject "{config["subject"]}" ...')
 
 plain = f"""\
 Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
@@ -30,7 +33,7 @@ for font in os.listdir(f"{directory}/../fonts/"):
 	with open(f"{directory}/../fonts/{font}", "rb") as f:
 		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
 
-with open(f"{directory}/..{config["message"]}") as f:
+with open(f"{directory}/../contents/newsletter/{email_id}.html") as f:
 	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
 html = html.replace("messagePreviewPlaceholder", re.sub(r"<h\d>.*?</h\d>", "", message))
 html = html.replace("messagePlaceholder", message)

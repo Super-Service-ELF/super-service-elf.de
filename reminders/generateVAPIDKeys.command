@@ -1,0 +1,30 @@
+#!/usr/bin/env python3.13
+
+
+from py_vapid import Vapid
+from py_vapid.utils import b64urlencode
+from cryptography.hazmat.primitives import serialization
+
+
+vapid_keys = Vapid()
+vapid_keys.generate_keys()
+
+print(
+	"Public Key:",
+	b64urlencode(
+		vapid_keys.public_key.public_bytes(
+			encoding=serialization.Encoding.X962,
+			format=serialization.PublicFormat.UncompressedPoint,
+		)
+	),
+)
+print(
+	"Private Key:",
+	b64urlencode(
+		vapid_keys.private_key.private_bytes(
+			encoding=serialization.Encoding.DER,
+			format=serialization.PrivateFormat.PKCS8,
+			encryption_algorithm=serialization.NoEncryption(),
+		)
+	),
+)
