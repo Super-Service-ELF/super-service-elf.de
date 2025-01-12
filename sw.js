@@ -28,7 +28,6 @@ self.addEventListener("notificationclick", (notificationEvent) => {
 	const notification = notificationEvent.notification;
 	if (!notification.data.url) { return; }
 	notificationEvent.preventDefault();
-	notification.close();
 	notificationEvent.waitUntil(
 		clients.openWindow(notification.data.url)
 	);
