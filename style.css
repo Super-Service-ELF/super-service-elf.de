@@ -89,6 +89,7 @@ span:not(.link) {
 	border-radius: 64px;
 	cursor: pointer;
 	padding: 12px;
+	margin-block: 16px;
 	width: fit-content;
 }
 
@@ -118,6 +119,7 @@ header {
 #auftragButton {
 	float: right;
 	margin-top: 64px;
+	margin-bottom: 0px;
 	padding-block: 0px;
 }
 ul {
