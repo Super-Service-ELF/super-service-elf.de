@@ -19,4 +19,13 @@
 			},
 		},
 	},
+	"1": {
+		"title": "Neuer ELF-Newsletter: Hintergründe unserer Erinnerungen",
+		"options": {
+			"body": "Erfahren Sie mehr darüber, wie unsere Erinnerungen entstanden sind!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/23-elf-newsletter-hintergründe-unserer-erinnerungen",
+			},
+		},
+	},
 }
