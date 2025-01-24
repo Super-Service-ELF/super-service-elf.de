@@ -28,4 +28,13 @@
 			},
 		},
 	},
+	"2": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Schon den nächsten Urlaub geplant? Noch nicht? Dann lassen Sie uns das doch für Sie übernehmen!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }
