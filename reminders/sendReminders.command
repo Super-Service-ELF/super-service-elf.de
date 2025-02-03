@@ -12,7 +12,7 @@ directory = os.path.dirname(__file__)
 with open(f"{directory}/config.py") as f:
 	config = eval(f.read())[input("Reminder ID to send: ")]
 
-print(f'Sending reminder with title "{config["title"]}"...')
+print(f'Sending reminder with title "{config["title"]}" and body "{config["options"]["body"]}"...')
 
 config["options"].setdefault("icon", "https://super-service-elf.de/images/logo.png")
 config["options"].setdefault("requireInteraction", True)
