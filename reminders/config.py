@@ -46,4 +46,13 @@
 			},
 		},
 	},
+	"4": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Lust auf einen spontanen Wochenendurlaub, aber keine Zeit zum Planen? Kein Problem – wir haben Zeit!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }
