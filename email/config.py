@@ -19,4 +19,8 @@
 		"link": "https://super-service-elf.de/newsletter-archiv/23-elf-newsletter-hintergründe-unserer-erinnerungen",
 		"subject": "23. ELF-Newsletter Hintergründe unserer Erinnerungen",
 	},
+	"24": {
+		"link": "https://super-service-elf.de/newsletter-archiv/24-elf-newsletter-entscheiden-sie-wer-entscheidet",
+		"subject": "24. ELF-Newsletter Entscheiden Sie, wer entscheidet!",
+	},
 }

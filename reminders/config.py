@@ -64,4 +64,13 @@
 			},
 		},
 	},
+	"6": {
+		"title": "Neuer ELF-Newsletter: Entscheiden Sie, wer entscheidet!",
+		"options": {
+			"body": "Morgen ist Bundestagswahl, gehen Sie wählen, sonst entscheiden andere für Sie!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/24-elf-newsletter-entscheiden-sie-wer-entscheidet",
+			},
+		},
+	},
 }
