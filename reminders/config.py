@@ -73,4 +73,13 @@
 			},
 		},
 	},
+	"7": {
+		"title": "Heute wählen gehen!",
+		"options": {
+			"body": "Gehen Sie heute wählen und entscheiden Sie, wen Sie für sich entscheiden lassen, sonst entscheiden andere für Sie!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/24-elf-newsletter-entscheiden-sie-wer-entscheidet",
+			},
+		},
+	},
 }
