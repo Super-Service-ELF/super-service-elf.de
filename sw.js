@@ -1,4 +1,5 @@
 self.addEventListener("message", (messageEvent) => {
+	if (messageEvent.origin != origin) { return; }
 	switch (messageEvent.data) {
 		case "Activation successful":
 			messageEvent.waitUntil(

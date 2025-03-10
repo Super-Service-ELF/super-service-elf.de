@@ -15,7 +15,7 @@ email_id = input("Email ID to generate: ")
 with open(f"{directory}/config.py") as f:
 	config = eval(f.read())[email_id]
 
-print(f'Generating email with subject "{config["subject"]}" ...')
+print(f'Generating email with subject "{config["subject"]}"...')
 
 plain = f"""\
 Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie unseren ELF-Newsletter im Browser:
