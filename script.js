@@ -42,7 +42,9 @@ addEventListener("DOMContentLoaded", () => {
 	loadContents();
 	updateImages();
 	if (navigator.standalone) {
-		document.getElementById("appMenuItem").style.display = "none";
+		for (const element of document.getElementsByClassName("hideInApp")) {
+			element.style.display = "none";
+		}
 	}
 	if (location.pathname == "/auftrag") { document.getElementById("auftragButton").classList.add("redundant"); }
 	if (document.getElementById("erinnerungen-aktivierung")) { updateRemindersInstructions(); }
