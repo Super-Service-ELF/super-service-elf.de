@@ -82,4 +82,13 @@
 			},
 		},
 	},
+	"8": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Die nächste Reise schon geplant? Wir checken alle Angebote auf Preis, Qualität und Komfort und beraten Sie gerne!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }
