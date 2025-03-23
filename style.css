@@ -50,6 +50,9 @@ h2, h3, p, label, input, textarea, video {
 h2, h3, label, #video, #colorSchemeToggle {
 	text-align: center;
 }
+img {
+	display: block;
+}
 h2, h3, p {
 	padding-inline: 16px;
 	padding-block: 16px;
