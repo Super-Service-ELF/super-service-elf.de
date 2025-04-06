@@ -275,10 +275,10 @@ function updateForm() {
 }
 
 function replaceFormLabels() {
-	const name = document.querySelector('[for="firstname"]');
-	const email = document.querySelector('[for="email"]');
-	const subject = document.querySelector('[for="subject"]');
-	const message = document.querySelector('[for="message"]');
+	const name = document.querySelector("[for=firstname]");
+	const email = document.querySelector("[for=email]");
+	const subject = document.querySelector("[for=subject]");
+	const message = document.querySelector("[for=message]");
 	if (name) { name.innerHTML = "Name"; }
 	if (email) { email.innerHTML = "E-Mail-Adresse"; }
 	if (subject) {
