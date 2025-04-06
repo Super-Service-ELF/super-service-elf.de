@@ -76,6 +76,9 @@ p a:not(.button), a p, h3 a, .link {
 	color: var(--secondaryColor);
 	text-decoration: underline;
 }
+.noPadding {
+	padding: 0px;
+}
 .icon {
 	height: 16px;
 }
@@ -138,7 +141,7 @@ video {
 	height: min-content;
 }
 
-.sslcontact * {
+.sslcontact *:not(a) {
 	display: block;
 }
 label {

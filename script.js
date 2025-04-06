@@ -279,8 +279,12 @@ function replaceFormLabels() {
 	const email = document.querySelector("[for=email]");
 	const subject = document.querySelector("[for=subject]");
 	const message = document.querySelector("[for=message]");
+	const submit = document.querySelector("[type=submit]");
 	if (name) { name.innerHTML = "Name"; }
-	if (email) { email.innerHTML = "E-Mail-Adresse"; }
+	if (email) {
+		if (email.closest(".auftrag")) { email.innerHTML = "E-Mail-Adresse<p class=noPadding>(zur Auftragsbeantwortung)</p>"; }
+		if (email.closest(".feedback")) { email.innerHTML = "E-Mail-Adresse<p class=noPadding>(für Rückfragen)</p>"; }
+	}
 	if (subject) {
 		if (subject.closest(".auftrag")) { subject.innerHTML = "Auftragsbetreff"; }
 		if (subject.closest(".feedback")) { subject.innerHTML = "Feedbacksbetreff"; }
@@ -292,6 +296,7 @@ function replaceFormLabels() {
 		document.getElementById("message").style.minHeight = "32px";
 		document.getElementById("message").style.fontSize = "24px";
 	}
+	submit.parentElement.insertAdjacentHTML("afterbegin", '<label><p class=noPadding>Wenn Sie auf „Absenden“ klicken, erklären Sie sich unwiderruflich mit unseren <a href="/nutzungsbedingungen">Nutzungsbedingungen</a> und unserer <a href="/datenschutz">Datenschutzerklärung</a> einverstanden.</p></label>');
 }
 
 function solveCaptcha() {
