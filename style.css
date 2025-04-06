@@ -137,7 +137,7 @@ li {
 }
 
 div:not(#sslcontactholder *) {
-	padding-block: 32px;
+	padding-block: 16px;
 }
 
 video {
@@ -146,9 +146,6 @@ video {
 
 .sslcontact *:not(a) {
 	display: block;
-}
-label {
-	padding-top: 16px;
 }
 input, textarea {
 	height: 32px;
@@ -159,6 +156,7 @@ input, textarea {
 	color: var(--secondaryText);
 	border: None;
 	resize: none;
+	margin-bottom: 16px;
 }
 textarea:not(.newsletter *) {
 	min-height: 128px;
