@@ -100,4 +100,13 @@
 			},
 		},
 	},
+	"10": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Bestes Wetter für frühlingshafte Ausflüge! Aber Sie wissen nicht wohin? Wir kennen uns aus und geben Ihnen gerne Tipps!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }
