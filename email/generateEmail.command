@@ -27,11 +27,12 @@ Ihr Super-Service-ELF-Team\
 with open("template.html") as f:
 	html = f.read()
 
-for font in os.listdir("../fonts/"):
-	if font.startswith("."):
-		continue
-	with open(f"../fonts/{font}", "rb") as f:
-		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
+for attachment in [
+	"fonts/GothamRounded.woff2",
+	"fonts/GothamRounded-Bold.woff2",
+]:
+	with open(f"../{attachment}", "rb") as f:
+		html = html.replace(attachment, b64encode(f.read()).decode())
 
 with open(f"../contents/newsletter/{email_id}.html") as f:
 	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
