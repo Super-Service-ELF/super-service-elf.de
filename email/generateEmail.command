@@ -27,6 +27,13 @@ Ihr Super-Service-ELF-Team\
 with open("template.html") as f:
 	html = f.read()
 
+with open(f"../contents/newsletter/{email_id}.html") as f:
+	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
+html = html.replace("messagePreviewPlaceholder", re.sub(r"<h\d>.*?</h\d>", "", message))
+html = html.replace("messagePlaceholder", message)
+
+html = html.replace("linkPlaceholder", config["link"])
+
 for attachment in [
 	"fonts/GothamRounded.woff2",
 	"fonts/GothamRounded-Bold.woff2",
@@ -35,13 +42,6 @@ for attachment in [
 ]:
 	with open(f"../{attachment}", "rb") as f:
 		html = html.replace(attachment, b64encode(f.read()).decode())
-
-with open(f"../contents/newsletter/{email_id}.html") as f:
-	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
-html = html.replace("messagePreviewPlaceholder", re.sub(r"<h\d>.*?</h\d>", "", message))
-html = html.replace("messagePlaceholder", message)
-
-html = html.replace("linkPlaceholder", config["link"])
 
 
 email = MIMEMultipart(
