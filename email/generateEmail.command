@@ -35,13 +35,13 @@ html = html.replace("messagePlaceholder", message)
 html = html.replace("linkPlaceholder", config["link"])
 
 for attachment in [
-	"/fonts/GothamRounded.woff2",
-	"/fonts/GothamRounded-Bold.woff2",
-	"/images/logo-light.svg",
-	"/images/logo-dark.svg",
+	("/fonts/GothamRounded.woff2", "font/woff2"),
+	("/fonts/GothamRounded-Bold.woff2", "font/woff2"),
+	("/images/logo-light.svg", "image/svg+xml"),
+	("/images/logo-dark.svg", "image/svg+xml"),
 ]:
-	with open(f"../{attachment}", "rb") as f:
-		html = html.replace(attachment, b64encode(f.read()).decode())
+	with open(f"../{attachment[0]}", "rb") as f:
+		html = html.replace(attachment[0], f"data:{attachment[1]};base64,{b64encode(f.read()).decode()}")
 
 
 email = MIMEMultipart(
