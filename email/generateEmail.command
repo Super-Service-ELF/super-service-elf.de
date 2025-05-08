@@ -30,6 +30,8 @@ with open("template.html") as f:
 for attachment in [
 	"fonts/GothamRounded.woff2",
 	"fonts/GothamRounded-Bold.woff2",
+	"images/logo-light.svg",
+	"images/logo-dark.svg",
 ]:
 	with open(f"../{attachment}", "rb") as f:
 		html = html.replace(attachment, b64encode(f.read()).decode())
