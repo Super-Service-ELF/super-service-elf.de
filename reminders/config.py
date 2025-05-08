@@ -91,4 +91,22 @@
 			},
 		},
 	},
+	"9": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Schon den Osterurlaub geplant? Noch nicht? Dann lassen Sie uns das doch für Sie übernehmen!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
+	"10": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Bestes Wetter für frühlingshafte Ausflüge! Aber Sie wissen nicht wohin? Wir kennen uns aus und geben Ihnen gerne Tipps!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }
