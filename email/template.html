@@ -7,21 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="color-scheme" content="light dark">
 	<style>
-		:root {
-			--blue: #009DFF;
-			--primaryColor: #80CEFF;
-			--secondaryColor: #004F80;
-			--primaryText: #000000;
-			--secondaryText: #FFFFFF;
-		}
-		@media (prefers-color-scheme: dark) {
-			:root {
-				--primaryColor: #004F80;
-				--secondaryColor: #80CEFF;
-				--primaryText: #FFFFFF;
-				--secondaryText: #000000;
-			}
-		}
 		@font-face {
 			font-family: "GothamRounded";
 			src: url("data:font/woff2;base64,GothamRounded.woff2Placeholder");
@@ -36,11 +21,11 @@
 			word-break: keep-all;
 			text-decoration: none;
 			margin: auto;
-			color: var(--primaryText);
+			color: #000000;
 			transition: color 0.5s ease, background-color 0.5s ease;
 		}
 		body {
-			background-color: var(--blue);
+			background-color: #009DFF;
 			min-width: 320px;
 			padding: 0;
 		}
@@ -49,7 +34,7 @@
 			padding: 16px;
 		}
 		main {
-			background-color: var(--primaryColor);
+			background-color: #80CEFF;
 		}
 		main div {
 			padding-block: 16px;
@@ -77,12 +62,12 @@
 			padding-block: 16px;
 		}
 		p a {
-			color: var(--secondaryColor);
+			color: #004F80;
 			text-decoration: underline;
 		}
 		.button {
-			background-color: var(--secondaryColor);
-			color: var(--secondaryText);
+			background-color: #004F80;
+			color: #FFFFFF;
 			border-radius: 64px;
 			cursor: pointer;
 			padding: 12px;
@@ -108,6 +93,21 @@
 			}
 			#auftragButton {
 				float: right;
+			}
+		}
+		@media (prefers-color-scheme: dark) {
+			* {
+				color: #FFFFFF;
+			}
+			main {
+				background-color: #004F80;
+			}
+			p a {
+				color: #80CEFF;
+			}
+			.button {
+				background-color: #80CEFF;
+				color: #000000;
 			}
 		}
 	</style>
