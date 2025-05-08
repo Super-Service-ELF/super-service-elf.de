@@ -140,6 +140,11 @@ div:not(#sslcontactholder *) {
 video {
 	height: min-content;
 }
+img {
+	display: block;
+	margin: 0 auto;
+	width: 75%;
+}
 
 .sslcontact *:not(a) {
 	display: block;
