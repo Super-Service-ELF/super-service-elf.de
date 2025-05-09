@@ -109,4 +109,13 @@
 			},
 		},
 	},
+	"11": {
+		"title": "Neuer ELF-Newsletter: Vergangenheit und Zukunft",
+		"options": {
+			"body": "Erfahren Sie mehr über die bisherige und zukünftige Entwicklung unseres ELF-Newsletters!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/25-elf-newsletter-vergangenheit-und-zukunft",
+			},
+		},
+	},
 }
