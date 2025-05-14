@@ -7,9 +7,9 @@ from pywebpush import webpush
 import json
 
 
-directory = os.path.dirname(__file__)
+os.chdir(os.path.dirname(__file__))
 
-with open(f"{directory}/config.py") as f:
+with open("config.py") as f:
 	config = eval(f.read())[input("Reminder ID to send: ")]
 
 print(f'Sending reminder with title "{config["title"]}" and body "{config["options"]["body"]}"...')
@@ -17,7 +17,7 @@ print(f'Sending reminder with title "{config["title"]}" and body "{config["optio
 config["options"].setdefault("icon", "https://super-service-elf.de/images/logo.png")
 config["options"].setdefault("requireInteraction", True)
 
-with open(f"{directory}/subscribers.py") as f:
+with open("subscribers.py") as f:
 	subscribers = eval(f.read())
 
 vapid_private_key = getpass("VAPID private key: ")

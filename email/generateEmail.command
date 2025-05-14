@@ -8,11 +8,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-directory = os.path.dirname(__file__)
+os.chdir(os.path.dirname(__file__))
 
 email_id = input("Email ID to generate: ")
 
-with open(f"{directory}/config.py") as f:
+with open("config.py") as f:
 	config = eval(f.read())[email_id]
 
 print(f'Generating email with subject "{config["subject"]}"...')
@@ -24,21 +24,24 @@ Ihr E-Mail-Programm stellt formatierte E-Mails leider nicht dar. Bitte lesen Sie
 Ihr Super-Service-ELF-Team\
 """
 
-with open(f"{directory}/template.html") as f:
+with open("template.html") as f:
 	html = f.read()
 
-for font in os.listdir(f"{directory}/../fonts/"):
-	if font.startswith("."):
-		continue
-	with open(f"{directory}/../fonts/{font}", "rb") as f:
-		html = html.replace(f"{font}Placeholder", b64encode(f.read()).decode())
-
-with open(f"{directory}/../contents/newsletter/{email_id}.html") as f:
+with open(f"../contents/newsletter/{email_id}.html") as f:
 	message = f.read().replace('href="/', 'href="https://super-service-elf.de/')
 html = html.replace("messagePreviewPlaceholder", re.sub(r"<h\d>.*?</h\d>", "", message))
 html = html.replace("messagePlaceholder", message)
 
 html = html.replace("linkPlaceholder", config["link"])
+
+for attachment in [
+	("/fonts/GothamRounded.woff2", "font/woff2"),
+	("/fonts/GothamRounded-Bold.woff2", "font/woff2"),
+	("/images/logo-light.svg", "image/svg+xml"),
+	("/images/logo-dark.svg", "image/svg+xml"),
+] + config.get("attachments", []):
+	with open(f"../{attachment[0]}", "rb") as f:
+		html = html.replace(attachment[0], f"data:{attachment[1]};base64,{b64encode(f.read()).decode()}")
 
 
 email = MIMEMultipart(
@@ -52,5 +55,5 @@ email = MIMEMultipart(
 email["From"] = "Super-Service-ELF <mail@super-service-elf.de>"
 email["Subject"] = config["subject"]
 
-with open(f"{directory}/email.eml", "w") as f:
+with open("email.eml", "w") as f:
 	f.write(email.as_string())

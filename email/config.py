@@ -23,4 +23,11 @@
 		"link": "https://super-service-elf.de/newsletter-archiv/24-elf-newsletter-entscheiden-sie-wer-entscheidet",
 		"subject": "24. ELF-Newsletter Entscheiden Sie, wer entscheidet!",
 	},
+	"25": {
+		"link": "https://super-service-elf.de/newsletter-archiv/25-elf-newsletter-vergangenheit-und-zukunft",
+		"subject": "25. ELF-Newsletter Vergangenheit und Zukunft",
+		"attachments": [
+			("/images/newsletter-collage.png", "image/png"),
+		],
+	},
 }

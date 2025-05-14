@@ -7,13 +7,13 @@ from smtplib import SMTP_SSL
 from getpass import getpass
 
 
-directory = os.path.dirname(__file__)
+os.chdir(os.path.dirname(__file__))
 
-with open(f"{directory}/recipients.py") as f:
+with open("recipients.py") as f:
 	recipients = eval(f.read())
 
 
-with open(f"{directory}/email.eml") as f:
+with open("email.eml") as f:
 	message = email.message_from_file(f)
 
 message["Date"] = email.utils.formatdate(localtime=True)
