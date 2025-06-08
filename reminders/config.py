@@ -118,4 +118,13 @@
 			},
 		},
 	},
+	"12": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Heute schon Ärger mit der Technik gehabt? Wenden Sie sich doch einfach an uns!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }

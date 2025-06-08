@@ -5,6 +5,7 @@ import os
 import email
 from smtplib import SMTP_SSL
 from getpass import getpass
+import urllib.parse
 
 
 os.chdir(os.path.dirname(__file__))
@@ -30,6 +31,7 @@ with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 		del message["To"]
 		message["Message-ID"] = email.utils.make_msgid(domain="super-service-elf.de")
 		message["To"] = recipient
+		message["List-Unsubscribe"] = f"<mailto:mail@super-service-elf.de?subject={urllib.parse.quote(f"Unsubscribe {recipient}")}>"
 		server.send_message(message)
 
 
