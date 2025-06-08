@@ -54,6 +54,7 @@ email = MIMEMultipart(
 
 email["From"] = "Super-Service-ELF <mail@super-service-elf.de>"
 email["Subject"] = config["subject"]
+email["List-Unsubscribe"] = "<mailto:mail@super-service-elf.de?subject=Unsubscribe>"
 
 with open("email.eml", "w") as f:
 	f.write(email.as_string())
