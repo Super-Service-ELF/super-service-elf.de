@@ -30,4 +30,8 @@
 			("/images/newsletter-collage.png", "image/png"),
 		],
 	},
+	"26": {
+		"link": "https://super-service-elf.de/newsletter-archiv/26-elf-newsletter-insights-jetzt-neu",
+		"subject": "26. ELF-Newsletter Insights: Jetzt neu",
+	},
 }

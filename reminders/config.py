@@ -127,4 +127,13 @@
 			},
 		},
 	},
+	"13": {
+		"title": "Neuer ELF-Newsletter: Insights: Jetzt neu",
+		"options": {
+			"body": "Erfahren Sie jetzt mehr über unser neustes Konzept und worauf Sie sich in den nächsten Tagen freuen können!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/26-elf-newsletter-insights-jetzt-neu"
+			},
+		},
+	},
 }
