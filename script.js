@@ -296,7 +296,7 @@ function replaceFormLabels() {
 		document.getElementById("message").style.minHeight = "32px";
 		document.getElementById("message").style.fontSize = "24px";
 	}
-	submit.parentElement.insertAdjacentHTML("afterbegin", '<label><p class=noPadding>Wenn Sie auf „Absenden“ klicken, erklären Sie sich unwiderruflich mit unseren <a href="/nutzungsbedingungen">Nutzungsbedingungen</a> und unserer <a href="/datenschutz">Datenschutzerklärung</a> einverstanden.</p></label>');
+	submit.parentElement.insertAdjacentHTML("afterbegin", '<label><p class=noPadding>Indem Sie auf „Absenden“ klicken, erklären Sie sich unwiderruflich mit unseren <a href="/nutzungsbedingungen">Nutzungsbedingungen</a> einverstanden.</p></label>');
 }
 
 function solveCaptcha() {
