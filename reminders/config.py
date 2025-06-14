@@ -1,4 +1,4 @@
-{
+config = {
 	"template": {
 		"title": "Erinnerungs-Titel",
 		"options": {
@@ -124,6 +124,24 @@
 			"body": "Heute schon Ärger mit der Technik gehabt? Wenden Sie sich doch einfach an uns!",
 			"data": {
 				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
+	"13": {
+		"title": "Neuer ELF-Newsletter: Insights: Jetzt neu",
+		"options": {
+			"body": "Erfahren Sie jetzt mehr über unser neustes Konzept und worauf Sie sich in den nächsten Tagen freuen können!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/26-elf-newsletter-insights-jetzt-neu"
+			},
+		},
+	},
+	"14": {
+		"title": "Neuer ELF-Newsletter: Insights: Bedachtes Reisen",
+		"options": {
+			"body": "Erfahren Sie, warum Zugreisen in Europa immer noch schwierig ist und wie wir es Ihnen leichter machen können!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/27-elf-newsletter-insights-bedachtes-reisen"
 			},
 		},
 	},

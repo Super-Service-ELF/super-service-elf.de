@@ -214,7 +214,7 @@ footer *:not(a) {
 	#auftragButton {
 		font-size: 32px;
 		position: fixed;
-		bottom: 8px;
+		bottom: 16px;
 		right: 50%;
 		transform: translateX(50%);
 	}

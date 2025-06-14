@@ -1,4 +1,4 @@
-{
+config = {
 	"template": {
 		"link": "https://super-service-elf.de/newsletter-archiv/template",
 		"subject": "XX. ELF-Newsletter XXXX",
@@ -29,5 +29,13 @@
 		"attachments": [
 			("/images/newsletter-collage.png", "image/png"),
 		],
+	},
+	"26": {
+		"link": "https://super-service-elf.de/newsletter-archiv/26-elf-newsletter-insights-jetzt-neu",
+		"subject": "26. ELF-Newsletter Insights: Jetzt neu",
+	},
+	"27": {
+		"link": "https://super-service-elf.de/newsletter-archiv/27-elf-newsletter-insights-bedachtes-reisen",
+		"subject": "27. ELF-Newsletter Insights: Bedachtes Reisen",
 	},
 }
