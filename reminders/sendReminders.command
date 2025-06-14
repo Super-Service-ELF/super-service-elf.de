@@ -1,10 +1,10 @@
 #!/usr/bin/env python3.13
 
 
-import os
 from getpass import getpass
-from pywebpush import webpush
 import json
+import os
+from pywebpush import webpush
 
 
 os.chdir(os.path.dirname(__file__))

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3.13
 
 
+from cryptography.hazmat.primitives import serialization
 from py_vapid import Vapid
 from py_vapid.utils import b64urlencode
-from cryptography.hazmat.primitives import serialization
 
 
 vapid_keys = Vapid()

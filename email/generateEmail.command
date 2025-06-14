@@ -1,11 +1,11 @@
 #!/usr/bin/env python3.13
 
 
-import os
 from base64 import b64encode
-import re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import os
+import re
 
 
 os.chdir(os.path.dirname(__file__))

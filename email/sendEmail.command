@@ -1,10 +1,10 @@
 #!/usr/bin/env python3.13
 
 
-import os
 import email
-from smtplib import SMTP_SSL
 from getpass import getpass
+import os
+from smtplib import SMTP_SSL
 import urllib.parse
 
 
