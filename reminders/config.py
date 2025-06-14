@@ -1,4 +1,4 @@
-{
+config = {
 	"template": {
 		"title": "Erinnerungs-Titel",
 		"options": {

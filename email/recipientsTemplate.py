@@ -1,3 +1,3 @@
-[
+recipients = [
 	"mail@example.com",
 ]

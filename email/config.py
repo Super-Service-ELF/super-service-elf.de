@@ -1,4 +1,4 @@
-{
+config = {
 	"template": {
 		"link": "https://super-service-elf.de/newsletter-archiv/template",
 		"subject": "XX. ELF-Newsletter XXXX",

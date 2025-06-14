@@ -4,14 +4,12 @@
 import email
 from getpass import getpass
 import os
+import recipients
 from smtplib import SMTP_SSL
 import urllib.parse
 
 
 os.chdir(os.path.dirname(__file__))
-
-with open("recipients.py") as f:
-	recipients = eval(f.read())
 
 
 with open("email.eml") as f:
@@ -25,7 +23,7 @@ with SMTP_SSL(host="smtp.mailbox.org", port=465) as server:
 		user="mail@super-service-elf.de",
 		password=getpass("SMTP server password for mail@super-service-elf.de: "),
 	)
-	for recipient in recipients + ["sent@super-service-elf.de"]:
+	for recipient in recipients.recipients + ["sent@super-service-elf.de"]:
 		print(f"Sending to {recipient if recipient != "sent@super-service-elf.de" else "Sent mailbox"}...")
 		del message["Message-ID"]
 		del message["To"]

@@ -2,6 +2,7 @@
 
 
 from base64 import b64encode
+import config
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
@@ -12,8 +13,7 @@ os.chdir(os.path.dirname(__file__))
 
 email_id = input("Email ID to generate: ")
 
-with open("config.py") as f:
-	config = eval(f.read())[email_id]
+config = config.config[email_id]
 
 print(f'Generating email with subject "{config["subject"]}"...')
 
