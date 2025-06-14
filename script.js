@@ -353,7 +353,7 @@ function updateRemindersInstructions() {
 	const remindersSupported = typeof navigator.serviceWorker !== "undefined" && typeof Notification !== "undefined";
 	if (remindersSupported) {
 		if (!navigator.standalone) {
-			document.getElementById("appReminders").hidden = false;
+			document.getElementById("appRecommendation").hidden = false;
 		}
 		document.getElementById("remindersInstructions").hidden = false;
 		document.getElementById("activateReminders").hidden = false;
