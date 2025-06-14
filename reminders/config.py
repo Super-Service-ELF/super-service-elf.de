@@ -136,4 +136,13 @@ config = {
 			},
 		},
 	},
+	"14": {
+		"title": "Neuer ELF-Newsletter: Insights: Bedachtes Reisen",
+		"options": {
+			"body": "Erfahren Sie, warum Zugreisen in Europa immer noch schwierig ist und wie wir es Ihnen leichter machen können!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/27-elf-newsletter-insights-bedachtes-reisen"
+			},
+		},
+	},
 }
