@@ -127,15 +127,7 @@ function updateColorScheme() {
 function loadContents() {
 	const elements = document.body.querySelectorAll("header, div, footer");
 	for (const element of elements) {
-		const elementID = element.id;
-		if (elementID == "webmail") {
-			const message = new URLSearchParams(location.search).get("message");
-			if (message) {
-				element.innerHTML = message;
-				continue;
-			}
-		}
-		const url = "/contents/" + elementID + ".html";
+		const url = "/contents/" + element.id + ".html";
 		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
