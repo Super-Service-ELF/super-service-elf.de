@@ -145,4 +145,13 @@ config = {
 			},
 		},
 	},
+	"15": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Genervt von zu vielen heißen Tagen? Wir liefern heiße Tipps, Tricks und Urlaubsguides!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 }
