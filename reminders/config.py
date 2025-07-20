@@ -1,15 +1,4 @@
 config = {
-	"xx": {
-		"title": "Erinnerungs-Titel",
-		"options": {
-			"body": "Erinnerungs-Text",
-			"data": {
-				"url": "https://super-service-elf.de",
-			},
-			"icon": "https://super-service-elf.de/path/to/icon",
-			"requireInteraction": True,
-		},
-	},
 	"0": {
 		"title": "Heute schon mit der Technik geärgert?",
 		"options": {
@@ -152,6 +141,17 @@ config = {
 			"data": {
 				"url": "https://super-service-elf.de/auftrag",
 			},
+		},
+	},
+	"xx": {
+		"title": "Erinnerungs-Titel",
+		"options": {
+			"body": "Erinnerungs-Text",
+			"data": {
+				"url": "https://super-service-elf.de",
+			},
+			"icon": "https://super-service-elf.de/path/to/icon",
+			"requireInteraction": True,
 		},
 	},
 }

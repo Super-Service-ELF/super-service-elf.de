@@ -1,8 +1,4 @@
 config = {
-	"xx": {
-		"link": "https://super-service-elf.de/newsletter-archiv/xx-elf-newsletter-xxxx",
-		"subject": "XX. ELF-Newsletter XXXX",
-	},
 	"20": {
 		"link": "https://super-service-elf.de/newsletter-archiv/20-elf-newsletter-vierjähriges-jubiläum",
 		"subject": "20. ELF-Newsletter Vierjähriges Jubiläum",
@@ -37,5 +33,9 @@ config = {
 	"27": {
 		"link": "https://super-service-elf.de/newsletter-archiv/27-elf-newsletter-insights-bedachtes-reisen",
 		"subject": "27. ELF-Newsletter Insights: Bedachtes Reisen",
+	},
+	"xx": {
+		"link": "https://super-service-elf.de/newsletter-archiv/xx-elf-newsletter-xxxx",
+		"subject": "XX. ELF-Newsletter XXXX",
 	},
 }
