@@ -143,6 +143,15 @@ config = {
 			},
 		},
 	},
+	"16": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Handy defekt, Passwort vergessen oder Internet kaputt gemacht? Kein Problem – wir beraten Sie immer gerne!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 	"xx": {
 		"title": "Erinnerungs-Titel",
 		"options": {
