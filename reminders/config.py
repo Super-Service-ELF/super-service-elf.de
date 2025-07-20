@@ -1,5 +1,5 @@
 config = {
-	"template": {
+	"xx": {
 		"title": "Erinnerungs-Titel",
 		"options": {
 			"body": "Erinnerungs-Text",

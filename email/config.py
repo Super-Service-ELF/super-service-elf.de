@@ -1,6 +1,6 @@
 config = {
-	"template": {
-		"link": "https://super-service-elf.de/newsletter-archiv/template",
+	"xx": {
+		"link": "https://super-service-elf.de/newsletter-archiv/xx-elf-newsletter-xxxx",
 		"subject": "XX. ELF-Newsletter XXXX",
 	},
 	"20": {
