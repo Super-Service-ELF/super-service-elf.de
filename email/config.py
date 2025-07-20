@@ -34,6 +34,13 @@ config = {
 		"link": "https://super-service-elf.de/newsletter-archiv/27-elf-newsletter-insights-bedachtes-reisen",
 		"subject": "27. ELF-Newsletter Insights: Bedachtes Reisen",
 	},
+	"28": {
+		"link": "https://super-service-elf.de/newsletter-archiv/28-elf-newsletter-5-jahre-super-service-elf",
+		"subject": "28. ELF-Newsletter 5 Jahre Super-Service-ELF",
+		"attachments": [
+			("/images/signal.png", "image/png"),
+		],
+	},
 	"xx": {
 		"link": "https://super-service-elf.de/newsletter-archiv/xx-elf-newsletter-xxxx",
 		"subject": "XX. ELF-Newsletter XXXX",
