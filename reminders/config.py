@@ -152,6 +152,15 @@ config = {
 			},
 		},
 	},
+	"17": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Lust auf einen spontanen Sommertrip, aber keine Lust zu planen? Wir beraten Sie auch an den heißesten Tagen gerne!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 	"xx": {
 		"title": "Erinnerungs-Titel",
 		"options": {
