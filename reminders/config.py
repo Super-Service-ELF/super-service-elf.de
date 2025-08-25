@@ -153,6 +153,15 @@ config = {
 		},
 	},
 	"17": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Lust auf einen spontanen Sommertrip, aber keine Lust zu planen? Wir beraten Sie auch an den heißesten Tagen gerne!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
+	"18": {
 		"title": "Neuer ELF-Newsletter: 5 Jahre Super-Service-ELF",
 		"options": {
 			"body": "Was wir heute feiern und wie Sie jetzt auch per Signal mit uns chatten können, erfahren Sie in unserem neusten ELF-Newsletter!",
