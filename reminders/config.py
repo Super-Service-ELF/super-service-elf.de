@@ -161,6 +161,15 @@ config = {
 			},
 		},
 	},
+	"18": {
+		"title": "Neuer ELF-Newsletter: 5 Jahre Super-Service-ELF",
+		"options": {
+			"body": "Was wir heute feiern und wie Sie jetzt auch per Signal mit uns chatten können, erfahren Sie in unserem neusten ELF-Newsletter!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/28-elf-newsletter-5-jahre-super-service-elf",
+			},
+		},
+	},
 	"xx": {
 		"title": "Erinnerungs-Titel",
 		"options": {

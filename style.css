@@ -122,7 +122,7 @@ header {
 #auftragButton {
 	float: right;
 	margin-top: 64px;
-	margin-bottom: 0px;
+	margin-bottom: 8px;
 	padding-block: 0px;
 }
 ul {
@@ -215,6 +215,7 @@ footer *:not(a) {
 		font-size: 32px;
 		position: fixed;
 		bottom: 16px;
+		margin-bottom: 0px;
 		right: 50%;
 		transform: translateX(50%);
 	}
