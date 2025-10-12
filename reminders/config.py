@@ -170,6 +170,15 @@ config = {
 			},
 		},
 	},
+	"19": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Kontaktieren Sie uns jetzt auch per Signal – noch einfacher, noch schneller und noch direkter!",
+			"data": {
+				"url": "https://signal.me/#eu/1OfHo_89QiTNc8R_eNUBrk1axHal8S9uRiFnYPkTfq1yCqwNaqZIz5mNHh1oQofk",
+			},
+		},
+	},
 	"xx": {
 		"title": "Erinnerungs-Titel",
 		"options": {
