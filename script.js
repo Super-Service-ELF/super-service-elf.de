@@ -26,7 +26,6 @@ addEventListener("unhandledrejection", (promiseRejectionEvent) => {
 let localStorageAvailable;
 let colorScheme;
 let deviceColorScheme;
-let observer;
 let os;
 let exactOS;
 let browser;
@@ -52,7 +51,9 @@ addEventListener("DOMContentLoaded", () => {
 		updateAppButton();
 		updateAppInstructions();
 	}
-	if (document.getElementsByClassName("form").length) { updateForm(); }
+	if (document.getElementsByClassName("form").length) {
+		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
+	}
 	document.getElementById("colorSchemeToggle").hidden = !localStorageAvailable;
 	document.body.classList.add("loaded");
 	if (document.getElementById("404")) { sendData("Seite nicht gefunden: " + location.pathname); }
@@ -250,7 +251,6 @@ function updateForm() {
 	if (!document.getElementById("sslcontact_form")) {
 		setTimeout(updateForm);
 	} else {
-		if (observer != undefined) { observer.disconnect(); }
 		for (const element of document.querySelectorAll(".sslcontact *")) {
 			element.removeAttribute("style");
 		}
@@ -262,7 +262,6 @@ function updateForm() {
 			});
 			document.getElementsByTagName("textarea")[0].dispatchEvent(new Event("input"));
 		}
-		new MutationObserver(updateForm).observe(document.getElementById("sslcontactholder"), { childList: true });
 	}
 }
 
