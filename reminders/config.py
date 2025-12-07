@@ -179,6 +179,15 @@ config = {
 			},
 		},
 	},
+	"20": {
+		"title": "Jetzt Auftrag aufgeben!",
+		"options": {
+			"body": "Diesen Herbst noch nichts geplant oder von Problemen genervt? Wir finden für Sie Tipps für Ausflüge, Trips und Alltagsprobleme!",
+			"data": {
+				"url": "https://super-service-elf.de/auftrag",
+			},
+		},
+	},
 	"xx": {
 		"title": "Erinnerungs-Titel",
 		"options": {
