@@ -406,3 +406,13 @@ function toggleColorScheme() {
 	updateColorScheme();
 	updateImages();
 }
+
+async function shareVideo() {
+	const response = await fetch("/video.mp4");
+	const blob = await response.blob();
+	const file = new File([blob], "Super-Service-ELF Video.mp4");
+	await navigator.share({
+		title: "Super-Service-ELF Video",
+		files: [file],
+	});
+}
