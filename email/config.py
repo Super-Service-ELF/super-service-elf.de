@@ -41,6 +41,10 @@ config = {
 			("/images/signal.png", "image/png"),
 		],
 	},
+	"29": {
+		"link": "https://super-service-elf.de/newsletter-archiv/29-elf-newsletter-jahresrückblick-2025",
+		"subject": "29. ELF-Newsletter Jahresrückblick 2025",
+	},
 	"xx": {
 		"link": "https://super-service-elf.de/newsletter-archiv/xx-elf-newsletter-xxxx",
 		"subject": "XX. ELF-Newsletter XXXX",

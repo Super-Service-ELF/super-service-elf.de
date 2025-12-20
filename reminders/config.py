@@ -197,6 +197,15 @@ config = {
 			},
 		},
 	},
+	"22": {
+		"title": "Neuer ELF-Newsletter: Jahresrückblick 2025",
+		"options": {
+			"body": "Begeben Sie sich mit unserem neuen ELF-Newsletter auf eine Reise durch 2025 und lassen Sie das Jahr mit uns Revue passieren!",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/29-elf-newsletter-jahresrückblick-2025",
+			},
+		},
+	},
 	"xx": {
 		"title": "XXXX",
 		"options": {
