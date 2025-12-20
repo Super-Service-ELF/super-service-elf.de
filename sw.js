@@ -5,7 +5,7 @@ self.addEventListener("message", (messageEvent) => {
 			messageEvent.waitUntil(
 				self.registration.showNotification(
 					"Erinnerungen erfolgreich aktiviert!", {
-						body: "Sie haben unsere Erinnerungen erfolgreich aktiviert und können sich nun wöchentlich auf spannende Neuigkeiten und hilfreiche Tipps von uns freuen!",
+						body: "Sie haben unsere Erinnerungen erfolgreich aktiviert und können sich nun mehrmals im Monat auf spannende Neuigkeiten und hilfreiche Tipps von uns freuen!",
 						icon: "https://super-service-elf.de/images/logo.png",
 						requireInteraction: false,
 					}
