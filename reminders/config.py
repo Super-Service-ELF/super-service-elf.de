@@ -198,14 +198,23 @@ config = {
 		},
 	},
 	"xx": {
-		"title": "Erinnerungs-Titel",
+		"title": "XXXX",
 		"options": {
-			"body": "Erinnerungs-Text",
+			"body": "XXXX",
 			"data": {
 				"url": "https://super-service-elf.de",
 			},
 			"icon": "https://super-service-elf.de/path/to/icon",
 			"requireInteraction": True,
+		},
+	},
+	"xx": {
+		"title": "Neuer ELF-Newsletter: XXXX",
+		"options": {
+			"body": "XXXX",
+			"data": {
+				"url": "https://super-service-elf.de/newsletter-archiv/xx-elf-newsletter-xxxx",
+			},
 		},
 	},
 }
