@@ -411,8 +411,14 @@ async function shareVideo() {
 	const response = await fetch("/video.mp4");
 	const blob = await response.blob();
 	const file = new File([blob], "Super-Service-ELF Video.mp4");
-	await navigator.share({
-		title: "Super-Service-ELF Video",
-		files: [file],
-	});
+	try {
+		await navigator.share({
+			title: "Super-Service-ELF Video",
+			files: [file],
+		});
+	} catch (error) {
+		if (!["InvalidStateError", "AbortError"].includes(error.name)) {
+			throw error;
+		}
+	}
 }
